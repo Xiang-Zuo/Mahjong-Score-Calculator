@@ -1,28 +1,31 @@
 package com.example.mahjong_winpoint_calculator;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import java.io.File;
-import java.util.Date;
+import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,7 +62,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,32 +82,80 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             public void onClick(View v) {
                 if(mRgba != null) {
                     if(!mRgba.empty()) {
-                        Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
-                        Log.e("Mat","...............1...............");
+                        //Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
+                        //Log.e("Mat","...............1...............");
                         //将四通道的RGBA转为三通道的BGR，重要！！
-                        Imgproc.cvtColor(mRgba, inter, Imgproc.COLOR_RGBA2BGR);
-                        Log.e("Mat","...............2...............");
-                        File sdDir = null;
-                        //判断是否存在机身内存
-                        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-                        if(sdCardExist) {
-                            //获得机身储存根目录
-                            sdDir = Environment.getExternalStorageDirectory();
-                            Log.e("Mat","...............3...............");
-                        }
-                        //将拍摄准确时间作为文件名
-                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-                        String filename = sdf.format(new Date());
-                        String savepath=sdDir + "/Pictures/OpenCV/";
-                        File f=new File(savepath);
-                        if(!f.exists()){
-                            f.mkdirs();
-                        }
-                        String filePath = sdDir + "/Pictures/OpenCV/" + filename + ".png";
-                        Log.e("Mat","..............."+filePath+"...............");
-                        //将转化后的BGR矩阵内容写入到文件中
-                        Imgcodecs.imwrite(filePath, inter);
-                        Toast.makeText(CameraActivity.this, "图片保存到: "+ filePath, Toast.LENGTH_SHORT).show();
+
+                        ///////
+//                        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+//
+//                        int imageResource = getResources().getIdentifier("@drawable/test", null, getPackageName());
+//                        imageView.setImageResource(imageResource);
+
+
+
+//                        ///////
+                        Mat src = readImageFromResources();
+                        Mat template = readImageFromResources2();
+
+                        Log.e("path", getURLForResource(R.drawable.test));
+                        Log.e("src", Boolean.toString(src.empty()));
+//                        Mat template = Imgcodecs.imread(getResources().getDrawable(R.drawable.testtemplate).toString());
+
+
+//
+//                        Bitmap srcBitMap= BitmapFactory.decodeResource(getResources(),R.drawable.test);
+//                        Mat src = new Mat(srcBitMap.getHeight(), srcBitMap.getWidth(), CvType.CV_8UC1);
+//                        Utils.bitmapToMat(srcBitMap, src);
+//                        Imgproc.cvtColor(src, src, Imgproc.COLOR_RGB2GRAY);
+//
+//                        Bitmap tempBitMap= BitmapFactory.decodeResource(getResources(),R.drawable.testtemplate);
+//                        Mat template = new Mat(tempBitMap.getHeight(), tempBitMap.getWidth(), CvType.CV_8UC1);
+//                        Utils.bitmapToMat(tempBitMap, template);
+//                        Imgproc.cvtColor(template, template, Imgproc.COLOR_RGB2GRAY);
+
+
+//                        Mat src = readImageFromResources(R.drawable.test);
+//                        Mat template = readImageFromResources(R.drawable.testtemplate);
+
+
+                        //Log.e("imread-:", src.dump());
+//                        Mat srcTemplate = new Mat(src.size(), CvType.CV_32F);
+//                        Imgproc.cvtColor(src, srcTemplate, Imgproc.COLOR_BGR2RGBA);
+//
+//                        Mat temp = Imgcodecs.imread("@drawable/testtemplate.jpg");
+//                        Mat tempTemplate = new Mat(temp.size(), CvType.CV_32F);
+//                        Imgproc.cvtColor(temp, tempTemplate, Imgproc.COLOR_BGR2RGBA);
+//
+                        Mat result = matchTemplate(src,template);
+                        Log.e("Match-------result:", Boolean.toString(result.empty()));
+                        showImg(result);
+
+
+
+//                        Imgproc.cvtColor(mRgba, inter, Imgproc.COLOR_RGBA2BGR);
+//                        Log.e("Mat","...............2...............");
+//                        File sdDir = null;
+//                        //判断是否存在机身内存
+//                        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+//                        if(sdCardExist) {
+//                            //获得机身储存根目录
+//                            sdDir = Environment.getExternalStorageDirectory();
+//                            Log.e("Mat","...............3...............");
+//                        }
+//                        //将拍摄准确时间作为文件名
+//                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+//                        String filename = sdf.format(new Date());
+//                        String savepath=sdDir + "/Pictures/OpenCV/";
+//                        File f=new File(savepath);
+//                        if(!f.exists()){
+//                            f.mkdirs();
+//                        }
+//                        String filePath = sdDir + "/Pictures/OpenCV/" + filename + ".png";
+//                        Log.e("Mat","..............."+filePath+"...............");
+//                        //将转化后的BGR矩阵内容写入到文件中
+//                        Imgcodecs.imwrite(filePath, inter);
+//                        Toast.makeText(CameraActivity.this, "图片保存到: "+ filePath, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -158,4 +208,66 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         Log.e("Mat","...............6...............");
         mRgba.release();
     }
+
+    //src image, template, method
+    public static Mat matchTemplate(Mat img, Mat temp) {
+        Log.e("Matching:","before" );
+        int match_method = Imgproc.TM_CCOEFF_NORMED;
+        int result_cols = img.cols() - temp.cols() + 1;
+        int result_rows = img.rows() - temp.rows() + 1;
+        Mat result = new Mat(result_rows, result_cols, CvType.CV_32FC1);
+        Imgproc.matchTemplate(img, temp, result, match_method);
+
+
+        Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
+        Point matchLoc;
+        if (match_method == Imgproc.TM_SQDIFF || match_method == Imgproc.TM_SQDIFF_NORMED) {
+            matchLoc = mmr.minLoc;
+        } else {
+            matchLoc = mmr.maxLoc;
+        }
+        Imgproc.rectangle(img, matchLoc, new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()), new Scalar(0, 255, 0));
+        Log.e("Writing:","result" );
+
+        //return result;
+        return  img;
+    }
+
+    private Mat readImageFromResources() {
+        Mat img = null;
+        try {
+            img = Utils.loadResource(this, R.drawable.test);
+            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
+        } catch (IOException e) {
+            Log.e(TAG, Log.getStackTraceString(e));
+        }
+        return img;
+    }
+
+    private Mat readImageFromResources2() {
+        Mat img = null;
+        try {
+            img = Utils.loadResource(this, R.drawable.testtemp);
+            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
+        } catch (IOException e) {
+            Log.e(TAG, Log.getStackTraceString(e));
+        }
+        return img;
+    }
+
+    private void showImg(Mat img) {
+        Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(),Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img, bm);
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setImageBitmap(bm);
+    }
+
+
+    public String getURLForResource (int resourceId) {
+        //use BuildConfig.APPLICATION_ID instead of R.class.getPackage().getName() if both are not same
+        return Uri.parse("android.resource://"+R.class.getPackage().getName()+"/" +resourceId).toString();
+    }
+
+
 }
+

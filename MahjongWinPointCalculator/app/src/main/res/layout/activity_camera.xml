@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -22,12 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom|center_horizontal">
+
         <Button
             android:id="@+id/deal_btn"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"
             android:text="@string/camera_take_photo" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="266dp"
+            android:layout_height="393dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </RelativeLayout>
 
 </FrameLayout>

@@ -104,11 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-
     private void switch_to_camera_activity() {
         Intent intent = new Intent(this, CameraActivity.class);
         startActivity(intent);
-
     }
 }
 
