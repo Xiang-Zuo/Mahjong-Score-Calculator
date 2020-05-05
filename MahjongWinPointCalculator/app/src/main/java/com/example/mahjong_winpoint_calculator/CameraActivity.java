@@ -2,7 +2,6 @@ package com.example.mahjong_winpoint_calculator;
 
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -82,57 +81,20 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             public void onClick(View v) {
                 if(mRgba != null) {
                     if(!mRgba.empty()) {
-                        //Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
-                        //Log.e("Mat","...............1...............");
-                        //将四通道的RGBA转为三通道的BGR，重要！！
-
-                        ///////
-//                        ImageView imageView = (ImageView) findViewById(R.id.imageView);
-//
-//                        int imageResource = getResources().getIdentifier("@drawable/test", null, getPackageName());
-//                        imageView.setImageResource(imageResource);
-
-
-
-//                        ///////
-                        Mat src = readImageFromResources();
-                        Mat template = readImageFromResources2();
-
-                        Log.e("path", getURLForResource(R.drawable.test));
-                        Log.e("src", Boolean.toString(src.empty()));
-//                        Mat template = Imgcodecs.imread(getResources().getDrawable(R.drawable.testtemplate).toString());
-
-
-//
-//                        Bitmap srcBitMap= BitmapFactory.decodeResource(getResources(),R.drawable.test);
-//                        Mat src = new Mat(srcBitMap.getHeight(), srcBitMap.getWidth(), CvType.CV_8UC1);
-//                        Utils.bitmapToMat(srcBitMap, src);
-//                        Imgproc.cvtColor(src, src, Imgproc.COLOR_RGB2GRAY);
-//
-//                        Bitmap tempBitMap= BitmapFactory.decodeResource(getResources(),R.drawable.testtemplate);
-//                        Mat template = new Mat(tempBitMap.getHeight(), tempBitMap.getWidth(), CvType.CV_8UC1);
-//                        Utils.bitmapToMat(tempBitMap, template);
-//                        Imgproc.cvtColor(template, template, Imgproc.COLOR_RGB2GRAY);
-
-
-//                        Mat src = readImageFromResources(R.drawable.test);
-//                        Mat template = readImageFromResources(R.drawable.testtemplate);
-
-
-                        //Log.e("imread-:", src.dump());
-//                        Mat srcTemplate = new Mat(src.size(), CvType.CV_32F);
-//                        Imgproc.cvtColor(src, srcTemplate, Imgproc.COLOR_BGR2RGBA);
-//
-//                        Mat temp = Imgcodecs.imread("@drawable/testtemplate.jpg");
-//                        Mat tempTemplate = new Mat(temp.size(), CvType.CV_32F);
-//                        Imgproc.cvtColor(temp, tempTemplate, Imgproc.COLOR_BGR2RGBA);
-//
+                        //mRgba 为opencv的4通道
+                        Mat src = mRgba;
+                        Mat template = readImageFromResources(R.drawable.yiwan);
+//                        Imgproc.resize(template,template,new Size(template.cols() / 5, template.rows() ), 0, 0, Imgproc.INTER_AREA);
                         Mat result = matchTemplate(src,template);
+//                        template = readImageFromResources(R.drawable.erwan);
+//                        result = matchTemplate(result,template);
                         Log.e("Match-------result:", Boolean.toString(result.empty()));
                         showImg(result);
 
 
-
+                        //Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
+                        //Log.e("Mat","...............1...............");
+                        //将四通道的RGBA转为三通道的BGR，重要！！
 //                        Imgproc.cvtColor(mRgba, inter, Imgproc.COLOR_RGBA2BGR);
 //                        Log.e("Mat","...............2...............");
 //                        File sdDir = null;
@@ -209,46 +171,64 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         mRgba.release();
     }
 
-    //src image, template, method
+    //src image, template, method, return img with rect
     public static Mat matchTemplate(Mat img, Mat temp) {
+//        Imgproc.cvtColor(img, img, Imgproc.COLOR_rgba2bgra);
+//        Imgproc.cvtColor(temp, temp, Imgproc.COLOR_RGB2BGRA);
         Log.e("Matching:","before" );
         int match_method = Imgproc.TM_CCOEFF_NORMED;
+
+
         int result_cols = img.cols() - temp.cols() + 1;
         int result_rows = img.rows() - temp.rows() + 1;
         Mat result = new Mat(result_rows, result_cols, CvType.CV_32FC1);
         Imgproc.matchTemplate(img, temp, result, match_method);
 
+        Log.e("Match", Boolean.toString(result.empty()));
 
-        Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
-        Point matchLoc;
-        if (match_method == Imgproc.TM_SQDIFF || match_method == Imgproc.TM_SQDIFF_NORMED) {
-            matchLoc = mmr.minLoc;
-        } else {
-            matchLoc = mmr.maxLoc;
+
+//        Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
+//        Point matchLoc;
+//        if (match_method == Imgproc.TM_SQDIFF || match_method == Imgproc.TM_SQDIFF_NORMED) {
+//            matchLoc = mmr.minLoc;
+//        } else {
+//            matchLoc = mmr.maxLoc;
+//        }
+//        Imgproc.rectangle(img, matchLoc, new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()), new Scalar(0, 255, 0));
+//        Log.e("Writing:","result" );
+
+
+        while(true)
+        {
+            Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
+            Point matchLoc = mmr.maxLoc;
+            if(mmr.maxVal >=0.8)
+            {
+                Imgproc.rectangle(img, matchLoc,
+                        new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()),
+                        new Scalar(0,255,0));
+                Imgproc.rectangle(result, matchLoc,
+                        new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()),
+                        new    Scalar(0,255,0),-1);
+                //break;
+            }
+            else
+            {
+                break; //No more results within tolerance, break search
+            }
         }
-        Imgproc.rectangle(img, matchLoc, new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()), new Scalar(0, 255, 0));
-        Log.e("Writing:","result" );
 
         //return result;
         return  img;
     }
 
-    private Mat readImageFromResources() {
+    private Mat readImageFromResources(int resource_ID) {
         Mat img = null;
         try {
-            img = Utils.loadResource(this, R.drawable.test);
-            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
-        } catch (IOException e) {
-            Log.e(TAG, Log.getStackTraceString(e));
-        }
-        return img;
-    }
+            img = Utils.loadResource(this, resource_ID);
+            //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
+            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
 
-    private Mat readImageFromResources2() {
-        Mat img = null;
-        try {
-            img = Utils.loadResource(this, R.drawable.testtemp);
-            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
         } catch (IOException e) {
             Log.e(TAG, Log.getStackTraceString(e));
         }
@@ -256,18 +236,12 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     }
 
     private void showImg(Mat img) {
+        //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGBA2BGRA);
         Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(),Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(img, bm);
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bm);
     }
-
-
-    public String getURLForResource (int resourceId) {
-        //use BuildConfig.APPLICATION_ID instead of R.class.getPackage().getName() if both are not same
-        return Uri.parse("android.resource://"+R.class.getPackage().getName()+"/" +resourceId).toString();
-    }
-
 
 }
 
