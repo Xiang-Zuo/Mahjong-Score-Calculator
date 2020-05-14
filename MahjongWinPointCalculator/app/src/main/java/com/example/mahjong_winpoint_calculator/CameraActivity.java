@@ -42,7 +42,9 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 
     public static final String EXTRA_HANDS = "com.example.mahjong_winpoint_calculator.EXTRA_HANDS";
 
-    private int[] TEMPLATEID = new int[]{R.drawable.erwan, R.drawable.sanwan, R.drawable.siwan, R.drawable.wuwan, R.drawable.liuwan, R.drawable.qiwan};
+//    private int[] TEMPLATEID = new int[]{R.drawable.erwan, R.drawable.sanwan, R.drawable.siwan, R.drawable.wuwan, R.drawable.liuwan, R.drawable.qiwan};
+    private String[] TEMPLATEID = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan"};
+
 
     /**通过OpenCV管理Android服务，初始化OpenCV**/
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -93,36 +95,51 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         //mRgba 为opencv的4通道
                         Mat src = mRgba;
                         hands.clear();
-                        Mat template = readImageFromResources(R.drawable.yiwan);
-                        double resizedCol = template.cols() / 2.5;
-                        double resizedRow = template.rows() / 2.5;
-                        int count = 2;
-                        Mat result;
-                        Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-                        Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-                        result = matchTemplate(src,template, "1-w");
-
-//                        template = readImageFromResources(R.drawable.siwan);
+                        double resizedCol = 0.0;
+                        double resizedRow = 0.0;
+                        Mat result = null;
+                        int count = 1;
+                        //correct...
+//                        Mat template = readImageFromResources("yiwan").MAT;
+//                        double resizedCol = template.cols() / 2.5;
+//                        double resizedRow = template.rows() / 2.5;
+//                        int count = 2;
+//                        Mat result;
 //                        Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-//                        Imgproc.resize(template,template,new Size(resizedCol, resizedRow), 0, 0, Imgproc.INTER_AREA);
-//                        Mat result2 = matchTemplate(result,template, "2w");
+//                        Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+//                        result = matchTemplate(src,template, "1-w");
+//                        for (int templateID : TEMPLATEID){
+//                            template = readImageFromResources(templateID);
+//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+//                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+//                            result = matchTemplate(result,template, count+"-w");
+//                            count += 1;
+//                        }
+//                        showImg(result);
 //                        Log.e("Match-------result:", hands.toString());
-//                        showImg(result2);
 
 
-                        for (int templateID : TEMPLATEID){
-                            template = readImageFromResources(templateID);
+                        for (String paiName : TEMPLATEID){
+                            Mat template = readImageFromResources(paiName).MAT;
+                            if (resizedCol == 0.0 && resizedRow == 0.0){
+                                resizedCol = template.cols() / 2.5;
+                                resizedRow = template.rows() / 2.5;
+                            }
                             Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-                            result = matchTemplate(result,template, count+"-w");
+                            if (result == null)
+                                result = matchTemplate(src,template, count +"-w");
+                            else
+                                result = matchTemplate(result,template, count +"-w");
                             count += 1;
                         }
                         showImg(result);
                         Log.e("Match-------result:", hands.toString());
 
-                        switch_to_result_activity();
 
+                        //switch_to_result_activity();
 
+                        //...correct
 
 
                         //Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
@@ -285,17 +302,21 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         return  img;
     }
 
-    private Mat readImageFromResources(int resource_ID) {
-        Mat img = null;
+    private Pai readImageFromResources(String paiName) {
+        Pai pai = new Pai(this, paiName);
         try {
-            img = Utils.loadResource(this, resource_ID);
-            //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
-            Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
-
+            if (pai.init()){
+                Mat img = Utils.loadResource(this, pai.ID);
+                //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
+                Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
+                pai.setMAT(img);
+            }else{
+                Log.e(TAG, "fail to get pai drawable");
+            }
         } catch (IOException e) {
             Log.e(TAG, Log.getStackTraceString(e));
         }
-        return img;
+        return pai;
     }
 
     private void showImg(Mat img) {
