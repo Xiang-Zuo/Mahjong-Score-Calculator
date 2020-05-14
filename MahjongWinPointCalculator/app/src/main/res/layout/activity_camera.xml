@@ -12,7 +12,7 @@
 <!--        android:id="@+id/color_blob_detection_activity_surface_view" />-->
 
     <org.opencv.android.JavaCameraView
-        android:id="@+id/camera_view"
+        android:id="@+id/show_camera_activity_java_surface_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:screenOrientation="landscape"
@@ -33,9 +33,20 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="258dp"
-            android:layout_height="388dp"
+            android:layout_width="622dp"
+            android:layout_height="399dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="109dp"
+            android:layout_marginLeft="109dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        
+        
     </RelativeLayout>
+    
+    <com.example.mahjong_winpoint_calculator.DrawImageView
+        android:id="@+id/drawIV"
+        android:layout_width="fill_parent"
+        android:layout_height="800px"/>
 
 </FrameLayout>
