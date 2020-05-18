@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 public class DrawImageView extends AppCompatImageView {
 
+    // draw rect when camera view
     public DrawImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub

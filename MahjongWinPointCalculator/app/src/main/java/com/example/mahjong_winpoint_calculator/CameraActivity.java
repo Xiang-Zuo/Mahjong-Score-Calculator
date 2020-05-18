@@ -43,7 +43,11 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     public static final String EXTRA_HANDS = "com.example.mahjong_winpoint_calculator.EXTRA_HANDS";
 
 //    private int[] TEMPLATEID = new int[]{R.drawable.erwan, R.drawable.sanwan, R.drawable.siwan, R.drawable.wuwan, R.drawable.liuwan, R.drawable.qiwan};
-    private String[] TEMPLATEID = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan"};
+    private String[] TEMPLATEID_WAN = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan", "bawan", "jiuwan"};
+    private String[] TEMPLATEID_TIAO = new String[]{"yitiao","sitiao","santiao","ertiao","wutiao","liutiao","qitiao","batiao","jiutiao"};
+//    private String[] TEMPLATEID_BING = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan", "bawan", "jiuwan",
+//            "yitiao","ertiao","santiao","sitiao","wutiao","liutiao","qitiao","batiao","jiutiao",
+//    };
 
 
     /**通过OpenCV管理Android服务，初始化OpenCV**/
@@ -61,15 +65,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             }
         }
     };
-//    Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg){
-//            super.handleMessage(msg);
-//            if(msg.what == 1){
-//                button.performClick();
-//            }
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +114,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 //                        Log.e("Match-------result:", hands.toString());
 
 
-                        for (String paiName : TEMPLATEID){
+                        for (String paiName : TEMPLATEID_WAN){
                             Mat template = readImageFromResources(paiName).MAT;
                             if (resizedCol == 0.0 && resizedRow == 0.0){
                                 resizedCol = template.cols() / 2.5;
@@ -133,41 +128,43 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                                 result = matchTemplate(result,template, count +"-w");
                             count += 1;
                         }
+                        count = 1;
+                        for (String paiName : TEMPLATEID_TIAO){
+                            Mat template = readImageFromResources(paiName).MAT;
+                            if (resizedCol == 0.0 && resizedRow == 0.0){
+                                resizedCol = template.cols() / 2.5;
+                                resizedRow = template.rows() / 2.5;
+                            }
+                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+                            if (paiName.equals("ertiao")) {
+                                if (result == null)
+                                    result = matchTemplate(src, template, 2 + "-t");
+                                else
+                                    result = matchTemplate(result, template, 2 + "-t");
+                            }else if (paiName.equals("sitiao")){
+                                if (result == null)
+                                    result = matchTemplate(src, template, 4 + "-t");
+                                else
+                                    result = matchTemplate(result, template, 4 + "-t");
+                            }else{
+                                if (result == null)
+                                    result = matchTemplate(src, template, count + "-t");
+                                else
+                                    result = matchTemplate(result, template, count + "-t");
+                            }
+                            count += 1;
+                        }
                         showImg(result);
+
+
+
                         Log.e("Match-------result:", hands.toString());
 
 
-                        //switch_to_result_activity();
+                        switch_to_result_activity();
 
                         //...correct
-
-
-                        //Mat inter = new Mat(mRgba.width(), mRgba.height(), CvType.CV_8UC4);
-                        //Log.e("Mat","...............1...............");
-                        //将四通道的RGBA转为三通道的BGR，重要！！
-//                        Imgproc.cvtColor(mRgba, inter, Imgproc.COLOR_RGBA2BGR);
-//                        Log.e("Mat","...............2...............");
-//                        File sdDir = null;
-//                        //判断是否存在机身内存
-//                        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-//                        if(sdCardExist) {
-//                            //获得机身储存根目录
-//                            sdDir = Environment.getExternalStorageDirectory();
-//                            Log.e("Mat","...............3...............");
-//                        }
-//                        //将拍摄准确时间作为文件名
-//                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-//                        String filename = sdf.format(new Date());
-//                        String savepath=sdDir + "/Pictures/OpenCV/";
-//                        File f=new File(savepath);
-//                        if(!f.exists()){
-//                            f.mkdirs();
-//                        }
-//                        String filePath = sdDir + "/Pictures/OpenCV/" + filename + ".png";
-//                        Log.e("Mat","..............."+filePath+"...............");
-//                        //将转化后的BGR矩阵内容写入到文件中
-//                        Imgcodecs.imwrite(filePath, inter);
-//                        Toast.makeText(CameraActivity.this, "图片保存到: "+ filePath, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -264,16 +261,12 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             {
                 Log.i("x-y", matchLoc.x +"-"+matchLoc.y);
                 uniqueObjXYCoor(matchLoc.x, matchLoc.y,uniqueObjPositions,card_Name);
-//                unique_xy_coor.add(Math.ceil(matchLoc.x / 10) + "-" + Math.ceil(matchLoc.y / 10));
-
-//                hands.add(card_Name);
                 Imgproc.rectangle(img, matchLoc,
                         new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()),
                         new Scalar(0,255,0));
                 Imgproc.rectangle(result, matchLoc,
                         new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()),
                         new    Scalar(0,255,0),-1);
-                //break;
             }
             else
             {
@@ -297,8 +290,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             );
 
         }
-
-        //return result;
         return  img;
     }
 
@@ -327,7 +318,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         imageView.setImageBitmap(bm);
     }
 
-    private ArrayList<String> uniqueObjXYCoor(Double x, Double y, ArrayList<String> xYCoor, String cardName){
+    private void uniqueObjXYCoor(Double x, Double y, ArrayList<String> xYCoor, String cardName){
         Boolean unique = true;
         if (xYCoor.isEmpty()){
             xYCoor.add(x+"-"+y + "-" + cardName);
@@ -342,8 +333,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             if (unique)
                 xYCoor.add(x+"-"+y+"-"+cardName);
         }
-
-        return xYCoor;
     }
 
     private void switch_to_result_activity() {
@@ -351,7 +340,5 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         intent.putExtra("EXTRA_HANDS", (ArrayList<String>) hands);
         startActivity(intent);
     }
-
-
 }
 
