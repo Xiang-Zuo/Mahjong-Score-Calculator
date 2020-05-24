@@ -370,6 +370,182 @@ public class CountPoint {
         }
     }
 
+    private boolean isHuaPai(int[] hands) {
+        // TODO ask user for input
+        return false;
+    }
+
+    private boolean isZiMo(int[] hands) {
+        if (fanXings.contains("MiaoShouHuiChun") || fanXings.contains("GangShangKaiHua") || fanXings.contains("BuQiuRen"))
+            return false;
+        // TODO ask user for input
+        return false;
+    }
+
+    private boolean isDanDiaoJiang(int[] hands) {
+        if (fanXings.contains("LianQiDui") || fanXings.contains("QuanQiuRen"))
+            return false;
+        // TODO ask user for input 单调一张将牌
+        return false;
+    }
+
+    private boolean isKanZhang(int[] hands) {
+        // TODO ask user for input 胡两张牌之间的牌，3_5胡4
+        return false;
+    }
+
+    private boolean isBianZhang(int[] hands) {
+        // TODO ask user for input 胡3或者7
+        return false;
+    }
+
+    private boolean isWuZi(int[] hands) {
+        if (fanXings.contains("LianQiDui") || fanXings.contains("QingYaoJiu") || fanXings.contains("YiSeShuangLongHui") || fanXings.contains("ShuangQuanKe") || fanXings.contains("QingYiSe") ||
+                fanXings.contains("QuanDa") || fanXings.contains("QuanZhong") || fanXings.contains("QuanXiao") || fanXings.contains("QuanDaiWu") || fanXings.contains("DaYuWu") ||
+                fanXings.contains("XiaoYuWu") || fanXings.contains("PingHu") || fanXings.contains("DuanYao"))
+        return false;
+        return isAllZero(hands,27,33);
+    }
+
+    private boolean isQueYiMen(int[] hands) {
+        if (fanXings.contains("LianQiDui") || fanXings.contains("XiaoSanYuan") || fanXings.contains("XiaoSiXi") || fanXings.contains("ZiYiSe") || fanXings.contains("YiSeShuangLongHui") ||
+                fanXings.contains("YiSeSiTongShun") || fanXings.contains("YiSeSiJieGao") || fanXings.contains("YiSeSiBuGao") || fanXings.contains("QingYiSe") || fanXings.contains("SanFengKe") ||
+                fanXings.contains("TuiBuDao") || fanXings.contains("HunYiSe"))
+            return false;
+        return isAllZero(hands,0,8) || isAllZero(hands,9,17) || isAllZero(hands,18,26);
+    }
+
+    private boolean isMingGang(int[] hands) {
+        if (fanXings.contains("SiGang") || fanXings.contains("SanGang") || fanXings.contains("ShuangMingGang"))
+            return false;
+        //TODO Ask for user input
+        return false;
+    }
+
+    private boolean isYaoJiuKe(int[] hands) {
+        if (fanXings.contains("DaSiXi") || fanXings.contains("JiuBaoLianDeng") || fanXings.contains("QingYaoJiu") || fanXings.contains("XiaoSiXi") || fanXings.contains("ZiYiSe") ||
+                fanXings.contains("HunYaoJiu") || fanXings.contains("QuanFengKe") || fanXings.contains("MenFengKe"))
+            return false;
+        return hands[0] == 3 || hands[8] == 3 || hands[9] == 3 || hands[17] == 3 || hands[18] == 3 || hands[26] == 3 || hands[27] == 3 || hands[28] == 3 || hands[29] == 3 || hands[30] == 3;
+    }
+
+    private boolean isLaoShaoFu(int[] hands) {
+        if (fanXings.contains("YiSeShuangLongHui") || fanXings.contains("SanSeShuangLongHui") || fanXings.contains("QingLong"))
+            return false;
+        return (hands[0] >= 1 && hands[1] >= 1 && hands[2] >= 1 && hands[6] >= 1 && hands[7] >= 1 && hands[8] >= 1) || (hands[9] >= 1 && hands[10] >= 1 && hands[11] >= 1 && hands[15] >= 1 && hands[16] >= 1 && hands[17] >= 1) ||
+                (hands[18] >= 1 && hands[19] >= 1 && hands[20] >= 1 && hands[24] >= 1 && hands[25] >= 1 && hands[26] >= 1);
+    }
+
+    private boolean isLianLiu(int[] hands) {
+        if (fanXings.contains("QingLong"))
+            return false;
+        for (int i =0; i<=3; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+3] >= 1 && hands[i+4] >= 1 && hands[i+5] >= 1)  //万
+                return true;
+        }
+        for (int i =9; i<=12; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+3] >= 1 && hands[i+4] >= 1 && hands[i+5] >= 1)  //饼
+                return true;
+        }
+        for (int i =18; i<=21; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+3] >= 1 && hands[i+4] >= 1 && hands[i+5] >= 1)  //条
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isXiXiangFeng(int[] hands) {
+        if (fanXings.contains("SanSeShuangLongHui") || fanXings.contains("SanSeSanTongShun"))
+            return false;
+        for (int i =0; i<=6; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+9] >= 1 && hands[i+10] >= 1 && hands[i+11] >= 1)  //万饼
+                return true;
+            else if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+18] >= 1 && hands[i+19] >= 1 && hands[i+20] >= 1)  //万条
+                return true;
+        }
+        for (int i =9; i<=15; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+9] >= 1 && hands[i+10] >= 1 && hands[i+11] >= 1)  //饼条
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isYiBanGao(int[] hands) {
+        if (fanXings.contains("YiSeShuangLongHui") || fanXings.contains("YiSeSiTongShun") || fanXings.contains("YiSeSanTongShun"))
+            return false;
+        for (int i =0; i<=6; i++){
+            if (hands[i] == 2 && hands[i+1] == 2 && hands[i+2] == 2)
+                return true;
+        }
+        for (int i =9; i<=15; i++){
+            if (hands[i] == 2 && hands[i+1] == 2 && hands[i+2] == 2)
+                return true;
+        }
+        for (int i =18; i<=24; i++){
+            if (hands[i] == 2 && hands[i+1] == 2 && hands[i+2] == 2)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isDuanYao(int[] hands) {
+        //noWuZi
+        if (fanXings.contains("QuanShuangKe") || fanXings.contains("QuanZhong") || fanXings.contains("QuanDaiWu"))
+            return false;
+        return hands[0] == 0 && hands[8] == 0 && hands[9] == 0 && hands[17] == 0 && hands[18] == 0 && isAllZero(hands,26,33);
+    }
+
+    private boolean isAnGang(int[] hands) {
+        if (fanXings.contains("SiGang") || fanXings.contains("SanGang") || fanXings.contains("ShuangAnGang"))
+            return false;
+        //TODO Ask for user input
+        return false;
+    }
+
+    private boolean isShuangAnKe(int[] hands) {
+        if (fanXings.contains("SiAnKe") || fanXings.contains("SanAnKe") || fanXings.contains("ShuangAnGang"))
+            return false;
+        //TODO Ask for user input
+        return false;
+    }
+
+    private boolean isShuangTongKe(int[] hands) {
+        if (fanXings.contains("QingYaoJiu") || fanXings.contains("SanTongKe"))
+            return false;
+        for (int i =0; i<9; i++){
+            if ((hands[i] == 3 && hands[i+9] == 3)||(hands[i] == 3 && hands[i+18] == 3))
+                return true;
+        }
+        for (int i =9; i<18; i++){
+            if (hands[i] == 3 && hands[i+9] == 3)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isSiGuiYi(int[] hands) {
+        if (fanXings.contains("YiSeSiTongShun"))
+            return false;
+        //TODO Ask for user input 无杠
+        for (int i = 0; i<34; i++){
+            if (hands[i] == 4)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isPingHu(int[] hands) {
+        // noWuZi
+        if (fanXings.contains("YiSeShuangLongHui") || fanXings.contains("SanSeShuangLongHui"))
+            return false;
+        boolean pingHu = true;
+        for (int i = 0; i<34; i++){
+            if (hands[i] == 3)
+                pingHu = false;
+        }
+        return pingHu;
+    }
+
     private boolean isMenQianQing(int[] hands) {
         if (fanXings.contains("JiuBaoLianDeng") || fanXings.contains("LianQiDui") || fanXings.contains("ShiSanYao") || fanXings.contains("SiAnKe") ||
                 fanXings.contains("QiDui") || fanXings.contains("QiXingBuKao") || fanXings.contains("QuanBuKao") || fanXings.contains("BuQiuRen"))
