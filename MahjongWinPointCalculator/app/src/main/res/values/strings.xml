@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Mahjong-WinPoint-Calculator</string>
-    <string name="action_settings">Settings</string>
 
     <string name="main_title">麻将番数计算器</string>
     <string name="main_to_camera_btn">拍照</string>
