@@ -6,4 +6,279 @@
     android:layout_height="match_parent"
     tools:context=".ManuallyActivity">
 
+    <ImageView
+        android:id="@+id/yiwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/yiwan"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/erwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/erwan"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/sanwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/sanwan"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/siwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/siwan"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/wuwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/wuwan"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/liuwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/liuwan"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/qiwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/qiwan"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/bawan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/bawan"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <ImageView
+        android:id="@+id/jiuwan"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/jiuwan"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+
+    <ImageView
+        android:id="@+id/yibing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/yibing"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/erbing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/erbing"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/sanbing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/sanbing"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/sibing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/sibing"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/wubing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/wubing"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/liubing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/liubing"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/qibing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/qibing"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/babing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/babing"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <ImageView
+        android:id="@+id/jiubing"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/jiubing"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+
+    <ImageView
+        android:id="@+id/yitiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/yitiao"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/ertiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/ertiao"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/santiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/santiao"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/sitiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/sitiao"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/wutiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/wutiao"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/liutiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/liutiao"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/qitiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/qitiao"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/batiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/batiao"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <ImageView
+        android:id="@+id/jiutiao"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/jiutiao"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+
+    <ImageView
+        android:id="@+id/dongfeng"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/dongfeng"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/nanfeng"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/nanfeng"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/xifeng"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/xifeng"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/beifeng"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/beifeng"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/hongzhong"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/hongzhong"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/facai"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/facai"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <ImageView
+        android:id="@+id/baiban"
+        android:layout_width="43dp"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/baiban"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="659dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
