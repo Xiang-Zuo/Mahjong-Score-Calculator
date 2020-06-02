@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 200;
     private static final String TAG = "MainActivity";
     Button main_to_camera_btn;
+    Button main_to_manual_btn;
     String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     ArrayList<String> UNGRANTED_PERMISSIONS = new ArrayList<String>();
 
@@ -33,14 +34,21 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSIONS_REQUEST_CODE);
         }
 
-            main_to_camera_btn = (Button) findViewById(R.id.main_to_cameraAct_button);
-            main_to_camera_btn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v){
+        main_to_camera_btn = (Button) findViewById(R.id.main_to_cameraAct_button);
+        main_to_camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
                     switch_to_camera_activity();
                 }
-            });
+        });
+
+        main_to_manual_btn = (Button) findViewById(R.id.main_to_manuallyAct_button);
+        main_to_manual_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                switch_to_manual_activity();
+            }
+        });
 
     }
 
@@ -155,5 +163,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CameraActivity.class);
         startActivity(intent);
     }
+
+    private void switch_to_manual_activity() {
+        Intent intent = new Intent(this, ManuallyActivity.class);
+        startActivity(intent);
+    }
+
 }
 

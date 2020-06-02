@@ -16,12 +16,22 @@
         android:textSize="25sp" />
 
     <Button
+        android:id="@+id/main_to_manuallyAct_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_to_manual"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="350dp" />
+
+    <Button
         android:id="@+id/main_to_cameraAct_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_to_camera_btn"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="350dp" />
+        android:layout_marginTop="410dp" />
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
