@@ -381,16 +381,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baiban" />
 
-
-
-
     <ImageView
         android:id="@+id/spot00"
         android:layout_width="55dp"
         android:layout_height="67dp"
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="86dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background" />
@@ -701,7 +698,9 @@
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="104dp"
-        android:background="@drawable/ming"
+        android:background="@drawable/round_btn_default"
+        android:text="明"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -712,7 +711,9 @@
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="176dp"
-        android:background="@drawable/ming"
+        android:background="@drawable/round_btn_default"
+        android:text="明"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -723,7 +724,9 @@
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="244dp"
-        android:background="@drawable/ming"
+        android:background="@drawable/round_btn_default"
+        android:text="明"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -734,7 +737,9 @@
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="304dp"
-        android:background="@drawable/ming"
+        android:background="@drawable/round_btn_default"
+        android:text="明"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -745,7 +750,9 @@
         android:layout_marginStart="328dp"
         android:layout_marginLeft="328dp"
         android:layout_marginTop="104dp"
-        android:background="@drawable/an"
+        android:background="@drawable/round_btn_default"
+        android:text="暗"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -756,7 +763,9 @@
         android:layout_marginStart="328dp"
         android:layout_marginLeft="328dp"
         android:layout_marginTop="304dp"
-        android:background="@drawable/an"
+        android:background="@drawable/round_btn_default"
+        android:text="暗"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -767,7 +776,9 @@
         android:layout_marginStart="328dp"
         android:layout_marginLeft="328dp"
         android:layout_marginTop="244dp"
-        android:background="@drawable/an"
+        android:background="@drawable/round_btn_default"
+        android:text="暗"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -778,7 +789,9 @@
         android:layout_marginStart="328dp"
         android:layout_marginLeft="328dp"
         android:layout_marginTop="176dp"
-        android:background="@drawable/an"
+        android:background="@drawable/round_btn_default"
+        android:text="暗"
+        android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

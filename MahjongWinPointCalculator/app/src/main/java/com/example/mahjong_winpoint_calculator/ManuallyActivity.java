@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,10 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                                                                         null, null};
 
     ArrayList<String> hands;
+    ArrayList<String> chi;
+    ArrayList<String> peng;
+    ArrayList<String> mingGang;
+    ArrayList<String> anGang;
 
     ImageView spot00 = null;
     ImageView spot01 = null;
@@ -119,6 +124,10 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
         paiCount = new HashMap<ImageView, Integer>();
         hands = new ArrayList<>();
+        chi = new ArrayList<>();
+        peng = new ArrayList<>();
+        mingGang = new ArrayList<>();
+        anGang = new ArrayList<>();
 
         spot00 = (ImageView) findViewById(R.id.spot00);
         spot01 = (ImageView) findViewById(R.id.spot01);
@@ -288,7 +297,11 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         mingBtn1.setOnClickListener(this);
         mingBtn2.setOnClickListener(this);
         mingBtn3.setOnClickListener(this);
-
+        mingBtn0.setVisibility(View.INVISIBLE);
+        mingBtn1.setVisibility(View.INVISIBLE);
+        mingBtn2.setVisibility(View.INVISIBLE);
+        mingBtn3.setVisibility(View.INVISIBLE);
+        
         anBtn0 = (Button) findViewById(R.id.anBtn0);
         anBtn1 = (Button) findViewById(R.id.anBtn1);
         anBtn2 = (Button) findViewById(R.id.anBtn2);
@@ -297,6 +310,10 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         anBtn1.setOnClickListener(this);
         anBtn2.setOnClickListener(this);
         anBtn3.setOnClickListener(this);
+        anBtn0.setVisibility(View.INVISIBLE);
+        anBtn1.setVisibility(View.INVISIBLE);
+        anBtn2.setVisibility(View.INVISIBLE);
+        anBtn3.setVisibility(View.INVISIBLE);
 
         restoreBtn = (Button) findViewById(R.id.restoreBtn);
         deleteBtn = (Button) findViewById(R.id.deleteBtn);
@@ -304,10 +321,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         restoreBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
         calculateBtn.setOnClickListener(this);
-
-
     }
-
 
     public void onClick(View v){
         switch (v.getId()){
@@ -320,16 +334,16 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             case R.id.yibing: case R.id.erbing: case R.id.sanbing: case R.id.sibing: case R.id.wubing: case R.id.liubing: case R.id.qibing: case R.id.babing: case R.id.jiubing:
             case R.id.yitiao: case R.id.ertiao: case R.id.santiao: case R.id.sitiao: case R.id.wutiao: case R.id.liutiao: case R.id.qitiao: case R.id.batiao: case R.id.jiutiao:
             case R.id.dongfeng: case R.id.nanfeng: case R.id.xifeng: case R.id.beifeng: case R.id.hongzhong: case R.id.facai: case R.id.baiban:
-                onPaiClick(v.getId(),v );
+                onPaiClick(v.getId(), v);
                 break;
 
             case R.id.chiBtn0: case R.id.chiBtn1: case R.id.chiBtn2: case R.id.chiBtn3: case R.id.pengBtn0: case R.id.pengBtn1: case R.id.pengBtn2: case R.id.pengBtn3:
             case R.id.gangBtn0: case R.id.gangBtn1: case R.id.gangBtn2: case R.id.gangBtn3:
-                onChiPengGangBtnClick(v.getId());
+                onChiPengGangBtnClick(v.getId(), v);
                 break;
 
             case R.id.mingBtn0: case R.id.mingBtn1: case R.id.mingBtn2: case R.id.mingBtn3: case R.id.anBtn0: case R.id.anBtn1: case R.id.anBtn2: case R.id.anBtn3:
-                onMingAnBtnClick(v.getId());
+                onMingAnBtnClick(v.getId(), v);
                 break;
 
             case R.id.restoreBtn: case R.id.deleteBtn: case R.id.calculateBtn:
@@ -448,80 +462,554 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                         }
                         paiCount.put(spots[i], num - 1);
                         fillHandArray(v);
-                        Log.e("hands", hands.toString());
+//                        Log.e("hands", hands.toString());
                         break;
                     }
                 }
             }else{
-                theChosenSpot.setImageResource(drawableID);
                 int index = -1;
-                if (theChosenSpot == spot00)
+                if (theChosenSpot == spot00){
+                    if (spots[0] != null){
+                        int num = paiCount.get(spots[0]);
+                        spots[0].setClickable(true);
+                        paiCount.put(spots[0], num + 1);
+                    }
                     spots[0] = findViewById(id);
-                else if (theChosenSpot == spot01)
+                    spot00.setImageResource(drawableID);
+                    index = 0;
+                }
+                else if (theChosenSpot == spot01) {
+                    if (spots[1] != null){
+                        int num = paiCount.get(spots[1]);
+                        spots[1].setClickable(true);
+                        paiCount.put(spots[1], num + 1);
+                    }
                     spots[1] = findViewById(id);
-                else if (theChosenSpot == spot02)
-                    spots[2] = findViewById(id);
-                else if (theChosenSpot == spot10)
-                    spots[3] = findViewById(id);
-                else if (theChosenSpot == spot11)
-                    spots[4] = findViewById(id);
-                else if (theChosenSpot == spot12)
-                    spots[5] = findViewById(id);
-                else if (theChosenSpot == spot20)
-                    spots[6] = findViewById(id);
-                else if (theChosenSpot == spot21)
-                    spots[7] = findViewById(id);
-                else if (theChosenSpot == spot22)
-                    spots[8] = findViewById(id);
-                else if (theChosenSpot == spot30)
-                    spots[9] = findViewById(id);
-                else if (theChosenSpot == spot31)
-                    spots[10] = findViewById(id);
-                else if (theChosenSpot == spot32)
-                    spots[11] = findViewById(id);
-                else if (theChosenSpot == spot40)
-                    spots[12] = findViewById(id);
-                else if (theChosenSpot == spot41)
-                    spots[13] = findViewById(id);
+                    spot01.setImageResource(drawableID);
+                    index = 1;
 
-                int num = paiCount.get(theChosenSpot);
+                }
+                else if (theChosenSpot == spot02) {
+                    if (spots[2] != null){
+                        int num = paiCount.get(spots[2]);
+                        spots[2].setClickable(true);
+                        paiCount.put(spots[2], num + 1);
+                    }
+                    spots[2] = findViewById(id);
+                    spot02.setImageResource(drawableID);
+                    index = 2;
+
+                }
+                else if (theChosenSpot == spot10){
+                    if (spots[3] != null){
+                        int num = paiCount.get(spots[3]);
+                        spots[3].setClickable(true);
+                        paiCount.put(spots[3], num + 1);
+                    }
+                    spots[3] = findViewById(id);
+                    spot10.setImageResource(drawableID);
+                    index = 3;
+
+                }
+                else if (theChosenSpot == spot11) {
+                    if (spots[4] != null){
+                        int num = paiCount.get(spots[4]);
+                        spots[4].setClickable(true);
+                        paiCount.put(spots[4], num + 1);
+                    }
+                    spots[4] = findViewById(id);
+                    spot11.setImageResource(drawableID);
+                    index = 4;
+                }
+                else if (theChosenSpot == spot12){
+                    if (spots[5] != null){
+                        int num = paiCount.get(spots[5]);
+                        spots[5].setClickable(true);
+                        paiCount.put(spots[5], num + 1);
+                    }
+                    spots[5] = findViewById(id);
+                    spot12.setImageResource(drawableID);
+                    index = 5;
+
+                }
+                else if (theChosenSpot == spot20) {
+                    if (spots[6] != null){
+                        int num = paiCount.get(spots[6]);
+                        spots[6].setClickable(true);
+                        paiCount.put(spots[6], num + 1);
+                    }
+                    spots[6] = findViewById(id);
+                    spot20.setImageResource(drawableID);
+                    index = 6;
+
+                }
+                else if (theChosenSpot == spot21) {
+                    if (spots[7] != null){
+                        int num = paiCount.get(spots[7]);
+                        spots[7].setClickable(true);
+                        paiCount.put(spots[7], num + 1);
+                    }
+                    spots[7] = findViewById(id);
+                    spot21.setImageResource(drawableID);
+                    index = 7;
+
+                }
+                else if (theChosenSpot == spot22) {
+                    if (spots[8] != null){
+                        int num = paiCount.get(spots[8]);
+                        spots[8].setClickable(true);
+                        paiCount.put(spots[8], num + 1);
+                    }
+                    spots[8] = findViewById(id);
+                    spot22.setImageResource(drawableID);
+                    index = 8;
+
+                }
+                else if (theChosenSpot == spot30) {
+                    if (spots[9] != null){
+                        int num = paiCount.get(spots[9]);
+                        spots[9].setClickable(true);
+                        paiCount.put(spots[9], num + 1);
+                    }
+                    spots[9] = findViewById(id);
+                    spot30.setImageResource(drawableID);
+                    index = 9;
+
+                }
+                else if (theChosenSpot == spot31) {
+                    if (spots[10] != null){
+                        int num = paiCount.get(spots[10]);
+                        spots[10].setClickable(true);
+                        paiCount.put(spots[10], num + 1);
+                    }
+                    spots[10] = findViewById(id);
+                    spot31.setImageResource(drawableID);
+                    index = 10;
+
+                }
+                else if (theChosenSpot == spot32) {
+                    if (spots[11] != null){
+                        int num = paiCount.get(spots[11]);
+                        spots[11].setClickable(true);
+                        paiCount.put(spots[11], num + 1);
+                    }
+                    spots[11] = findViewById(id);
+                    spot32.setImageResource(drawableID);
+                    index = 11;
+
+                }
+                else if (theChosenSpot == spot40) {
+                    if (spots[12] != null){
+                        int num = paiCount.get(spots[12]);
+                        spots[12].setClickable(true);
+                        paiCount.put(spots[12], num + 1);
+                    }
+                    spots[12] = findViewById(id);
+                    spot40.setImageResource(drawableID);
+                    index = 12;
+
+                }
+                else if (theChosenSpot == spot41) {
+                    if (spots[13] != null){
+                        int num = paiCount.get(spots[13]);
+                        spots[13].setClickable(true);
+                        paiCount.put(spots[13], num + 1);
+                    }
+                    spots[13] = findViewById(id);
+                    spot41.setImageResource(drawableID);
+                    index = 13;
+                }
+
+                int num = paiCount.get(spots[index]);
                 if (num <= 1){
                     findViewById(id).setClickable(false);
                 }
-                paiCount.put(theChosenSpot, num - 1);
-
-                }
+                paiCount.put(spots[index], num - 1);
+                fillHandArray(v);
+//                Log.e("hands", hands.toString());
+                theChosenSpot.setBackgroundColor(Color.WHITE);
+                theChosenSpot.setPadding(0,0,0,0);
+                theChosenSpot = null;
             }
         }
+    }
 
-    private void onChiPengGangBtnClick(int id){
+    private void onChiPengGangBtnClick(int id, View v){
         if (id == R.id.chiBtn0 || id == R.id.chiBtn1 || id == R.id.chiBtn2 || id == R.id.chiBtn3){
             Button button = findViewById(id);
+            if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
+                button.setBackgroundResource(R.drawable.round_btn_default);
+                button.setTextColor(Color.rgb(171,166,164));
+            }else {
+                button.setBackgroundResource(R.drawable.round_btn_highlight);
+                button.setTextColor(Color.BLACK);
+                Button oppositeBtn;
+                int gangBtnID;
+                if (id == R.id.chiBtn0 ) {
+                    oppositeBtn = findViewById(R.id.pengBtn0);
+                    gangBtnID = R.id.gangBtn0;
+                }
+                else if (id == R.id.chiBtn1 ) {
+                    oppositeBtn = findViewById(R.id.pengBtn1);
+                    gangBtnID = R.id.gangBtn1;
+                }
+                else if (id == R.id.chiBtn2) {
+                    oppositeBtn = findViewById(R.id.pengBtn2);
+                    gangBtnID = R.id.gangBtn2;
+                }
+                else {
+                    oppositeBtn = findViewById(R.id.pengBtn3);
+                    gangBtnID = R.id.gangBtn3;
+                }
+                oppositeBtn.setBackgroundResource(R.drawable.round_btn_default);
+                oppositeBtn.setTextColor(Color.rgb(171,166,164));
+                gangbtnControl(gangBtnID,false);
+            }
+        }else if (id == R.id.pengBtn0 || id == R.id.pengBtn1 || id == R.id.pengBtn2 || id == R.id.pengBtn3){
+            Button button = findViewById(id);
+            if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
+                button.setBackgroundResource(R.drawable.round_btn_default);
+                button.setTextColor(Color.rgb(171,166,164));
+            }else {
+                button.setBackgroundResource(R.drawable.round_btn_highlight);
+                button.setTextColor(Color.BLACK);
+                Button oppositeBtn;
+                int gangBtnID;
+                if (id == R.id.pengBtn0 ) {
+                    oppositeBtn = findViewById(R.id.chiBtn0);
+                    gangBtnID = R.id.gangBtn0;
+                }
+                else if (id == R.id.pengBtn1 ) {
+                    oppositeBtn = findViewById(R.id.chiBtn1);
+                    gangBtnID = R.id.gangBtn1;
+                }
+                else if (id == R.id.pengBtn2){
+                    oppositeBtn = findViewById(R.id.chiBtn2);
+                    gangBtnID = R.id.gangBtn2;
+                }
+                else{
+                    oppositeBtn = findViewById(R.id.chiBtn3);
+                    gangBtnID = R.id.gangBtn3;
+                }
+                oppositeBtn.setBackgroundResource(R.drawable.round_btn_default);
+                oppositeBtn.setTextColor(Color.rgb(171,166,164));
+                gangbtnControl(gangBtnID,false);
+            }
+        }else if (id == R.id.gangBtn0 || id == R.id.gangBtn1 || id == R.id.gangBtn2 || id == R.id.gangBtn3){
+            Button button = findViewById(id);
+            Button ming;
+            Button an;
+            Button chi;
+            Button peng;
+            if (id == R.id.gangBtn0 ) {
+                ming = findViewById(R.id.mingBtn0);
+                an = findViewById(R.id.anBtn0);
+                chi = findViewById(R.id.chiBtn0);
+                peng = findViewById(R.id.pengBtn0);
+            }else if (id == R.id.gangBtn1 ) {
+                ming = findViewById(R.id.mingBtn1);
+                an = findViewById(R.id.anBtn1);
+                chi = findViewById(R.id.chiBtn1);
+                peng = findViewById(R.id.pengBtn1);
+            }else if (id == R.id.gangBtn2 ) {
+                ming = findViewById(R.id.mingBtn2);
+                an = findViewById(R.id.anBtn2);
+                chi = findViewById(R.id.chiBtn2);
+                peng = findViewById(R.id.pengBtn2);
+            }else {
+                ming = findViewById(R.id.mingBtn3);
+                an = findViewById(R.id.anBtn3);
+                chi = findViewById(R.id.chiBtn3);
+                peng = findViewById(R.id.pengBtn3);
+            }
+            if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
+                gangbtnControl(id, false);
+            }else{
+                gangbtnControl(id, true);
+                chi.setBackgroundResource(R.drawable.round_btn_default);
+                chi.setTextColor(Color.rgb(171,166,164));
+                peng.setBackgroundResource(R.drawable.round_btn_default);
+                peng.setTextColor(Color.rgb(171,166,164));
+            }
+        }
+    }
+
+    private void gangbtnControl(int id, boolean highlight){
+        Button button = findViewById(id);
+        Button ming;
+        Button an;
+        if (id == R.id.gangBtn0 ) {
+            ming = findViewById(R.id.mingBtn0);
+            an = findViewById(R.id.anBtn0);
+        }else if (id == R.id.gangBtn1 ) {
+            ming = findViewById(R.id.mingBtn1);
+            an = findViewById(R.id.anBtn1);
+        }else if (id == R.id.gangBtn2 ) {
+            ming = findViewById(R.id.mingBtn2);
+            an = findViewById(R.id.anBtn2);
+        }else {
+            ming = findViewById(R.id.mingBtn3);
+            an = findViewById(R.id.anBtn3);
+        }
+        if (highlight){
             button.setBackgroundResource(R.drawable.round_btn_highlight);
             button.setTextColor(Color.BLACK);
 
+            ming.setVisibility(View.VISIBLE);
+            an.setVisibility(View.VISIBLE);
 
-
-
-        }else if (id == R.id.pengBtn0 || id == R.id.pengBtn1 || id == R.id.pengBtn2 || id == R.id.pengBtn3){
-
-
-
-        }else if (id == R.id.gangBtn0 || id == R.id.gangBtn1 || id == R.id.gangBtn2 || id == R.id.gangBtn3){
-
-
-
-
+            an.setBackgroundResource(R.drawable.round_btn_highlight);
+            an.setTextColor(Color.BLACK);
+        }else{
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            ming.setBackgroundResource(R.drawable.round_btn_default);
+            ming.setTextColor(Color.rgb(171,166,164));
+            ming.setVisibility(View.INVISIBLE);
+            an.setBackgroundResource(R.drawable.round_btn_default);
+            an.setTextColor(Color.rgb(171,166,164));
+            an.setVisibility(View.INVISIBLE);
         }
-
     }
 
-    private void onMingAnBtnClick(int id){
-
+    private void onMingAnBtnClick(int id, View v) {
+        if (id == R.id.mingBtn0 || id == R.id.mingBtn1 || id == R.id.mingBtn2 || id == R.id.mingBtn3) {
+            Button button = findViewById(id);
+            if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
+                button.setBackgroundResource(R.drawable.round_btn_default);
+                button.setTextColor(Color.rgb(171, 166, 164));
+            } else {
+                button.setBackgroundResource(R.drawable.round_btn_highlight);
+                button.setTextColor(Color.BLACK);
+                Button oppositeBtn = null;
+                if (id == R.id.mingBtn0)
+                    oppositeBtn = findViewById(R.id.anBtn0);
+                else if (id == R.id.mingBtn1)
+                    oppositeBtn = findViewById(R.id.anBtn1);
+                else if (id == R.id.mingBtn2)
+                    oppositeBtn = findViewById(R.id.anBtn2);
+                else
+                    oppositeBtn = findViewById(R.id.anBtn3);
+                oppositeBtn.setBackgroundResource(R.drawable.round_btn_default);
+                oppositeBtn.setTextColor(Color.rgb(171, 166, 164));
+            }
+        } else if (id == R.id.anBtn0 || id == R.id.anBtn1 || id == R.id.anBtn2 || id == R.id.anBtn3) {
+            Button button = findViewById(id);
+            if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
+                button.setBackgroundResource(R.drawable.round_btn_default);
+                button.setTextColor(Color.rgb(171, 166, 164));
+            } else {
+                button.setBackgroundResource(R.drawable.round_btn_highlight);
+                button.setTextColor(Color.BLACK);
+                Button oppositeBtn = null;
+                if (id == R.id.anBtn0)
+                    oppositeBtn = findViewById(R.id.mingBtn0);
+                else if (id == R.id.anBtn1)
+                    oppositeBtn = findViewById(R.id.mingBtn1);
+                else if (id == R.id.anBtn2)
+                    oppositeBtn = findViewById(R.id.mingBtn2);
+                else
+                    oppositeBtn = findViewById(R.id.mingBtn3);
+                oppositeBtn.setBackgroundResource(R.drawable.round_btn_default);
+                oppositeBtn.setTextColor(Color.rgb(171, 166, 164));
+            }
+        }
     }
 
     private void onActionBtnClick(int id){
+        if (id == R.id.restoreBtn){
+            spots = new ImageView[]{null, null, null,
+                    null, null, null,
+                    null, null, null,
+                    null, null, null,
+                    null, null};
+            spot00.setImageResource(R.drawable.background);
+            spot01.setImageResource(R.drawable.background);
+            spot02.setImageResource(R.drawable.background);
+//            spot03.setImageResource(R.drawable.background);
+            spot10.setImageResource(R.drawable.background);
+            spot11.setImageResource(R.drawable.background);
+            spot12.setImageResource(R.drawable.background);
+//            spot13.setImageResource(R.drawable.background);
+            spot20.setImageResource(R.drawable.background);
+            spot21.setImageResource(R.drawable.background);
+            spot22.setImageResource(R.drawable.background);
+//            spot23.setImageResource(R.drawable.background);
+            spot30.setImageResource(R.drawable.background);
+            spot31.setImageResource(R.drawable.background);
+            spot32.setImageResource(R.drawable.background);
+            spot40.setImageResource(R.drawable.background);
+            spot41.setImageResource(R.drawable.background);
 
+            hands.clear();
+            paiCount.clear();
+            paiCount.put(yiWanView, 4);
+            paiCount.put(erWanView, 4);
+            paiCount.put(sanWanView, 4);
+            paiCount.put(siWanView, 4);
+            paiCount.put(wuWanView, 4);
+            paiCount.put(liuWanView, 4);
+            paiCount.put(qiWanView, 4);
+            paiCount.put(baWanView, 4);
+            paiCount.put(jiuWanView, 4);
+            paiCount.put(yiBingView, 4);
+            paiCount.put(erBingView, 4);
+            paiCount.put(sanBingView, 4);
+            paiCount.put(siBingView, 4);
+            paiCount.put(wuBingView, 4);
+            paiCount.put(liuBingView, 4);
+            paiCount.put(qiBingView, 4);
+            paiCount.put(baBingView, 4);
+            paiCount.put(jiuBingView, 4);
+            paiCount.put(yiTiaoView, 4);
+            paiCount.put(erTiaoView, 4);
+            paiCount.put(sanTiaoView, 4);
+            paiCount.put(siTiaoView, 4);
+            paiCount.put(wuTiaoView, 4);
+            paiCount.put(liuTiaoView, 4);
+            paiCount.put(qiTiaoView, 4);
+            paiCount.put(baTiaoView, 4);
+            paiCount.put(jiuTiaoView, 4);
+            paiCount.put(dongFengView, 4);
+            paiCount.put(xiFengView, 4);
+            paiCount.put(nanFengView, 4);
+            paiCount.put(beiFengView, 4);
+            paiCount.put(hongZhongView, 4);
+            paiCount.put(faCaiView, 4);
+            paiCount.put(baiBanView, 4);
+
+            for (Map.Entry mapElement : paiCount.entrySet()) {
+                ImageView key = (ImageView)mapElement.getKey();
+                key.setClickable(true);
+            }
+            if (theChosenSpot != null) {
+                theChosenSpot.setBackgroundColor(Color.WHITE);
+                theChosenSpot.setPadding(0,0,0,0);
+                theChosenSpot = null;
+            }
+
+        }else if(id == R.id.deleteBtn){
+            if (theChosenSpot != null){
+                if (theChosenSpot == spot00) {
+                    if (spots[0] != null) {
+                        int num = paiCount.get(spots[0]);
+                        spots[0].setClickable(true);
+                        paiCount.put(spots[0], num + 1);
+                        spots[0] = null;
+                    }
+                }
+                else if (theChosenSpot == spot01) {
+                    if (spots[1] != null){
+                        int num = paiCount.get(spots[1]);
+                        spots[1].setClickable(true);
+                        paiCount.put(spots[1], num + 1);
+                        spots[1] = null;
+                    }
+                }
+                else if (theChosenSpot == spot02) {
+                    if (spots[2] != null){
+                        int num = paiCount.get(spots[2]);
+                        spots[2].setClickable(true);
+                        paiCount.put(spots[2], num + 1);
+                        spots[2] = null;
+                    }
+                }
+                else if (theChosenSpot == spot10) {
+                    if (spots[3] != null) {
+                        int num = paiCount.get(spots[3]);
+                        spots[3].setClickable(true);
+                        paiCount.put(spots[3], num + 1);
+                        spots[3] = null;
+                    }
+                }
+                else if (theChosenSpot == spot11) {
+                    if (spots[4] != null){
+                        int num = paiCount.get(spots[4]);
+                        spots[4].setClickable(true);
+                        paiCount.put(spots[4], num + 1);
+                        spots[4] = null;
+                    }
+                }
+                else if (theChosenSpot == spot12){
+                    if (spots[5] != null){
+                        int num = paiCount.get(spots[5]);
+                        spots[5].setClickable(true);
+                        paiCount.put(spots[5], num + 1);
+                        spots[5] = null;
+                    }
+                }
+                else if (theChosenSpot == spot20) {
+                    if (spots[6] != null){
+                        int num = paiCount.get(spots[6]);
+                        spots[6].setClickable(true);
+                        paiCount.put(spots[6], num + 1);
+                        spots[6] = null;
+                    }
+                }
+                else if (theChosenSpot == spot21) {
+                    if (spots[7] != null){
+                        int num = paiCount.get(spots[7]);
+                        spots[7].setClickable(true);
+                        paiCount.put(spots[7], num + 1);
+                        spots[7] = null;
+                    }
+                }
+                else if (theChosenSpot == spot22) {
+                    if (spots[8] != null){
+                        int num = paiCount.get(spots[8]);
+                        spots[8].setClickable(true);
+                        paiCount.put(spots[8], num + 1);
+                        spots[8] = null;
+                    }
+                }
+                else if (theChosenSpot == spot30) {
+                    if (spots[9] != null) {
+                        int num = paiCount.get(spots[9]);
+                        spots[9].setClickable(true);
+                        paiCount.put(spots[9], num + 1);
+                        spots[9] = null;
+                    }
+                }
+                else if (theChosenSpot == spot31) {
+                    if (spots[10] != null){
+                        int num = paiCount.get(spots[10]);
+                        spots[10].setClickable(true);
+                        paiCount.put(spots[10], num + 1);
+                        spots[10] = null;
+                    }
+                }
+                else if (theChosenSpot == spot32) {
+                    if (spots[11] != null){
+                        int num = paiCount.get(spots[11]);
+                        spots[11].setClickable(true);
+                        paiCount.put(spots[11], num + 1);
+                        spots[11] = null;
+                    }
+                }
+                else if (theChosenSpot == spot40) {
+                    if (spots[12] != null) {
+                        int num = paiCount.get(spots[12]);
+                        spots[12].setClickable(true);
+                        paiCount.put(spots[12], num + 1);
+                        spots[12] = null;
+                    }
+                }
+                else if (theChosenSpot == spot41) {
+                    if (spots[13] != null){
+                        int num = paiCount.get(spots[13]);
+                        spots[13].setClickable(true);
+                        paiCount.put(spots[13], num + 1);
+                        spots[13] = null;
+                    }
+                }
+                theChosenSpot.setBackgroundColor(Color.WHITE);
+                theChosenSpot.setPadding(0,0,0,0);
+                theChosenSpot.setImageResource(R.drawable.background);
+                theChosenSpot = null;
+            }
+        }else{
+
+        }
     }
 
     public void fillHandArray(View v){
@@ -530,8 +1018,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             if (imageView == null)
                 hands.add("null");
             else {
-                String a = v.getResources().getResourceEntryName(imageView.getId());
-                hands.add(a);
+                hands.add(v.getResources().getResourceEntryName(imageView.getId()));
+
             }
 
         }
