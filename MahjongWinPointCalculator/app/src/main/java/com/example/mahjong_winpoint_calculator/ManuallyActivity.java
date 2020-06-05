@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -347,7 +348,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.restoreBtn: case R.id.deleteBtn: case R.id.calculateBtn:
-                onActionBtnClick(v.getId());
+                onActionBtnClick(v.getId(), v);
 
                 default:
                     break;
@@ -636,6 +637,55 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
     private void onChiPengGangBtnClick(int id, View v){
         if (id == R.id.chiBtn0 || id == R.id.chiBtn1 || id == R.id.chiBtn2 || id == R.id.chiBtn3){
+            String pai1;
+            String pai2;
+            String pai3;
+            int num1 = 0;
+            int num2 = 0;
+            int num3 = 0;
+
+            if (hands.isEmpty())
+                return;
+            Log.e(TAG, hands.toString());
+            if (id == R.id.chiBtn0){
+                pai1 = hands.get(0);
+                pai2 = hands.get(1);
+                pai3 = hands.get(2);
+            }else if (id == R.id.chiBtn1){
+                pai1 = hands.get(3);
+                pai2 = hands.get(4);
+                pai3 = hands.get(5);
+            }else if (id == R.id.chiBtn2){
+                pai1 = hands.get(6);
+                pai2 = hands.get(7);
+                pai3 = hands.get(8);
+            }else{
+                pai1 = hands.get(9);
+                pai2 = hands.get(10);
+                pai3 = hands.get(11);
+            }
+
+            if (pai1.endsWith("wan") && pai2.endsWith("wan") && pai3.endsWith("wan")){
+                num1 = stringToInt(pai1.split("wan")[0]);
+                num2 = stringToInt(pai2.split("wan")[0]);
+                num3 = stringToInt(pai3.split("wan")[0]);
+            } else if (pai1.endsWith("bing") && pai2.endsWith("bing") && pai3.endsWith("bing")){
+                num1 = stringToInt(pai1.split("bing")[0]);
+                num2 = stringToInt(pai2.split("bing")[0]);
+                num3 = stringToInt(pai3.split("bing")[0]);
+            } else if (pai1.endsWith("tiao") && pai2.endsWith("tiao") && pai3.endsWith("tiao")){
+                num1 = stringToInt(pai1.split("tiao")[0]);
+                num2 = stringToInt(pai2.split("tiao")[0]);
+                num3 = stringToInt(pai3.split("tiao")[0]);
+            } else return;
+
+            if (num1 != 0 && num2 != 0 && num3 != 0){
+                int sorted[] = {num1, num2, num3};
+                Arrays.sort(sorted);
+                if (!(sorted[0] + 1 == sorted[1] && sorted[1] + 1 == sorted[2])){
+                    return;
+                }
+            }
             Button button = findViewById(id);
             if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
                 button.setBackgroundResource(R.drawable.round_btn_default);
@@ -666,6 +716,23 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 gangbtnControl(gangBtnID,false);
             }
         }else if (id == R.id.pengBtn0 || id == R.id.pengBtn1 || id == R.id.pengBtn2 || id == R.id.pengBtn3){
+            if (hands.isEmpty())
+                return;
+            Log.e(TAG, hands.toString());
+            if (id == R.id.pengBtn0){
+                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))))
+                    return;
+            }else if (id == R.id.pengBtn1){
+                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))))
+                    return;
+            }else if (id == R.id.pengBtn2){
+                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))))
+                    return;
+            }else{
+                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))))
+                    return;
+            }
+
             Button button = findViewById(id);
             if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())){ //restore highlight to default
                 button.setBackgroundResource(R.drawable.round_btn_default);
@@ -696,6 +763,30 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 gangbtnControl(gangBtnID,false);
             }
         }else if (id == R.id.gangBtn0 || id == R.id.gangBtn1 || id == R.id.gangBtn2 || id == R.id.gangBtn3){
+            if (hands.isEmpty())
+                return;
+            Log.e(TAG, hands.toString());
+            if (id == R.id.gangBtn0){
+                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))))
+                    return;
+            }else if (id == R.id.gangBtn1){
+                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))))
+                    return;
+            }else if (id == R.id.gangBtn2){
+                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))))
+                    return;
+            }else{
+                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))))
+                    return;
+            }
+            
+            //Todo add view
+
+
+
+
+
+
             Button button = findViewById(id);
             Button ming;
             Button an;
@@ -816,7 +907,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void onActionBtnClick(int id){
+    private void onActionBtnClick(int id, View v){
         if (id == R.id.restoreBtn){
             spots = new ImageView[]{null, null, null,
                     null, null, null,
@@ -887,6 +978,34 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 theChosenSpot.setPadding(0,0,0,0);
                 theChosenSpot = null;
             }
+            Button button = findViewById(R.id.chiBtn0);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.chiBtn1);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.chiBtn2);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.chiBtn3);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.pengBtn0);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.pengBtn1);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.pengBtn2);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            button = findViewById(R.id.pengBtn3);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171,166,164));
+            gangbtnControl(R.id.gangBtn0, false);
+            gangbtnControl(R.id.gangBtn1, false);
+            gangbtnControl(R.id.gangBtn2, false);
+            gangbtnControl(R.id.gangBtn3, false);
 
         }else if(id == R.id.deleteBtn){
             if (theChosenSpot != null){
@@ -1005,12 +1124,68 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 theChosenSpot.setBackgroundColor(Color.WHITE);
                 theChosenSpot.setPadding(0,0,0,0);
                 theChosenSpot.setImageResource(R.drawable.background);
-                theChosenSpot = null;
-            }
-        }else{
+                if (theChosenSpot == spot00 || theChosenSpot == spot01 || theChosenSpot == spot02){
+                    Button button = findViewById(R.id.chiBtn0);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
 
+                    button = findViewById(R.id.pengBtn0);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    gangbtnControl(R.id.gangBtn0, false);
+
+                }else if (theChosenSpot == spot10 || theChosenSpot == spot11 || theChosenSpot == spot12){
+                    Button button = findViewById(R.id.chiBtn1);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    button = findViewById(R.id.pengBtn1);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    gangbtnControl(R.id.gangBtn1, false);
+                }else if (theChosenSpot == spot20 || theChosenSpot == spot21 || theChosenSpot == spot22){
+                    Button button = findViewById(R.id.chiBtn2);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    button = findViewById(R.id.pengBtn2);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    gangbtnControl(R.id.gangBtn2, false);
+                }else if (theChosenSpot == spot30 || theChosenSpot == spot31 || theChosenSpot == spot32){
+                    Button button = findViewById(R.id.chiBtn3);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    button = findViewById(R.id.pengBtn3);
+                    button.setBackgroundResource(R.drawable.round_btn_default);
+                    button.setTextColor(Color.rgb(171,166,164));
+
+                    gangbtnControl(R.id.gangBtn3, false);
+                }
+                theChosenSpot = null;
+                fillHandArray(v);
+
+            }
+            //Todo delete last pai when no spot been chosen
+
+
+        }else{
+//            if (checkValid()){
+//
+//            }
         }
     }
+
+//    private boolean checkValid(){
+//        for (ImageView imageView: spots){
+//            if (imageView == null)
+//                return false;
+//        }
+//    }
 
     public void fillHandArray(View v){
         hands.clear();
@@ -1022,6 +1197,21 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
             }
 
+        }
+    }
+
+    private int stringToInt(String num){
+        switch (num){
+            case "yi" : return 1;
+            case "er" : return 2;
+            case "san" : return 3;
+            case "si" : return 4;
+            case "wu" : return 5;
+            case "liu" : return 6;
+            case "qi" : return 7;
+            case "ba" : return 8;
+            case "jiu" : return 9;
+            default: return 0;
         }
     }
 
