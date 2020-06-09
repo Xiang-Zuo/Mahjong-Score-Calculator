@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +41,15 @@ public class ResultActivity extends AppCompatActivity implements OnItemSelectedL
                     modifiedHands.add(switchPaiName(spinner.getSelectedItem().toString()));
                 }
                 Log.i("Modified Hands:", modifiedHands.toString());
-                CountPoint cp = new CountPoint(10, modifiedHands);
-                if (cp.checkHu()){
-                    Log.e(TAG, "HU LE!");
-                    Toast.makeText(getApplicationContext(), "胡!", Toast.LENGTH_LONG).show();
-                    
-                }else{
-                    Log.e(TAG, "ZHA HU!");
-                    Toast.makeText(getApplicationContext(), "诈胡！", Toast.LENGTH_LONG).show();
-                }
+//                CountPoint cp = new CountPoint(10, modifiedHands);
+//                if (cp.checkHu()){
+//                    Log.e(TAG, "HU LE!");
+//                    Toast.makeText(getApplicationContext(), "胡!", Toast.LENGTH_LONG).show();
+//
+//                }else{
+//                    Log.e(TAG, "ZHA HU!");
+//                    Toast.makeText(getApplicationContext(), "诈胡！", Toast.LENGTH_LONG).show();
+//                }
             }
         });
     }

@@ -6,6 +6,17 @@
     android:layout_height="fill_parent"
     tools:context=".ManuallyActivity">
 
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/homebtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/yiwan"
         android:layout_width="38dp"
@@ -744,6 +755,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/mingBtn4"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginLeft="252dp"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/round_btn_default"
+        android:text="明"
+        android:textColor="#ABA6A4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/anBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
@@ -766,6 +790,19 @@
         android:background="@drawable/round_btn_default"
         android:text="暗"
         android:textColor="#ABA6A4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/anBtn4"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/round_btn_highlight"
+        android:text="暗"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
