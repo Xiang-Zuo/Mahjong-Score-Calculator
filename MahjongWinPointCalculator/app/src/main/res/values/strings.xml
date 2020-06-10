@@ -4,6 +4,7 @@
     <string name="main_title">麻将番数计算器</string>
     <string name="main_to_manual">手动输入</string>
     <string name="main_to_camera_btn">拍照识别</string>
+    <string name="main_to_gallery_btn">录入模板</string>
 
     <string name="camera_take_photo">拍照</string>>
 
@@ -14,6 +15,7 @@
     <string name="manually_delete">删除</string>
     <string name="manually_calculate">计算</string>
 
+    <string name="gallery_title">制作新模板</string>
 
 
 </resources>

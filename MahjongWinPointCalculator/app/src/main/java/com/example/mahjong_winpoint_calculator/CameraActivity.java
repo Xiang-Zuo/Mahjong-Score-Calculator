@@ -162,7 +162,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         Log.e("Match-------result:", hands.toString());
 
 
-                        switch_to_result_activity();
+                        //switch_to_result_activity();
 
                         //...correct
                     }
@@ -224,7 +224,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     //结束时释放
     @Override
     public void onCameraViewStopped() {
-        Log.e("Mat","...............6...............");
+        //Log.e("Mat","...............6...............");
         mRgba.release();
     }
 
@@ -257,7 +257,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         {
             Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
             Point matchLoc = mmr.maxLoc;
-            if(mmr.maxVal >=0.8)
+            if(mmr.maxVal >=0.4)
             {
                 Log.i("x-y", matchLoc.x +"-"+matchLoc.y);
                 uniqueObjXYCoor(matchLoc.x, matchLoc.y,uniqueObjPositions,card_Name);
@@ -288,7 +288,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                     new Scalar(0, 0, 0),             // Scalar object for color
                     1                                // Thickness
             );
-
         }
         return  img;
     }
@@ -336,7 +335,8 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     }
 
     private void switch_to_result_activity() {
-        Intent intent = new Intent(this, ResultActivity.class);
+        Log.e("Camera", hands.toString());
+        Intent intent = new Intent(this, ManuallyActivity.class);
         intent.putExtra("EXTRA_HANDS", (ArrayList<String>) hands);
         startActivity(intent);
     }

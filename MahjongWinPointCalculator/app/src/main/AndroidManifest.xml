@@ -3,6 +3,7 @@
     package="com.example.mahjong_winpoint_calculator">
     <!-- camera permission -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManuallyActivity"></activity>
+        <activity android:name=".GalleryActivity"></activity>
+        <activity android:name=".ManuallyActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".CameraActivity" />
         <activity

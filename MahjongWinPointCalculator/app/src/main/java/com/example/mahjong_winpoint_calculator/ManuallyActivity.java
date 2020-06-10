@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,19 +41,15 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     ImageView spot00 = null;
     ImageView spot01 = null;
     ImageView spot02 = null;
-    ImageView spot03 = null;
     ImageView spot10 = null;
     ImageView spot11 = null;
     ImageView spot12 = null;
-    ImageView spot13 = null;
     ImageView spot20 = null;
     ImageView spot21 = null;
     ImageView spot22 = null;
-    ImageView spot23 = null;
     ImageView spot30 = null;
     ImageView spot31 = null;
     ImageView spot32 = null;
-    ImageView spot33 = null;
     ImageView spot40 = null;
     ImageView spot41 = null;
 
@@ -341,6 +338,10 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 switch_to_main_activity();
             }
         });
+        ArrayList<String> cameraResult = getIntent().getStringArrayListExtra("EXTRA_HANDS");
+        if (cameraResult != null){
+            Log.e("CR", cameraResult.toString());
+        }
     }
 
     public void onClick(View v) {
@@ -1475,6 +1476,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         Boolean ziMo = false;
         Boolean danDiaoJiang = false;
         Boolean menQianQing = false;
+        Boolean quanDaiWu = true;
 
         for (String pai : hands) {
             if (pai.endsWith("wan")) {
@@ -1640,6 +1642,20 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             else
                 menQianQing = false;
         }
+//        for (int i = 0; i<=3; i++){
+//            if (shouPai.get(i).contains("5")){
+//                if
+//            }
+//        }
+        quanDaiWu = ((shouPai.get(0).contains("5") || shouPai.get(1).contains("5") || shouPai.get(2).contains("5")) &&
+                (shouPai.get(3).contains("5") || shouPai.get(4).contains("5") || shouPai.get(5).contains("5")) &&
+                (shouPai.get(6).contains("5") || shouPai.get(7).contains("5") || shouPai.get(8).contains("5")) &&
+                (shouPai.get(9).contains("5") || shouPai.get(10).contains("5") || shouPai.get(11).contains("5")) &&
+                (shouPai.get(12).contains("5") && shouPai.get(13).contains("5")));
+
+
+
+
         Log.e("shouPai", shouPai.toString());
         Log.e("chi", chi.toString());
         Log.e("peng", peng.toString());
@@ -1648,15 +1664,16 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         Log.e("ziMo", ziMo + "");
         Log.e("danDiaoJiang", danDiaoJiang + "");
         Log.e("menQianQing", menQianQing + "");
+        Log.e("quanDaiWu", quanDaiWu + "");
 
-        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,new ArrayList<String>(),menQianQing,danDiaoJiang);
+        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,new ArrayList<String>(),menQianQing,danDiaoJiang,quanDaiWu);
         if (cp.checkHu()) {
             Log.i(TAG, "Hu Le!");
             Log.i(TAG, cp.calculate_final_point().toString());
             //System.out.println(cp.calculate_final_point().toString());
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("胡！/HU!")
-                    .setMessage(cp.calculate_final_point().toString())
+                    .setMessage("番型: " + cp.calculate_final_point().toString() + "\n番数: " + cp.getScoreRecorder().toString() + "\n总共 " + cp.getFinalPoint() + " 番")
                     .setPositiveButton("恭喜！/Congratulation!", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -1664,7 +1681,17 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                         }
                     });
             AlertDialog dialog = builder.create();
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
+//            dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+
+            wmlp.gravity = Gravity.TOP | Gravity.LEFT;
+
+            wmlp.y = 1430;   //y position
+            wmlp.x = 30;
+
+
             dialog.show();
         }
         else{
@@ -1677,7 +1704,19 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
                         }
                     });
-            builder.create().show();
+            AlertDialog dialog = builder.create();
+//            dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+
+            wmlp.gravity = Gravity.TOP | Gravity.LEFT;
+
+            wmlp.y = 1430;   //y position
+            wmlp.x = 30;
+
+
+            dialog.show();
         }
 
     }

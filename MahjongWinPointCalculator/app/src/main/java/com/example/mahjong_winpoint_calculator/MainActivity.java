@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Button main_to_camera_btn;
     Button main_to_manual_btn;
+    Button main_to_gallery_btn;
     String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     ArrayList<String> UNGRANTED_PERMISSIONS = new ArrayList<String>();
 
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        main_to_gallery_btn = (Button) findViewById(R.id.main_to_galleryAct_button);
+        main_to_gallery_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                switch_to_gallery_activity();
+            }
+        });
     }
 
     private boolean checkPermission(Context context, String... permissions) {
@@ -166,6 +174,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void switch_to_manual_activity() {
         Intent intent = new Intent(this, ManuallyActivity.class);
+        startActivity(intent);
+    }
+
+    private void switch_to_gallery_activity(){
+        Intent intent = new Intent(this, GalleryActivity.class);
         startActivity(intent);
     }
 
