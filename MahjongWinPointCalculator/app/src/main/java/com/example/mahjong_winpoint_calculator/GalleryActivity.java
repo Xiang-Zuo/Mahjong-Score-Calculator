@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -150,6 +151,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         spot71.setOnClickListener(this);
 
 
+        init(this);
         
     }
 
@@ -196,6 +198,70 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             default:
                 break;
         }
+    }
+
+    private void init(Context context) {
+        File filepath = context.getExternalFilesDir(null);
+        File dir = new File(filepath + File.separator + "templates");
+        if (dir.exists()){
+            ImageView spot;
+            File[] files = dir.listFiles();
+            for (File file : files){
+                Log.i("f", file.getName());
+                spot = getSpot(file.getName());
+                if (spot != null){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    spot.setImageBitmap(myBitmap);
+                }
+            }
+        }else {
+            Log.i("f", "dir not exist");
+        }
+    }
+
+    private ImageView getSpot(String fileName){
+        ImageView imageView = null;
+        switch (fileName){
+            case "1-w.jpg": imageView = findViewById(R.id.spot00); break;
+            case "2-w.jpg": imageView = findViewById(R.id.spot01); break;
+            case "3-w.jpg": imageView = findViewById(R.id.spot02); break;
+            case "4-w.jpg": imageView = findViewById(R.id.spot03); break;
+            case "5-w.jpg": imageView = findViewById(R.id.spot04); break;
+            case "6-w.jpg": imageView = findViewById(R.id.spot10); break;
+            case "7-w.jpg": imageView = findViewById(R.id.spot11); break;
+            case "8-w.jpg": imageView = findViewById(R.id.spot12); break;
+            case "9-w.jpg": imageView = findViewById(R.id.spot13); break;
+
+            case "1-b.jpg": imageView = findViewById(R.id.spot20); break;
+            case "2-b.jpg": imageView = findViewById(R.id.spot21); break;
+            case "3-b.jpg": imageView = findViewById(R.id.spot22); break;
+            case "4-b.jpg": imageView = findViewById(R.id.spot23); break;
+            case "5-b.jpg": imageView = findViewById(R.id.spot24); break;
+            case "6-b.jpg": imageView = findViewById(R.id.spot30); break;
+            case "7-b.jpg": imageView = findViewById(R.id.spot31); break;
+            case "8-b.jpg": imageView = findViewById(R.id.spot32); break;
+            case "9-b.jpg": imageView = findViewById(R.id.spot33); break;
+
+            case "1-t.jpg": imageView = findViewById(R.id.spot40); break;
+            case "2-t.jpg": imageView = findViewById(R.id.spot41); break;
+            case "3-t.jpg": imageView = findViewById(R.id.spot42); break;
+            case "4-t.jpg": imageView = findViewById(R.id.spot43); break;
+            case "5-t.jpg": imageView = findViewById(R.id.spot44); break;
+            case "6-t.jpg": imageView = findViewById(R.id.spot50); break;
+            case "7-t.jpg": imageView = findViewById(R.id.spot51); break;
+            case "8-t.jpg": imageView = findViewById(R.id.spot52); break;
+            case "9-t.jpg": imageView = findViewById(R.id.spot53); break;
+
+            case "d-f.jpg": imageView = findViewById(R.id.spot60); break;
+            case "x-f.jpg": imageView = findViewById(R.id.spot61); break;
+            case "n-f.jpg": imageView = findViewById(R.id.spot62); break;
+            case "b-f.jpg": imageView = findViewById(R.id.spot63); break;
+            case "h-Z.jpg": imageView = findViewById(R.id.spot64); break;
+            case "b-B.jpg": imageView = findViewById(R.id.spot70); break;
+            case "f-F.jpg": imageView = findViewById(R.id.spot71); break;
+            default: break;
+        }
+        return imageView;
     }
 
     private void onSpotClick(int id) {

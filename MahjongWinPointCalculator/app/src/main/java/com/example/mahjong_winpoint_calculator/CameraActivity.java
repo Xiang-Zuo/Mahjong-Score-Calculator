@@ -297,8 +297,14 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         try {
             if (pai.init()){
                 Mat img = Utils.loadResource(this, pai.ID);
+
+
+
                 //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
                 Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
+
+
+
                 pai.setMAT(img);
             }else{
                 Log.e(TAG, "fail to get pai drawable");
