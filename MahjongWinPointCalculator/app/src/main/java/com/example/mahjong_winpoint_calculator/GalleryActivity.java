@@ -1,13 +1,13 @@
 package com.example.mahjong_winpoint_calculator;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,6 +67,10 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
         getSupportActionBar().hide(); //隐藏标题
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+
         setContentView(R.layout.activity_gallery);
 
         spot00 = (ImageView) findViewById(R.id.spot00);
@@ -220,7 +225,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 ImageView imageView = findViewById(imageViewID);
                 imageView.setImageBitmap(selectedImage);
-                saveImage(selectedImage, reqCode);
+                saveImage(selectedImage, reqCode, this);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -231,7 +236,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void saveImage(Bitmap bitmap, int id) {
+    private void saveImage(Bitmap bitmap, int id, Context context) {
         String fileName;
         //FileOutputStream out = null;
         switch (id){
@@ -277,11 +282,11 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 fileName = "";
                 break;
         }
-        File filepath = Environment.getExternalStorageDirectory();
-        File dir = new File(filepath + File.separator + "Demo");
+//        File filepath = Environment.getExternalStorageDirectory();
+        File filepath = context.getExternalFilesDir(null);
+        File dir = new File(filepath + File.separator + "templates");
         if (!dir.exists()) {
             boolean success = dir.mkdirs();
-            Log.e("s", success+"");
         }
         File imageFile = new File(dir, fileName);
 //        if (imageFile.exists())
@@ -299,8 +304,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
         Toast.makeText(getApplicationContext(), "Template saved!", Toast.LENGTH_SHORT).show();
         MediaScannerConnection.scanFile(this, new String[]{imageFile.toString()}, new String[]{imageFile.getName()}, null);
-
-
     }
 
 }
