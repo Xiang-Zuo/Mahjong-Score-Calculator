@@ -1,5 +1,6 @@
 package com.example.mahjong_winpoint_calculator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -22,9 +23,10 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,15 +44,11 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 
     public static final String EXTRA_HANDS = "com.example.mahjong_winpoint_calculator.EXTRA_HANDS";
 
-//    private int[] TEMPLATEID = new int[]{R.drawable.erwan, R.drawable.sanwan, R.drawable.siwan, R.drawable.wuwan, R.drawable.liuwan, R.drawable.qiwan};
-    private String[] TEMPLATEID_WAN = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan", "bawan", "jiuwan"};
-    private String[] TEMPLATEID_TIAO = new String[]{"yitiao","sitiao","santiao","ertiao","wutiao","liutiao","qitiao","batiao","jiutiao"};
-//    private String[] TEMPLATEID_BING = new String[]{"yiwan","erwan", "sanwan", "siwan", "wuwan", "liuwan", "qiwan", "bawan", "jiuwan",
-//            "yitiao","ertiao","santiao","sitiao","wutiao","liutiao","qitiao","batiao","jiutiao",
-//    };
-
-
-    /**通过OpenCV管理Android服务，初始化OpenCV**/
+    private String[] TEMPLATEID_WAN  = new String[]{"1-w.jpg","2-w.jpg", "3-w.jpg", "4-w.jpg", "5-w.jpg", "6-w.jpg", "7-w.jpg", "8-w.jpg", "9-w.jpg"};
+    private String[] TEMPLATEID_TIAO = new String[]{"1-t.jpg","2-t.jpg", "3-t.jpg", "4-t.jpg", "5-t.jpg", "6-t.jpg", "7-t.jpg", "8-t.jpg", "9-t.jpg"};
+    private String[] TEMPLATEID_BING = new String[]{"1-b.jpg","2-b.jpg", "3-b.jpg", "4-b.jpg", "5-b.jpg", "6-b.jpg", "7-b.jpg", "8-b.jpg", "9-b.jpg"};
+    private String[] TEMPLATEID_ZI   = new String[]{"d-f.jpg","n-f.jpg", "x-f.jpg", "b-f.jpg", "h-Z.jpg", "b-B.jpg", "f-F.jpg"};
+    
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -95,7 +93,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         Mat result = null;
                         int count = 1;
                         //correct...
-//                        Mat template = readImageFromResources("yiwan").MAT;
+//                        Mat template = readImageFromResources("yi-w.jpg").MAT;
 //                        double resizedCol = template.cols() / 2.5;
 //                        double resizedRow = template.rows() / 2.5;
 //                        int count = 2;
@@ -115,46 +113,51 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 
 
                         for (String paiName : TEMPLATEID_WAN){
-                            Mat template = readImageFromResources(paiName).MAT;
-                            if (resizedCol == 0.0 && resizedRow == 0.0){
-                                resizedCol = template.cols() / 2.5;
-                                resizedRow = template.rows() / 2.5;
+                            Mat template = readImageFromFile(paiName,CameraActivity.this);
+                            if (template == null){
+                                Log.i(TAG, paiName + " file not exist");
+                                continue;
                             }
-                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+
+                            if (resizedCol == 0.0 && resizedRow == 0.0){
+                                resizedCol = template.cols() / 4;
+                                resizedRow = template.rows() / 4;
+                            }
+//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
                             if (result == null)
-                                result = matchTemplate(src,template, count +"-w");
+                                result = matchTemplate(src,template, paiName.replace(".jpg",""));
                             else
-                                result = matchTemplate(result,template, count +"-w");
+                                result = matchTemplate(result,template,paiName.replace(".jpg","") );
                             count += 1;
                         }
                         count = 1;
-                        for (String paiName : TEMPLATEID_TIAO){
-                            Mat template = readImageFromResources(paiName).MAT;
-                            if (resizedCol == 0.0 && resizedRow == 0.0){
-                                resizedCol = template.cols() / 2.5;
-                                resizedRow = template.rows() / 2.5;
-                            }
-                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-                            if (paiName.equals("ertiao")) {
-                                if (result == null)
-                                    result = matchTemplate(src, template, 2 + "-t");
-                                else
-                                    result = matchTemplate(result, template, 2 + "-t");
-                            }else if (paiName.equals("sitiao")){
-                                if (result == null)
-                                    result = matchTemplate(src, template, 4 + "-t");
-                                else
-                                    result = matchTemplate(result, template, 4 + "-t");
-                            }else{
-                                if (result == null)
-                                    result = matchTemplate(src, template, count + "-t");
-                                else
-                                    result = matchTemplate(result, template, count + "-t");
-                            }
-                            count += 1;
-                        }
+//                        for (String paiName : TEMPLATEID_TIAO){
+//                            Mat template = readImageFromFile(paiName).MAT;
+//                            if (resizedCol == 0.0 && resizedRow == 0.0){
+//                                resizedCol = template.cols() / 2.5;
+//                                resizedRow = template.rows() / 2.5;
+//                            }
+//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+//                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+//                            if (paiName.equals("ertiao")) {
+//                                if (result == null)
+//                                    result = matchTemplate(src, template, 2 + "-t");
+//                                else
+//                                    result = matchTemplate(result, template, 2 + "-t");
+//                            }else if (paiName.equals("sitiao")){
+//                                if (result == null)
+//                                    result = matchTemplate(src, template, 4 + "-t");
+//                                else
+//                                    result = matchTemplate(result, template, 4 + "-t");
+//                            }else{
+//                                if (result == null)
+//                                    result = matchTemplate(src, template, count + "-t");
+//                                else
+//                                    result = matchTemplate(result, template, count + "-t");
+//                            }
+//                            count += 1;
+//                        }
                         showImg(result);
 
 
@@ -162,7 +165,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         Log.e("Match-------result:", hands.toString());
 
 
-                        //switch_to_result_activity();
+                        switch_to_result_activity();
 
                         //...correct
                     }
@@ -257,7 +260,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         {
             Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
             Point matchLoc = mmr.maxLoc;
-            if(mmr.maxVal >=0.4)
+            if(mmr.maxVal >=0.8)
             {
                 Log.i("x-y", matchLoc.x +"-"+matchLoc.y);
                 uniqueObjXYCoor(matchLoc.x, matchLoc.y,uniqueObjPositions,card_Name);
@@ -292,27 +295,48 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         return  img;
     }
 
-    private Pai readImageFromResources(String paiName) {
-        Pai pai = new Pai(this, paiName);
-        try {
-            if (pai.init()){
-                Mat img = Utils.loadResource(this, pai.ID);
+    private Mat readImageFromFile(String paiName, Context context) {
+//        Pai pai = new Pai(this, paiName);
+        Mat img = null;
+        File filepath = context.getExternalFilesDir(null);
+        File dir = new File(filepath + File.separator + "templates");
+        if (dir.exists()){
+            ImageView spot;
+            File[] files = dir.listFiles();
+            for (File file : files){
+                if (file.getName().equals(paiName))
+//                    Log.e("fp-", ""+file.getAbsolutePath());
+                    img = Imgcodecs.imread(file.getAbsolutePath(), Imgcodecs.IMREAD_GRAYSCALE);
+//                    Log.e("fk", ""+(img == null));
+//                    Log.i("----------", img.cols() + "_" + img.rows());
 
-
-
-                //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
-                Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
-
-
-
-                pai.setMAT(img);
-            }else{
-                Log.e(TAG, "fail to get pai drawable");
             }
-        } catch (IOException e) {
-            Log.e(TAG, Log.getStackTraceString(e));
+        }else {
+            Log.e(TAG, "template dir not exist");
         }
-        return pai;
+
+//        try {
+//            img = Imgcodecs.imread()
+////            if (pai.init()){
+//////                Mat img = Utils.loadResource(this, pai.ID);
+////
+////
+////
+////                //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
+////                Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
+////
+////
+////
+////                pai.setMAT(img);
+////            }else{
+////                Log.e(TAG, "fail to get pai drawable");
+////            }
+//
+//        } catch (IOException e) {
+//            Log.e(TAG, Log.getStackTraceString(e));
+//        }
+
+        return img;
     }
 
     private void showImg(Mat img) {

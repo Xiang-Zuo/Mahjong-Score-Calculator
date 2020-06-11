@@ -25,6 +25,8 @@ import androidx.core.app.ActivityCompat;
 
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "GalleryActivity";
+
     ImageView spot00 = null;
     ImageView spot01 = null;
     ImageView spot02 = null;
@@ -207,7 +209,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             ImageView spot;
             File[] files = dir.listFiles();
             for (File file : files){
-                Log.i("f", file.getName());
                 spot = getSpot(file.getName());
                 if (spot != null){
                     Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
@@ -215,7 +216,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         }else {
-            Log.i("f", "dir not exist");
+            Log.i(TAG, "template dir not exist");
         }
     }
 
