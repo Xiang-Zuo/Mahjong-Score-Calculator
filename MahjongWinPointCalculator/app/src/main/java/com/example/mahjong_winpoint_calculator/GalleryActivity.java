@@ -3,14 +3,20 @@ package com.example.mahjong_winpoint_calculator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -207,11 +213,14 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 switch (reqCode){
                     case 0: case 1: case 2: case 3: case 4:
                         imageViewID = this.getResources().getIdentifier("spot0"+reqCode, "id", this.getPackageName());
+                        break;
                     default:
                         imageViewID = this.getResources().getIdentifier("spot"+reqCode, "id", this.getPackageName());
+                        break;
                 }
                 ImageView imageView = findViewById(imageViewID);
                 imageView.setImageBitmap(selectedImage);
+                saveImage(selectedImage, reqCode);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -220,6 +229,78 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         }else {
             Toast.makeText(getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void saveImage(Bitmap bitmap, int id) {
+        String fileName;
+        //FileOutputStream out = null;
+        switch (id){
+            case 0: fileName = "1-w.jpg"; break;
+            case 1: fileName = "2-w.jpg"; break;
+            case 2: fileName = "3-w.jpg"; break;
+            case 3: fileName = "4-w.jpg"; break;
+            case 4: fileName = "5-w.jpg"; break;
+            case 10: fileName = "6-w.jpg"; break;
+            case 11: fileName = "7-w.jpg"; break;
+            case 12: fileName = "8-w.jpg"; break;
+            case 13: fileName = "9-w.jpg"; break;
+
+            case 20: fileName = "1-b.jpg"; break;
+            case 21: fileName = "2-b.jpg"; break;
+            case 22: fileName = "3-b.jpg"; break;
+            case 23: fileName = "4-b.jpg"; break;
+            case 24: fileName = "5-b.jpg"; break;
+            case 30: fileName = "6-b.jpg"; break;
+            case 31: fileName = "7-b.jpg"; break;
+            case 32: fileName = "8-b.jpg"; break;
+            case 33: fileName = "9-b.jpg"; break;
+
+            case 40: fileName = "1-t.jpg"; break;
+            case 41: fileName = "2-t.jpg"; break;
+            case 42: fileName = "3-t.jpg"; break;
+            case 43: fileName = "4-t.jpg"; break;
+            case 44: fileName = "5-t.jpg"; break;
+            case 50: fileName = "6-t.jpg"; break;
+            case 51: fileName = "7-t.jpg"; break;
+            case 52: fileName = "8-t.jpg"; break;
+            case 53: fileName = "9-t.jpg"; break;
+
+            case 60: fileName = "d-f.jpg"; break;
+            case 61: fileName = "x-f.jpg"; break;
+            case 62: fileName = "n-f.jpg"; break;
+            case 63: fileName = "b-f.jpg"; break;
+            case 64: fileName = "h-Z.jpg"; break;
+            case 70: fileName = "b-B.jpg"; break;
+            case 71: fileName = "f-F.jpg"; break;
+
+            default:
+                fileName = "";
+                break;
+        }
+        File filepath = Environment.getExternalStorageDirectory();
+        File dir = new File(filepath + File.separator + "Demo");
+        if (!dir.exists()) {
+            boolean success = dir.mkdirs();
+            Log.e("s", success+"");
+        }
+        File imageFile = new File(dir, fileName);
+//        if (imageFile.exists())
+//            imageFile.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , out);
+            out.flush();
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(getApplicationContext(), "Template saved!", Toast.LENGTH_SHORT).show();
+        MediaScannerConnection.scanFile(this, new String[]{imageFile.toString()}, new String[]{imageFile.getName()}, null);
+
+
     }
 
 }
