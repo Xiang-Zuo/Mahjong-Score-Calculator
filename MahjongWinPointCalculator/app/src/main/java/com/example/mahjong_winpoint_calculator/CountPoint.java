@@ -1,7 +1,5 @@
 package com.example.mahjong_winpoint_calculator;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,19 +14,30 @@ public class CountPoint {
     private ArrayList<String> peng;
     private ArrayList<String> mingGang;
     private ArrayList<String> anGang;
-    //private ArrayList<String> mingKe;
     private ArrayList<String> anKe;
     private boolean menQianQing;
     private boolean danDiaoJiang;
     private boolean quanDaiWu;
+    private boolean quanDaiYao;
+    private boolean kanZhang;
+    private boolean bianZhang;
+    private boolean menFengKe;
+    private boolean quanFengKe;
+    private boolean huJueZhang;
+    private boolean qiangGangHu;
+    private boolean gangShangKaiHua;
+    private boolean haiDiLaoYue;
 
     private static final String TAG = "CountPointClass";
     private ArrayList<String> fanXings;
     private ArrayList<String> paiXingResult;
     private ArrayList<Integer> scoreRecorder;
 
-
-    public CountPoint(int basePoint, ArrayList<String> hands, String huPai, boolean ziMo, ArrayList<String> chi, ArrayList<String> peng, ArrayList<String> mingGang, ArrayList<String> anGang, ArrayList<String> anKe, boolean menQianQing, boolean danDiaoJiang, boolean quanDaiWu){
+    public CountPoint(int basePoint, ArrayList<String> hands, String huPai, boolean ziMo, ArrayList<String> chi,
+                      ArrayList<String> peng, ArrayList<String> mingGang, ArrayList<String> anGang, ArrayList<String> anKe,
+                      boolean menQianQing, boolean danDiaoJiang, boolean quanDaiWu, boolean quanDaiYao, boolean kanZhang,
+                      boolean bianZhang, boolean menFengKe, boolean quanFengKe, boolean huJueZhang, boolean qiangGangHu,
+                      boolean gangShangKaiHua, boolean haiDiLaoYue){
         this.hands = new int[34];
         Arrays.fill(this.hands, 0);
         this.basePoint = basePoint;
@@ -46,6 +55,15 @@ public class CountPoint {
         this.anKe = anKe;
         this.danDiaoJiang = danDiaoJiang;
         this.quanDaiWu = quanDaiWu;
+        this.quanDaiYao = quanDaiYao;
+        this.kanZhang = kanZhang;
+        this.bianZhang = bianZhang;
+        this.menFengKe = menFengKe;
+        this.quanFengKe = quanFengKe;
+        this.huJueZhang = huJueZhang;
+        this.qiangGangHu = qiangGangHu;
+        this.gangShangKaiHua = gangShangKaiHua;
+        this.haiDiLaoYue = haiDiLaoYue;
     }
 
     public boolean checkHu(){
@@ -60,7 +78,7 @@ public class CountPoint {
         }
     }
 
-    private void listToArray(ArrayList<String> cardList, int[] array){
+    protected void listToArray(ArrayList<String> cardList, int[] array){
         for (String card : cardList){
             if (card.endsWith("w")){
                 int cardNum = Integer.parseInt(card.split("-")[0]);
@@ -481,10 +499,17 @@ public class CountPoint {
             paiXingResult.add("单钓将");
             scoreRecorder.add(1);
         }
-        if (isZiMo(hands)){
-            fanXings.add("ZiMo");
-            paiXingResult.add("自摸");
-            scoreRecorder.add(1);
+        int result = isZiMo(hands);
+        if (result != -1){
+            if (result == 0) {
+                fanXings.add("ZiMo");
+                paiXingResult.add("自摸");
+                scoreRecorder.add(1);
+            }else{
+                fanXings.add("BuQiuRen");
+                paiXingResult.add("不求人");
+                scoreRecorder.add(4);
+            }
         }
         if (isHuaPai(hands)){
             fanXings.add("HuaPai");
@@ -504,11 +529,12 @@ public class CountPoint {
         return false;
     }
 
-    private boolean isZiMo(int[] hands) {
+    private int isZiMo(int[] hands) {
         if (fanXings.contains("MiaoShouHuiChun") || fanXings.contains("GangShangKaiHua") || fanXings.contains("BuQiuRen"))
-            return false;
-        // TODO ask user for input
-        return ziMo;
+            return -1;
+        if (ziMo && (fanXings.contains("ShiSanYao") || fanXings.contains("LianQiDui") || fanXings.contains("SiAnKe") || fanXings.contains("QiDui") || fanXings.contains("QiXingBuKao") || fanXings.contains("QuanBuKao")))
+            return 1;
+        return ziMo ? 0 : -1;
     }
 
     private boolean isDanDiaoJiang(int[] hands) {
@@ -519,13 +545,11 @@ public class CountPoint {
     }
 
     private boolean isKanZhang(int[] hands) {
-        // TODO ask user for input 胡两张牌之间的牌，3_5胡4
-        return false;
+        return kanZhang;
     }
 
     private boolean isBianZhang(int[] hands) {
-        // TODO ask user for input 胡3或者7
-        return false;
+        return bianZhang;
     }
 
     private boolean isWuZi(int[] hands) {
@@ -703,15 +727,13 @@ public class CountPoint {
     private boolean isMenFengKe(int[] hands) {
         if (fanXings.contains("DaSiXi"))
             return false;
-        //TODO Ask for user input
-        return false;
+        return menFengKe;
     }
 
     private boolean isQuanFengKe(int[] hands) {
         if (fanXings.contains("DaSiXi") || fanXings.contains("XiaoSanYuan") || fanXings.contains("ShuangJianKe"))
             return false;
-        //TODO Ask for user input
-        return false;
+        return quanFengKe;
     }
 
     private boolean isJianKe(int[] hands) {
@@ -727,8 +749,7 @@ public class CountPoint {
     private boolean isHuJueZhang(int[] hands) {
         if (fanXings.contains("QiangGangHu"))
             return false;
-        //TODO Ask for user input
-        return false;
+        return huJueZhang;
     }
 
     private boolean isShuangMingGang(int[] hands) {
@@ -749,8 +770,7 @@ public class CountPoint {
     private boolean isQuanDaiYao(int[] hands) {
         if (fanXings.contains("ShiSanYao") || fanXings.contains("QingYaoJiu") || fanXings.contains("ZiYiSe") || fanXings.contains("HunYaoJiu"))
             return false;
-        //ToDo DO more research
-        return false;
+        return quanDaiYao;
     }
 
     private boolean isShuangJianKe(int[] hands) {
@@ -769,14 +789,28 @@ public class CountPoint {
         //noShuangJianKe
         if (fanXings.contains("SiGang") || fanXings.contains("SanGang"))
             return false;
-        //TODO Get User Input
-        return false;
+        return anGang != null && anGang.size() == 2;
     }
 
     private boolean isQuanQiuRen(int[] hands) {
         //noDanDiaoJiang
-        //TODO Get User Input
-        return false;
+        int chiCount = 0;
+        int pengCount = 0;
+        int mGangCount = 0;
+        if (chi == null)
+            chiCount = 0;
+        else
+            chiCount = chi.size() / 3;
+        if (peng == null)
+            pengCount = 0;
+        else
+            pengCount = peng.size();
+        if (mingGang == null)
+            mGangCount = 0;
+        else
+            mGangCount = mingGang.size();
+
+        return (chiCount + pengCount + mGangCount) == 4 && danDiaoJiang;
     }
 
     private boolean isWuMenQi(int[] hands) {
@@ -798,32 +832,23 @@ public class CountPoint {
         if (fanXings.contains("DaSiXi") || fanXings.contains("SiGang") || fanXings.contains("QingYaoJiu") || fanXings.contains("ZiYiSe") ||
                 fanXings.contains("SiAnKe") || fanXings.contains("YiSeSiJieGao") || fanXings.contains("HunYaoJiu") || fanXings.contains("QuanShuangKe"))
             return false;
-        int count = 0;
-        for (int i =0; i< 34; i++){
-            if (hands[i] >= 3)
-                count++;
-        }
-        return count==4;
+        return peng != null && peng.size() == 4;
     }
 
     private boolean isQiangGangHu(int[] hands) {
         //noHujueZhang
-        //TODO Get User Input
-        return false;
+        return qiangGangHu;
     }
 
     private boolean isGangShangKaiHua(int[] hands) {
-        //TODO Get User Input
-        return false;
+        return gangShangKaiHua;
     }
 
     private boolean isHaiDiLaoYue(int[] hands) {
-        //TODO Get User Input
-        return false;
+        return haiDiLaoYue;
     }
 
     private boolean isWuFanHu(int[] hands) {
-        Log.e("fx", fanXings.toString());
         return fanXings.isEmpty();
     }
 
@@ -990,11 +1015,10 @@ public class CountPoint {
         return false;
     }
 
-    private boolean isQuanBuKao(int[] hands) {
-        //todo buhu
+    protected boolean isQuanBuKao(int[] hands) {
         if (fanXings.contains("QiXingBuKao"))
             return false;
-        if (hands[27] >= 1 && hands[28] >= 1 && hands[29] >= 1 && hands[30] >= 1 && hands[31] >= 1 && hands[32] >= 1 && hands[33] >= 1 && (hands[27] + hands[28] + hands[29] + hands[30] + hands[31] + hands[32] + hands[33] >= 5)){
+        if (hands[27] <= 1 && hands[28] <= 1 && hands[29] <= 1 && hands[30] <= 1 && hands[31] <= 1 && hands[32] <= 1 && hands[33] <= 1 && (hands[27] + hands[28] + hands[29] + hands[30] + hands[31] + hands[32] + hands[33] >= 5)){
             //check三种花色全有
             if (!isAllZero(hands,0,8) && !isAllZero(hands,9,17) && !isAllZero(hands,18,26)){
                 //check只有147,258,369
@@ -1197,7 +1221,7 @@ public class CountPoint {
                 hands[18] == 0 && hands[20] == 0 && hands[22] == 0 && hands[24] == 0 && isAllZero(hands,26,33);
     }
 
-    private boolean isQiXingBuKao(int[] hands) {
+    protected boolean isQiXingBuKao(int[] hands) {
         // noWuMenQi, noBuQiuRen, noDanDiaoJiang, noMenQianQing, noQuanBuKao
         //check字牌
         if (hands[27] == 1 && hands[28] == 1 && hands[29] == 1 && hands[30] == 1 && hands[31] == 1 && hands[32] == 1 && hands[33] == 1){
@@ -1235,8 +1259,7 @@ public class CountPoint {
         return false;
     }
 
-    private boolean isQiDui(int[] hands) {
-        //TODO buhu
+    protected boolean isQiDui(int[] hands) {
         // noMenQianQing, noBuQiuRen, noDanDiao
         if (fanXings.contains("LianQiDui") || fanXings.contains("YiSeShuangLongHui"))
             return false;
@@ -1250,7 +1273,7 @@ public class CountPoint {
 
     private boolean isHunYaoJiu(int[] hands) {
         // noPengPengHu, noYaoJiuKe, noQuanDaiYao
-        if (fanXings.contains("ZiYiSe") || fanXings.contains("QingYaoJiu"))
+        if (fanXings.contains("ZiYiSe") || fanXings.contains("QingYaoJiu") || fanXings.contains("ShiSanYao"))
             return false;
         return isAllZero(hands,1,7) && isAllZero(hands, 10, 16) && isAllZero(hands, 19, 25);
     }
@@ -1419,9 +1442,8 @@ public class CountPoint {
         return isAllZero(hands, 1,7) && isAllZero(hands,10,16) && isAllZero(hands,19,25) && isAllZero(hands, 27,33);
     }
 
-    private boolean isShiSanYao(int[] hands) {
+    protected boolean isShiSanYao(int[] hands) {
         //noWuMenQi, noBuQiuRen, noDanDiaoJiang, noMenQianQing, noQuanDaoYao
-        // TODO bu hu
         return hands[0] >= 1 && hands[8] >= 1 && hands[9] >= 1 && hands[17] >= 1 && hands[18] >= 1 && hands[26] >= 1 &&
                 hands[27] >= 1 && hands[28] >= 1 && hands[29] >= 1 && hands[30] >= 1 && hands[31] >= 1 && hands[32] >= 1 && hands[33] >= 1 &&
                 isAllZero(hands,1,7) && isAllZero(hands,10,16) && isAllZero(hands,19,25);
@@ -1468,14 +1490,15 @@ public class CountPoint {
     }
 
     private boolean isSiGang(int[] hands) {
-        //TODO bu hu
         //noSanGang, noShuangAnGang, noShuangMingGang,noMingGang,noAnGang,noDanDiaoJiang,noPengPengHu
-        int count = 0;
-        for (int i= 0; i < hands.length; i++){
-            if (hands[i] == 4)
-                count++;
-        }
-        return count == 4;
+        int aGangCount = 0;
+        int mGangCount = 0;
+        if (anGang != null)
+            aGangCount = anGang.size();
+        if (mingGang != null)
+            mGangCount = mingGang.size();
+
+        return aGangCount + mGangCount == 4;
     }
 
     private boolean isJiuLianBaoDeng(int[] hands) {

@@ -88,29 +88,9 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         //mRgba 为opencv的4通道
                         Mat src = mRgba;
                         hands.clear();
-                        double resizedCol = 0.0;
-                        double resizedRow = 0.0;
+                        double resizedCol = 99;
+                        double resizedRow = 133.33;
                         Mat result = null;
-                        int count = 1;
-                        //correct...
-//                        Mat template = readImageFromResources("yi-w.jpg").MAT;
-//                        double resizedCol = template.cols() / 2.5;
-//                        double resizedRow = template.rows() / 2.5;
-//                        int count = 2;
-//                        Mat result;
-//                        Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-//                        Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-//                        result = matchTemplate(src,template, "1-w");
-//                        for (int templateID : TEMPLATEID){
-//                            template = readImageFromResources(templateID);
-//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-//                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-//                            result = matchTemplate(result,template, count+"-w");
-//                            count += 1;
-//                        }
-//                        showImg(result);
-//                        Log.e("Match-------result:", hands.toString());
-
 
                         for (String paiName : TEMPLATEID_WAN){
                             Mat template = readImageFromFile(paiName,CameraActivity.this);
@@ -118,56 +98,76 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                                 Log.i(TAG, paiName + " file not exist");
                                 continue;
                             }
+//                            if (resizedCol == 0.0 && resizedRow == 0.0){
+//                                resizedCol = template.cols() / 6;
+//                                resizedRow = template.rows() / 6;
+//                            }
+//                            Log.e("col", resizedCol +"");
+//                            Log.e("row", resizedRow +"");
 
-                            if (resizedCol == 0.0 && resizedRow == 0.0){
-                                resizedCol = template.cols() / 4;
-                                resizedRow = template.rows() / 4;
-                            }
 //                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
                             if (result == null)
                                 result = matchTemplate(src,template, paiName.replace(".jpg",""));
                             else
-                                result = matchTemplate(result,template,paiName.replace(".jpg","") );
-                            count += 1;
+                                result = matchTemplate(result,template,paiName.replace(".jpg",""));
+
                         }
-                        count = 1;
-//                        for (String paiName : TEMPLATEID_TIAO){
-//                            Mat template = readImageFromFile(paiName).MAT;
+
+                        for (String paiName : TEMPLATEID_TIAO){
+                            Mat template = readImageFromFile(paiName,CameraActivity.this);
+                            if (template == null){
+                                Log.i(TAG, paiName + " file not exist");
+                                continue;
+                            }
 //                            if (resizedCol == 0.0 && resizedRow == 0.0){
-//                                resizedCol = template.cols() / 2.5;
-//                                resizedRow = template.rows() / 2.5;
+//                                resizedCol = template.cols() / 4;
+//                                resizedRow = template.rows() / 4;
 //                            }
 //                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
-//                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
-//                            if (paiName.equals("ertiao")) {
-//                                if (result == null)
-//                                    result = matchTemplate(src, template, 2 + "-t");
-//                                else
-//                                    result = matchTemplate(result, template, 2 + "-t");
-//                            }else if (paiName.equals("sitiao")){
-//                                if (result == null)
-//                                    result = matchTemplate(src, template, 4 + "-t");
-//                                else
-//                                    result = matchTemplate(result, template, 4 + "-t");
-//                            }else{
-//                                if (result == null)
-//                                    result = matchTemplate(src, template, count + "-t");
-//                                else
-//                                    result = matchTemplate(result, template, count + "-t");
+                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+                            if (result == null)
+                                result = matchTemplate(src, template, paiName.replace(".jpg",""));
+                            else
+                                result = matchTemplate(result, template, paiName.replace(".jpg",""));
+                        }
+
+
+                        for (String paiName : TEMPLATEID_BING){
+                            Mat template = readImageFromFile(paiName,CameraActivity.this);
+                            if (template == null){
+                                Log.i(TAG, paiName + " file not exist");
+                                continue;
+                            }
+//                            if (resizedCol == 0.0 && resizedRow == 0.0){
+//                                resizedCol = template.cols() / 4;
+//                                resizedRow = template.rows() / 4;
 //                            }
-//                            count += 1;
-//                        }
-                        showImg(result);
-
-
-
-                        Log.e("Match-------result:", hands.toString());
-
-
+//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+                            if (result == null)
+                                result = matchTemplate(src, template, paiName.replace(".jpg",""));
+                            else
+                                result = matchTemplate(result, template, paiName.replace(".jpg",""));
+                        }
+                        for (String paiName : TEMPLATEID_ZI){
+                            Mat template = readImageFromFile(paiName,CameraActivity.this);
+                            if (template == null){
+                                Log.i(TAG, paiName + " file not exist");
+                                continue;
+                            }
+//                            if (resizedCol == 0.0 && resizedRow == 0.0){
+//                                resizedCol = template.cols() / 4;
+//                                resizedRow = template.rows() / 4;
+//                            }
+//                            Imgproc.cvtColor(template,template,Imgproc.COLOR_RGBA2GRAY);
+                            Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
+                            if (result == null)
+                                result = matchTemplate(src, template, paiName.replace(".jpg",""));
+                            else
+                                result = matchTemplate(result, template, paiName.replace(".jpg",""));
+                        }
                         switch_to_result_activity();
-
-                        //...correct
                     }
                 }
             }
@@ -237,6 +237,8 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 //        Imgproc.cvtColor(temp, temp, Imgproc.COLOR_RGB2BGRA);
 
         int match_method = Imgproc.TM_CCOEFF_NORMED;
+        //int match_method = Imgproc.TM_CCORR;
+
         ArrayList<String> uniqueObjPositions = new ArrayList<>();
 
         int result_cols = img.cols() - temp.cols() + 1;
@@ -260,7 +262,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         {
             Core.MinMaxLocResult mmr = Core.minMaxLoc(result);
             Point matchLoc = mmr.maxLoc;
-            if(mmr.maxVal >=0.8)
+            if(mmr.maxVal >=0.75)
             {
                 Log.i("x-y", matchLoc.x +"-"+matchLoc.y);
                 uniqueObjXYCoor(matchLoc.x, matchLoc.y,uniqueObjPositions,card_Name);
@@ -280,17 +282,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         for (String xy : uniqueObjPositions){
             Log.i("x-y-coor", xy);
             hands.add(xy.split("-")[2] + "-" + xy.split("-")[3]);
-
-            //write label
-            Imgproc.putText (
-                    img,                          // Matrix obj of the image
-                    card_Name,          // Text to be added
-                    new Point(Double.parseDouble(xy.split("-")[0]), Double.parseDouble(xy.split("-")[1])),               // point
-                    Core.FONT_HERSHEY_SIMPLEX ,      // front face
-                    1,                               // front scale
-                    new Scalar(0, 0, 0),             // Scalar object for color
-                    1                                // Thickness
-            );
         }
         return  img;
     }
@@ -305,36 +296,11 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             File[] files = dir.listFiles();
             for (File file : files){
                 if (file.getName().equals(paiName))
-//                    Log.e("fp-", ""+file.getAbsolutePath());
                     img = Imgcodecs.imread(file.getAbsolutePath(), Imgcodecs.IMREAD_GRAYSCALE);
-//                    Log.e("fk", ""+(img == null));
-//                    Log.i("----------", img.cols() + "_" + img.rows());
-
             }
         }else {
             Log.e(TAG, "template dir not exist");
         }
-
-//        try {
-//            img = Imgcodecs.imread()
-////            if (pai.init()){
-//////                Mat img = Utils.loadResource(this, pai.ID);
-////
-////
-////
-////                //Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2BGRA);
-////                Imgproc.cvtColor(img, img, Imgproc.COLOR_RGB2RGBA);
-////
-////
-////
-////                pai.setMAT(img);
-////            }else{
-////                Log.e(TAG, "fail to get pai drawable");
-////            }
-//
-//        } catch (IOException e) {
-//            Log.e(TAG, Log.getStackTraceString(e));
-//        }
 
         return img;
     }

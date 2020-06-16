@@ -7,13 +7,23 @@
     tools:context=".GalleryActivity">
 
     <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="五筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot24"
+        app:layout_constraintEnd_toEndOf="@+id/spot24"
+        app:layout_constraintStart_toStartOf="@+id/spot24" />
+
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="13dp"
         android:text="@string/gallery_title"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -390,5 +400,309 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一万"
+        app:layout_constraintBottom_toTopOf="@+id/spot00"
+        app:layout_constraintEnd_toEndOf="@+id/spot00"
+        app:layout_constraintStart_toStartOf="@+id/spot00" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二万"
+        app:layout_constraintBottom_toTopOf="@+id/spot01"
+        app:layout_constraintEnd_toEndOf="@+id/spot01"
+        app:layout_constraintStart_toStartOf="@+id/spot01" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="三万"
+        app:layout_constraintBottom_toTopOf="@+id/spot02"
+        app:layout_constraintEnd_toEndOf="@+id/spot02"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="@+id/spot02" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="四万"
+        app:layout_constraintBottom_toTopOf="@+id/spot03"
+        app:layout_constraintEnd_toEndOf="@+id/spot03"
+        app:layout_constraintStart_toStartOf="@+id/spot03" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="五万"
+        app:layout_constraintBottom_toTopOf="@+id/spot04"
+        app:layout_constraintEnd_toEndOf="@+id/spot04"
+        app:layout_constraintStart_toStartOf="@+id/spot04" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="六万"
+        app:layout_constraintBottom_toTopOf="@+id/spot10"
+        app:layout_constraintEnd_toEndOf="@+id/spot10"
+        app:layout_constraintStart_toStartOf="@+id/spot10" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="七万"
+        app:layout_constraintBottom_toTopOf="@+id/spot11"
+        app:layout_constraintEnd_toEndOf="@+id/spot11"
+        app:layout_constraintStart_toStartOf="@+id/spot11" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="八万"
+        app:layout_constraintBottom_toTopOf="@+id/spot12"
+        app:layout_constraintEnd_toEndOf="@+id/spot12"
+        app:layout_constraintStart_toStartOf="@+id/spot12" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="九万"
+        app:layout_constraintBottom_toTopOf="@+id/spot13"
+        app:layout_constraintEnd_toEndOf="@+id/spot13"
+        app:layout_constraintStart_toStartOf="@+id/spot13" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot20"
+        app:layout_constraintEnd_toEndOf="@+id/spot20"
+        app:layout_constraintStart_toStartOf="@+id/spot20" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot21"
+        app:layout_constraintEnd_toEndOf="@+id/spot21"
+        app:layout_constraintStart_toStartOf="@+id/spot21" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="三筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot22"
+        app:layout_constraintEnd_toEndOf="@+id/spot22"
+        app:layout_constraintStart_toStartOf="@+id/spot22" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="四筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot23"
+        app:layout_constraintEnd_toEndOf="@+id/spot23"
+        app:layout_constraintStart_toStartOf="@+id/spot23" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="六筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot30"
+        app:layout_constraintEnd_toEndOf="@+id/spot30"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot30" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="七筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot31"
+        app:layout_constraintEnd_toEndOf="@+id/spot31"
+        app:layout_constraintStart_toStartOf="@+id/spot31" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="八筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot32"
+        app:layout_constraintEnd_toEndOf="@+id/spot32"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot32" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="九筒"
+        app:layout_constraintBottom_toTopOf="@+id/spot33"
+        app:layout_constraintEnd_toEndOf="@+id/spot33"
+        app:layout_constraintStart_toStartOf="@+id/spot33" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一条"
+        app:layout_constraintBottom_toTopOf="@+id/spot40"
+        app:layout_constraintEnd_toEndOf="@+id/spot40"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot40" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二条"
+        app:layout_constraintBottom_toTopOf="@+id/spot41"
+        app:layout_constraintEnd_toEndOf="@+id/spot41"
+        app:layout_constraintStart_toStartOf="@+id/spot41" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="三条"
+        app:layout_constraintBottom_toTopOf="@+id/spot42"
+        app:layout_constraintEnd_toEndOf="@+id/spot42"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot42" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="四条"
+        app:layout_constraintBottom_toTopOf="@+id/spot43"
+        app:layout_constraintEnd_toEndOf="@+id/spot43"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot43" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="五条"
+        app:layout_constraintBottom_toTopOf="@+id/spot44"
+        app:layout_constraintEnd_toEndOf="@+id/spot44"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/spot44" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="六条"
+        app:layout_constraintBottom_toTopOf="@+id/spot50"
+        app:layout_constraintEnd_toEndOf="@+id/spot50"
+        app:layout_constraintStart_toStartOf="@+id/spot50" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="七条"
+        app:layout_constraintBottom_toTopOf="@+id/spot51"
+        app:layout_constraintEnd_toEndOf="@+id/spot51"
+        app:layout_constraintStart_toStartOf="@+id/spot51" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="八条"
+        app:layout_constraintBottom_toTopOf="@+id/spot52"
+        app:layout_constraintEnd_toEndOf="@+id/spot52"
+        app:layout_constraintStart_toStartOf="@+id/spot52" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="九条"
+        app:layout_constraintBottom_toTopOf="@+id/spot53"
+        app:layout_constraintEnd_toEndOf="@+id/spot53"
+        app:layout_constraintStart_toStartOf="@+id/spot53" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="东风"
+        app:layout_constraintBottom_toTopOf="@+id/spot60"
+        app:layout_constraintEnd_toEndOf="@+id/spot60"
+        app:layout_constraintStart_toStartOf="@+id/spot60" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="西风"
+        app:layout_constraintBottom_toTopOf="@+id/spot61"
+        app:layout_constraintEnd_toEndOf="@+id/spot61"
+        app:layout_constraintStart_toStartOf="@+id/spot61" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="南风"
+        app:layout_constraintBottom_toTopOf="@+id/spot62"
+        app:layout_constraintEnd_toEndOf="@+id/spot62"
+        app:layout_constraintStart_toStartOf="@+id/spot62" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="北风"
+        app:layout_constraintBottom_toTopOf="@+id/spot63"
+        app:layout_constraintEnd_toEndOf="@+id/spot63"
+        app:layout_constraintStart_toStartOf="@+id/spot63" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="红中"
+        app:layout_constraintBottom_toTopOf="@+id/spot64"
+        app:layout_constraintEnd_toEndOf="@+id/spot64"
+        app:layout_constraintStart_toStartOf="@+id/spot64" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发财"
+        app:layout_constraintBottom_toTopOf="@+id/spot70"
+        app:layout_constraintEnd_toEndOf="@+id/spot70"
+        app:layout_constraintStart_toStartOf="@+id/spot70" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="白板"
+        app:layout_constraintBottom_toTopOf="@+id/spot71"
+        app:layout_constraintEnd_toEndOf="@+id/spot71"
+        app:layout_constraintStart_toStartOf="@+id/spot71" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

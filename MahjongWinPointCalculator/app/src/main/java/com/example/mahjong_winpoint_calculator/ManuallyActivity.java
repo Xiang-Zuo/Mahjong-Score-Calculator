@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     ArrayList<String> peng;
     ArrayList<String> mingGang;
     ArrayList<String> anGang;
+    ArrayList<String> specialFormat;
 
     ImageView spot00 = null;
     ImageView spot01 = null;
@@ -133,6 +135,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         peng = new ArrayList<>();
         mingGang = new ArrayList<>();
         anGang = new ArrayList<>();
+        specialFormat = new ArrayList<>();
 
         spot00 = (ImageView) findViewById(R.id.spot00);
         spot01 = (ImageView) findViewById(R.id.spot01);
@@ -341,6 +344,55 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         ArrayList<String> cameraResult = getIntent().getStringArrayListExtra("EXTRA_HANDS");
         if (cameraResult != null){
             Log.e("CR", cameraResult.toString());
+            for (String pai : cameraResult) {
+                int imgID = 0;
+                switch (pai){
+                    case "1-w": imgID = R.id.yiwan; break;
+                    case "2-w": imgID = R.id.erwan; break;
+                    case "3-w": imgID = R.id.sanwan; break;
+                    case "4-w": imgID = R.id.siwan; break;
+                    case "5-w": imgID = R.id.wuwan; break;
+                    case "6-w": imgID = R.id.liuwan; break;
+                    case "7-w": imgID = R.id.qiwan; break;
+                    case "8-w": imgID = R.id.bawan; break;
+                    case "9-w": imgID = R.id.jiuwan; break;
+
+                    case "1-b": imgID = R.id.yibing; break;
+                    case "2-b": imgID = R.id.erbing; break;
+                    case "3-b": imgID = R.id.sanbing; break;
+                    case "4-b": imgID = R.id.sibing; break;
+                    case "5-b": imgID = R.id.wubing; break;
+                    case "6-b": imgID = R.id.liubing; break;
+                    case "7-b": imgID = R.id.qibing; break;
+                    case "8-b": imgID = R.id.babing; break;
+                    case "9-b": imgID = R.id.jiubing; break;
+
+                    case "1-t": imgID = R.id.yitiao; break;
+                    case "2-t": imgID = R.id.ertiao; break;
+                    case "3-t": imgID = R.id.santiao; break;
+                    case "4-t": imgID = R.id.sitiao; break;
+                    case "5-t": imgID = R.id.wutiao; break;
+                    case "6-t": imgID = R.id.liutiao; break;
+                    case "7-t": imgID = R.id.qitiao; break;
+                    case "8-t": imgID = R.id.batiao; break;
+                    case "9-t": imgID = R.id.jiutiao; break;
+
+                    case "d-f": imgID = R.id.dongfeng; break;
+                    case "x-f": imgID = R.id.xifeng; break;
+                    case "n-f": imgID = R.id.nanfeng; break;
+                    case "b-f": imgID = R.id.beifeng; break;
+                    case "h-Z": imgID = R.id.hongzhong; break;
+                    case "b-B": imgID = R.id.baiban; break;
+                    case "f-F": imgID = R.id.facai; break;
+                    default: break;
+                }
+//                int imageId = this.getResources().getIdentifier(pai, "id", this.getPackageName());
+//                Log.i("3-w", "" + (imageId == R.id.sanwan));
+//                Log.i("5-w", "" + (imageId == R.id.wuwan));
+//                Log.i("6-w", "" + (imageId == R.id.liuwan));
+                if (imgID != 0)
+                    onPaiClick(imgID);
+            }
         }
     }
 
@@ -397,7 +449,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             case R.id.hongzhong:
             case R.id.facai:
             case R.id.baiban:
-                onPaiClick(v.getId(), v);
+                onPaiClick(v.getId());
                 break;
 
             case R.id.chiBtn0:
@@ -477,7 +529,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void onPaiClick(int id, View v) {
+    private void onPaiClick(int id) {
         int drawableID = -1;
         switch (id) {
             case R.id.yiwan:
@@ -641,7 +693,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                             findViewById(id).setClickable(false);
                         }
                         paiCount.put(spots[i], num - 1);
-                        fillHandArray(v);
+                        fillHandArray();
 //                        Log.e("hands", hands.toString());
                         break;
                     }
@@ -792,7 +844,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                     findViewById(id).setClickable(false);
                 }
                 paiCount.put(spots[index], num - 1);
-                fillHandArray(v);
+                fillHandArray();
 //                Log.e("hands", hands.toString());
                 theChosenSpot.setBackgroundColor(Color.WHITE);
                 theChosenSpot.setPadding(0, 0, 0, 0);
@@ -921,21 +973,25 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 gangbtnControl(gangBtnID, false);
             }
         } else if (id == R.id.pengBtn0 || id == R.id.pengBtn1 || id == R.id.pengBtn2 || id == R.id.pengBtn3) {
-            if (hands.isEmpty())
+            ImageView thePai = null;
+            if (hands.isEmpty() || Collections.frequency(hands,"null") == hands.size())
                 return;
-            Log.e(TAG, hands.toString());
             if (id == R.id.pengBtn0) {
-                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))))
+                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))) || hands.get(0).equals("null"))
                     return;
+                thePai = spots[0];
             } else if (id == R.id.pengBtn1) {
-                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))))
+                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))) || hands.get(3).equals("null"))
                     return;
+                thePai = spots[3];
             } else if (id == R.id.pengBtn2) {
-                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))))
+                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))) || hands.get(6).equals("null"))
                     return;
+                thePai = spots[6];
             } else {
-                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))))
+                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))) || hands.get(9).equals("null"))
                     return;
+                thePai = spots[9];
             }
 
             Button button = findViewById(id);
@@ -962,58 +1018,67 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 }
                 oppositeBtn.setBackgroundResource(R.drawable.round_btn_default);
                 oppositeBtn.setTextColor(Color.rgb(171, 166, 164));
-                gangbtnControl(gangBtnID, false);
+                if (isHighlightBtn(v, findViewById(gangBtnID))){
+                    int num = paiCount.get(thePai);
+                    if (num < 1)
+                        thePai.setClickable(true);
+                    paiCount.put(thePai, num + 1);
+                    gangbtnControl(gangBtnID, false);
+                }
+
             }
         } else if (id == R.id.gangBtn0 || id == R.id.gangBtn1 || id == R.id.gangBtn2 || id == R.id.gangBtn3) {
-            if (hands.isEmpty())
+            ImageView thePai = null;
+            if (hands.isEmpty() || Collections.frequency(hands,"null") == hands.size())
                 return;
             Log.e(TAG, hands.toString());
             if (id == R.id.gangBtn0) {
-                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))))
+                if (!(hands.get(0).equals(hands.get(1)) && hands.get(1).equals(hands.get(2))) || hands.get(0).equals("null"))
                     return;
+                thePai = spots[0];
             } else if (id == R.id.gangBtn1) {
-                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))))
+                if (!(hands.get(3).equals(hands.get(4)) && hands.get(4).equals(hands.get(5))) || hands.get(3).equals("null"))
                     return;
+                thePai = spots[3];
             } else if (id == R.id.gangBtn2) {
-                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))))
+                if (!(hands.get(6).equals(hands.get(7)) && hands.get(7).equals(hands.get(8))) || hands.get(6).equals("null"))
                     return;
+                thePai = spots[6];
             } else {
-                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))))
+                if (!(hands.get(9).equals(hands.get(10)) && hands.get(10).equals(hands.get(11))) || hands.get(9).equals("null"))
                     return;
+                thePai = spots[9];
             }
 
-            //Todo add view
-
-
             Button button = findViewById(id);
-            Button ming;
-            Button an;
             Button chi;
             Button peng;
             if (id == R.id.gangBtn0) {
-                ming = findViewById(R.id.mingBtn0);
-                an = findViewById(R.id.anBtn0);
                 chi = findViewById(R.id.chiBtn0);
                 peng = findViewById(R.id.pengBtn0);
             } else if (id == R.id.gangBtn1) {
-                ming = findViewById(R.id.mingBtn1);
-                an = findViewById(R.id.anBtn1);
                 chi = findViewById(R.id.chiBtn1);
                 peng = findViewById(R.id.pengBtn1);
             } else if (id == R.id.gangBtn2) {
-                ming = findViewById(R.id.mingBtn2);
-                an = findViewById(R.id.anBtn2);
                 chi = findViewById(R.id.chiBtn2);
                 peng = findViewById(R.id.pengBtn2);
             } else {
-                ming = findViewById(R.id.mingBtn3);
-                an = findViewById(R.id.anBtn3);
                 chi = findViewById(R.id.chiBtn3);
                 peng = findViewById(R.id.pengBtn3);
             }
             if (button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_btn_highlight).getConstantState())) { //restore highlight to default
                 gangbtnControl(id, false);
+                int num = paiCount.get(thePai);
+                if (num < 1)
+                    thePai.setClickable(true);
+                paiCount.put(thePai, num + 1);
             } else {
+                int num = paiCount.get(thePai);
+                if (num < 1) {
+                    return;
+                }else
+                    thePai.setClickable(false);
+                paiCount.put(thePai, num - 1);
                 gangbtnControl(id, true);
                 chi.setBackgroundResource(R.drawable.round_btn_default);
                 chi.setTextColor(Color.rgb(171, 166, 164));
@@ -1217,159 +1282,203 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
         } else if (id == R.id.deleteBtn) {
             if (theChosenSpot != null) {
-                if (theChosenSpot == spot00) {
-                    if (spots[0] != null) {
-                        int num = paiCount.get(spots[0]);
-                        spots[0].setClickable(true);
-                        paiCount.put(spots[0], num + 1);
-                        spots[0] = null;
-                    }
-                } else if (theChosenSpot == spot01) {
-                    if (spots[1] != null) {
-                        int num = paiCount.get(spots[1]);
-                        spots[1].setClickable(true);
-                        paiCount.put(spots[1], num + 1);
-                        spots[1] = null;
-                    }
-                } else if (theChosenSpot == spot02) {
-                    if (spots[2] != null) {
-                        int num = paiCount.get(spots[2]);
-                        spots[2].setClickable(true);
-                        paiCount.put(spots[2], num + 1);
-                        spots[2] = null;
-                    }
-                } else if (theChosenSpot == spot10) {
-                    if (spots[3] != null) {
-                        int num = paiCount.get(spots[3]);
-                        spots[3].setClickable(true);
-                        paiCount.put(spots[3], num + 1);
-                        spots[3] = null;
-                    }
-                } else if (theChosenSpot == spot11) {
-                    if (spots[4] != null) {
-                        int num = paiCount.get(spots[4]);
-                        spots[4].setClickable(true);
-                        paiCount.put(spots[4], num + 1);
-                        spots[4] = null;
-                    }
-                } else if (theChosenSpot == spot12) {
-                    if (spots[5] != null) {
-                        int num = paiCount.get(spots[5]);
-                        spots[5].setClickable(true);
-                        paiCount.put(spots[5], num + 1);
-                        spots[5] = null;
-                    }
-                } else if (theChosenSpot == spot20) {
-                    if (spots[6] != null) {
-                        int num = paiCount.get(spots[6]);
-                        spots[6].setClickable(true);
-                        paiCount.put(spots[6], num + 1);
-                        spots[6] = null;
-                    }
-                } else if (theChosenSpot == spot21) {
-                    if (spots[7] != null) {
-                        int num = paiCount.get(spots[7]);
-                        spots[7].setClickable(true);
-                        paiCount.put(spots[7], num + 1);
-                        spots[7] = null;
-                    }
-                } else if (theChosenSpot == spot22) {
-                    if (spots[8] != null) {
-                        int num = paiCount.get(spots[8]);
-                        spots[8].setClickable(true);
-                        paiCount.put(spots[8], num + 1);
-                        spots[8] = null;
-                    }
-                } else if (theChosenSpot == spot30) {
-                    if (spots[9] != null) {
-                        int num = paiCount.get(spots[9]);
-                        spots[9].setClickable(true);
-                        paiCount.put(spots[9], num + 1);
-                        spots[9] = null;
-                    }
-                } else if (theChosenSpot == spot31) {
-                    if (spots[10] != null) {
-                        int num = paiCount.get(spots[10]);
-                        spots[10].setClickable(true);
-                        paiCount.put(spots[10], num + 1);
-                        spots[10] = null;
-                    }
-                } else if (theChosenSpot == spot32) {
-                    if (spots[11] != null) {
-                        int num = paiCount.get(spots[11]);
-                        spots[11].setClickable(true);
-                        paiCount.put(spots[11], num + 1);
-                        spots[11] = null;
-                    }
-                } else if (theChosenSpot == spot40) {
-                    if (spots[12] != null) {
-                        int num = paiCount.get(spots[12]);
-                        spots[12].setClickable(true);
-                        paiCount.put(spots[12], num + 1);
-                        spots[12] = null;
-                    }
-                } else if (theChosenSpot == spot41) {
-                    if (spots[13] != null) {
-                        int num = paiCount.get(spots[13]);
-                        spots[13].setClickable(true);
-                        paiCount.put(spots[13], num + 1);
-                        spots[13] = null;
-                    }
-                }
-                theChosenSpot.setBackgroundColor(Color.WHITE);
-                theChosenSpot.setPadding(0, 0, 0, 0);
-                theChosenSpot.setImageResource(R.drawable.background);
-                if (theChosenSpot == spot00 || theChosenSpot == spot01 || theChosenSpot == spot02) {
-                    Button button = findViewById(R.id.chiBtn0);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
+                deletePai(theChosenSpot, v);
+//                if (theChosenSpot == spot00) {
+//                    if (spots[0] != null) {
+//                        int num = paiCount.get(spots[0]);
+//                        spots[0].setClickable(true);
+//                        paiCount.put(spots[0], num + 1);
+//                        spots[0] = null;
+//                    }
+//                } else if (theChosenSpot == spot01) {
+//                    if (spots[1] != null) {
+//                        int num = paiCount.get(spots[1]);
+//                        spots[1].setClickable(true);
+//                        paiCount.put(spots[1], num + 1);
+//                        spots[1] = null;
+//                    }
+//                } else if (theChosenSpot == spot02) {
+//                    if (spots[2] != null) {
+//                        int num = paiCount.get(spots[2]);
+//                        spots[2].setClickable(true);
+//                        paiCount.put(spots[2], num + 1);
+//                        spots[2] = null;
+//                    }
+//                } else if (theChosenSpot == spot10) {
+//                    if (spots[3] != null) {
+//                        int num = paiCount.get(spots[3]);
+//                        spots[3].setClickable(true);
+//                        paiCount.put(spots[3], num + 1);
+//                        spots[3] = null;
+//                    }
+//                } else if (theChosenSpot == spot11) {
+//                    if (spots[4] != null) {
+//                        int num = paiCount.get(spots[4]);
+//                        spots[4].setClickable(true);
+//                        paiCount.put(spots[4], num + 1);
+//                        spots[4] = null;
+//                    }
+//                } else if (theChosenSpot == spot12) {
+//                    if (spots[5] != null) {
+//                        int num = paiCount.get(spots[5]);
+//                        spots[5].setClickable(true);
+//                        paiCount.put(spots[5], num + 1);
+//                        spots[5] = null;
+//                    }
+//                } else if (theChosenSpot == spot20) {
+//                    if (spots[6] != null) {
+//                        int num = paiCount.get(spots[6]);
+//                        spots[6].setClickable(true);
+//                        paiCount.put(spots[6], num + 1);
+//                        spots[6] = null;
+//                    }
+//                } else if (theChosenSpot == spot21) {
+//                    if (spots[7] != null) {
+//                        int num = paiCount.get(spots[7]);
+//                        spots[7].setClickable(true);
+//                        paiCount.put(spots[7], num + 1);
+//                        spots[7] = null;
+//                    }
+//                } else if (theChosenSpot == spot22) {
+//                    if (spots[8] != null) {
+//                        int num = paiCount.get(spots[8]);
+//                        spots[8].setClickable(true);
+//                        paiCount.put(spots[8], num + 1);
+//                        spots[8] = null;
+//                    }
+//                } else if (theChosenSpot == spot30) {
+//                    if (spots[9] != null) {
+//                        int num = paiCount.get(spots[9]);
+//                        spots[9].setClickable(true);
+//                        paiCount.put(spots[9], num + 1);
+//                        spots[9] = null;
+//                    }
+//                } else if (theChosenSpot == spot31) {
+//                    if (spots[10] != null) {
+//                        int num = paiCount.get(spots[10]);
+//                        spots[10].setClickable(true);
+//                        paiCount.put(spots[10], num + 1);
+//                        spots[10] = null;
+//                    }
+//                } else if (theChosenSpot == spot32) {
+//                    if (spots[11] != null) {
+//                        int num = paiCount.get(spots[11]);
+//                        spots[11].setClickable(true);
+//                        paiCount.put(spots[11], num + 1);
+//                        spots[11] = null;
+//                    }
+//                } else if (theChosenSpot == spot40) {
+//                    if (spots[12] != null) {
+//                        int num = paiCount.get(spots[12]);
+//                        spots[12].setClickable(true);
+//                        paiCount.put(spots[12], num + 1);
+//                        spots[12] = null;
+//                    }
+//                } else if (theChosenSpot == spot41) {
+//                    if (spots[13] != null) {
+//                        int num = paiCount.get(spots[13]);
+//                        spots[13].setClickable(true);
+//                        paiCount.put(spots[13], num + 1);
+//                        spots[13] = null;
+//                    }
+//                }
+//                theChosenSpot.setBackgroundColor(Color.WHITE);
+//                theChosenSpot.setPadding(0, 0, 0, 0);
+//                theChosenSpot.setImageResource(R.drawable.background);
+//                if (theChosenSpot == spot00 || theChosenSpot == spot01 || theChosenSpot == spot02) {
+//                    Button button = findViewById(R.id.chiBtn0);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    button = findViewById(R.id.pengBtn0);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    gangbtnControl(R.id.gangBtn0, false);
+//
+//                } else if (theChosenSpot == spot10 || theChosenSpot == spot11 || theChosenSpot == spot12) {
+//                    Button button = findViewById(R.id.chiBtn1);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    button = findViewById(R.id.pengBtn1);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    gangbtnControl(R.id.gangBtn1, false);
+//                } else if (theChosenSpot == spot20 || theChosenSpot == spot21 || theChosenSpot == spot22) {
+//                    Button button = findViewById(R.id.chiBtn2);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    button = findViewById(R.id.pengBtn2);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    gangbtnControl(R.id.gangBtn2, false);
+//                } else if (theChosenSpot == spot30 || theChosenSpot == spot31 || theChosenSpot == spot32) {
+//                    Button button = findViewById(R.id.chiBtn3);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    button = findViewById(R.id.pengBtn3);
+//                    button.setBackgroundResource(R.drawable.round_btn_default);
+//                    button.setTextColor(Color.rgb(171, 166, 164));
+//
+//                    gangbtnControl(R.id.gangBtn3, false);
+//                }
 
-                    button = findViewById(R.id.pengBtn0);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
 
-                    gangbtnControl(R.id.gangBtn0, false);
-
-                } else if (theChosenSpot == spot10 || theChosenSpot == spot11 || theChosenSpot == spot12) {
-                    Button button = findViewById(R.id.chiBtn1);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    button = findViewById(R.id.pengBtn1);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    gangbtnControl(R.id.gangBtn1, false);
-                } else if (theChosenSpot == spot20 || theChosenSpot == spot21 || theChosenSpot == spot22) {
-                    Button button = findViewById(R.id.chiBtn2);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    button = findViewById(R.id.pengBtn2);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    gangbtnControl(R.id.gangBtn2, false);
-                } else if (theChosenSpot == spot30 || theChosenSpot == spot31 || theChosenSpot == spot32) {
-                    Button button = findViewById(R.id.chiBtn3);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    button = findViewById(R.id.pengBtn3);
-                    button.setBackgroundResource(R.drawable.round_btn_default);
-                    button.setTextColor(Color.rgb(171, 166, 164));
-
-                    gangbtnControl(R.id.gangBtn3, false);
-                }
                 theChosenSpot = null;
-                fillHandArray(v);
+                fillHandArray();
 
+            }else{
+
+
+                ImageView theLastSpot = null;
+                for (int i = spots.length - 1; i>=0; i--){
+                    if (spots[i] != null){
+                        switch (i) {
+                            case 0: theLastSpot = spot00;
+                                break;
+                            case 1: theLastSpot = spot01;
+                                break;
+                            case 2: theLastSpot = spot02;
+                                break;
+                            case 3: theLastSpot = spot10;
+                                break;
+                            case 4: theLastSpot = spot11;
+                                break;
+                            case 5: theLastSpot = spot12;
+                                break;
+                            case 6: theLastSpot = spot20;
+                                break;
+                            case 7: theLastSpot = spot21;
+                                break;
+                            case 8: theLastSpot = spot22;
+                                break;
+                            case 9: theLastSpot = spot30;
+                                break;
+                            case 10: theLastSpot = spot31;
+                                break;
+                            case 11: theLastSpot = spot32;
+                                break;
+                            case 12: theLastSpot = spot40;
+                                break;
+                            case 13: theLastSpot = spot41;
+                                break;
+                        }
+                        if (theLastSpot != null)
+                            break;
+                    }
+                }
+                if (theLastSpot != null){
+                    deletePai(theLastSpot, v);
+                }
+                fillHandArray();
             }
             //Todo delete last pai when no spot been chosen
         } else {
-//            if (checkValid()){
-//
-//            }
             if (hands.isEmpty()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle("提示/Information")
@@ -1412,18 +1521,256 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 builder.create().show();
                 return;
             }
-            countPointCreater(v, activity);
+
+            // Set up the alert builder
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("进阶选项/Advanced Choice");
+
+            // Add a checkbox list
+            String[] special = {"门风刻", "圈风刻", "胡绝张", "抢杠胡", "杠上开花","海底捞月"};
+            specialFormat.clear();
+            boolean[] checkedItems = {false, false, false, false, false, false};
+            builder.setMultiChoiceItems(special, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                    // The user checked or unchecked a box
+                    switch (which){
+                        case 0: if(isChecked)
+                            specialFormat.add("menFengKe");
+                        else
+                            specialFormat.remove("menFengKe"); break;
+                        case 1: if(isChecked)
+                            specialFormat.add("quanFengKe");
+                        else
+                            specialFormat.remove("quanFengKe"); break;
+                        case 2: if(isChecked)
+                            specialFormat.add("huJueZhang");
+                        else
+                            specialFormat.remove("huJueZhang"); break;
+                        case 3: if(isChecked)
+                            specialFormat.add("qiangGangHu");
+                        else
+                            specialFormat.remove("qiangGangHu"); break;
+                        case 4: if(isChecked)
+                            specialFormat.add("gangShangKaiHua");
+                        else
+                            specialFormat.remove("gangShangKaiHua"); break;
+                        case 5: if(isChecked)
+                            specialFormat.add("haiDiLaoYue");
+                        else
+                            specialFormat.remove("haiDiLaoYue"); break;
+                    }
+                }
+            });
+
+
+            // Add OK and Cancel buttons
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // The user clicked OK
+                    countPointCreater(v, activity, specialFormat);
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+
+            // Create and show the alert dialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 
-    public void fillHandArray(View v) {
+    private void deletePai(ImageView theSpot, View v){
+        if (theSpot == spot00) {
+            if (spots[0] != null) {
+                int num = paiCount.get(spots[0]);
+                spots[0].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn0)))
+                    paiCount.put(spots[0], num + 2);
+                else
+                    paiCount.put(spots[0], num + 1);
+                spots[0] = null;
+            }
+        } else if (theSpot == spot01) {
+            if (spots[1] != null) {
+                int num = paiCount.get(spots[1]);
+                spots[1].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn0)))
+                    paiCount.put(spots[1], num + 2);
+                else
+                    paiCount.put(spots[1], num + 1);
+                spots[1] = null;
+            }
+        } else if (theSpot == spot02) {
+            if (spots[2] != null) {
+                int num = paiCount.get(spots[2]);
+                spots[2].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn0)))
+                    paiCount.put(spots[2], num + 2);
+                else
+                    paiCount.put(spots[2], num + 1);
+                spots[2] = null;
+            }
+        } else if (theSpot == spot10) {
+            if (spots[3] != null) {
+                int num = paiCount.get(spots[3]);
+                spots[3].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn1)))
+                    paiCount.put(spots[3], num + 2);
+                else
+                    paiCount.put(spots[3], num + 1);
+                spots[3] = null;
+            }
+        } else if (theSpot == spot11) {
+            if (spots[4] != null) {
+                int num = paiCount.get(spots[4]);
+                spots[4].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn1)))
+                    paiCount.put(spots[4], num + 2);
+                else
+                    paiCount.put(spots[4], num + 1);
+                spots[4] = null;
+            }
+        } else if (theSpot == spot12) {
+            if (spots[5] != null) {
+                int num = paiCount.get(spots[5]);
+                spots[5].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn1)))
+                    paiCount.put(spots[5], num + 2);
+                else
+                    paiCount.put(spots[5], num + 1);
+                spots[5] = null;
+            }
+        } else if (theSpot == spot20) {
+            if (spots[6] != null) {
+                int num = paiCount.get(spots[6]);
+                spots[6].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn2)))
+                    paiCount.put(spots[6], num + 2);
+                else
+                    paiCount.put(spots[6], num + 1);
+                spots[6] = null;
+            }
+        } else if (theSpot == spot21) {
+            if (spots[7] != null) {
+                int num = paiCount.get(spots[7]);
+                spots[7].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn2)))
+                    paiCount.put(spots[7], num + 2);
+                else
+                    paiCount.put(spots[7], num + 1);
+                spots[7] = null;
+            }
+        } else if (theSpot == spot22) {
+            if (spots[8] != null) {
+                int num = paiCount.get(spots[8]);
+                spots[8].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn2)))
+                    paiCount.put(spots[8], num + 2);
+                else
+                    paiCount.put(spots[8], num + 1);
+                spots[8] = null;
+            }
+        } else if (theSpot == spot30) {
+            if (spots[9] != null) {
+                int num = paiCount.get(spots[9]);
+                spots[9].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn3)))
+                    paiCount.put(spots[9], num + 2);
+                else
+                    paiCount.put(spots[9], num + 1);
+                spots[9] = null;
+            }
+        } else if (theSpot == spot31) {
+            if (spots[10] != null) {
+                int num = paiCount.get(spots[10]);
+                spots[10].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn3)))
+                    paiCount.put(spots[10], num + 2);
+                else
+                    paiCount.put(spots[10], num + 1);
+                spots[10] = null;
+            }
+        } else if (theSpot == spot32) {
+            if (spots[11] != null) {
+                int num = paiCount.get(spots[11]);
+                spots[11].setClickable(true);
+                if (isHighlightBtn(v,findViewById(R.id.gangBtn3)))
+                    paiCount.put(spots[11], num + 2);
+                else
+                    paiCount.put(spots[11], num + 1);
+                spots[11] = null;
+            }
+        } else if (theSpot == spot40) {
+            if (spots[12] != null) {
+                int num = paiCount.get(spots[12]);
+                spots[12].setClickable(true);
+                paiCount.put(spots[12], num + 1);
+                spots[12] = null;
+            }
+        } else if (theSpot == spot41) {
+            if (spots[13] != null) {
+                int num = paiCount.get(spots[13]);
+                spots[13].setClickable(true);
+                paiCount.put(spots[13], num + 1);
+                spots[13] = null;
+            }
+        }
+        theSpot.setBackgroundColor(Color.WHITE);
+        theSpot.setPadding(0, 0, 0, 0);
+        theSpot.setImageResource(R.drawable.background);
+        if (theSpot == spot00 || theSpot == spot01 || theSpot == spot02) {
+            Button button = findViewById(R.id.chiBtn0);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            button = findViewById(R.id.pengBtn0);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            gangbtnControl(R.id.gangBtn0, false);
+
+        } else if (theSpot == spot10 || theSpot == spot11 || theSpot == spot12) {
+            Button button = findViewById(R.id.chiBtn1);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            button = findViewById(R.id.pengBtn1);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            gangbtnControl(R.id.gangBtn1, false);
+        } else if (theSpot == spot20 || theSpot == spot21 || theSpot == spot22) {
+            Button button = findViewById(R.id.chiBtn2);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            button = findViewById(R.id.pengBtn2);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            gangbtnControl(R.id.gangBtn2, false);
+        } else if (theSpot == spot30 || theSpot == spot31 || theSpot == spot32) {
+            Button button = findViewById(R.id.chiBtn3);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            button = findViewById(R.id.pengBtn3);
+            button.setBackgroundResource(R.drawable.round_btn_default);
+            button.setTextColor(Color.rgb(171, 166, 164));
+
+            gangbtnControl(R.id.gangBtn3, false);
+        }
+
+    }
+
+    public void fillHandArray() {
         hands.clear();
         for (ImageView imageView : spots) {
             if (imageView == null)
                 hands.add("null");
             else {
-                hands.add(v.getResources().getResourceEntryName(imageView.getId()));
-
+                hands.add(getResources().getResourceEntryName(imageView.getId()));
             }
 
         }
@@ -1465,18 +1812,85 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         return false;
     }
 
-    private void countPointCreater(View v, Activity activity) {
-        String huPai = v.getResources().getResourceEntryName(theChosenSpot.getId());
+    private boolean isQuanDaiYao(ArrayList<String> shouPai){
+        boolean valid = false;
+        for (int i = 0; i <= 2; i++){
+            String num = shouPai.get(i).split("-")[0];
+            String type = shouPai.get(i).split("-")[1];
+            if (num.equals("1") || num.equals("9") || type.equals("f") || type.equals("Z") || type.equals("F") || type.equals("B")) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid)
+            return false;
+        valid = false;
+        for (int i = 3; i <= 5; i++){
+            String num = shouPai.get(i).split("-")[0];
+            String type = shouPai.get(i).split("-")[1];
+            if (num.equals("1") || num.equals("9") || type.equals("f") || type.equals("Z") || type.equals("F") || type.equals("B")) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid)
+            return false;
+        valid = false;
+        for (int i = 6; i <= 8; i++){
+            String num = shouPai.get(i).split("-")[0];
+            String type = shouPai.get(i).split("-")[1];
+            if (num.equals("1") || num.equals("9") || type.equals("f") || type.equals("Z") || type.equals("F") || type.equals("B")) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid)
+            return false;
+        valid = false;
+        for (int i = 9; i <= 11; i++){
+            String num = shouPai.get(i).split("-")[0];
+            String type = shouPai.get(i).split("-")[1];
+            if (num.equals("1") || num.equals("9") || type.equals("f") || type.equals("Z") || type.equals("F") || type.equals("B")) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid)
+            return false;
+        valid = false;
+        for (int i = 12; i <= 13; i++){
+            String num = shouPai.get(i).split("-")[0];
+            String type = shouPai.get(i).split("-")[1];
+            if (num.equals("1") || num.equals("9") || type.equals("f") || type.equals("Z") || type.equals("F") || type.equals("B")) {
+                valid = true;
+                break;
+            }
+        }
+        return valid;
+    }
+
+    private void countPointCreater(View v, Activity activity, ArrayList<String> specialFormat) {
+        String huPai = null;
         ArrayList<String> chi = new ArrayList<>();
         ArrayList<String> peng = new ArrayList<>();
         ArrayList<String> mingGang = new ArrayList<>();
         ArrayList<String> anGang = new ArrayList<>();
         ArrayList<String> anKe = new ArrayList<>();
         ArrayList<String> shouPai = new ArrayList<>();
-        Boolean ziMo = false;
-        Boolean danDiaoJiang = false;
-        Boolean menQianQing = false;
-        Boolean quanDaiWu = true;
+        boolean ziMo = false;
+        boolean danDiaoJiang = false;
+        boolean menQianQing = false;
+        boolean quanDaiWu = true;
+        boolean quanDaiYao = false;
+        boolean special = false;
+        boolean kanZhang = false;
+        boolean bianZhang = false;
+        boolean menFengKe = false;
+        boolean quanFengKe = false;
+        boolean huJueZhang = false;
+        boolean qiangGangHu = false;
+        boolean GangShangKaiHua = false;
+        boolean haiDiLaoYue = false;
 
         for (String pai : hands) {
             if (pai.endsWith("wan")) {
@@ -1498,6 +1912,39 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 shouPai.add("f-F");
             }
         }
+
+        if (theChosenSpot == spot00){
+            huPai = shouPai.get(0);
+        }else if(theChosenSpot == spot01){
+            huPai = shouPai.get(1);
+        }else if(theChosenSpot == spot02){
+            huPai = shouPai.get(2);
+        }else if(theChosenSpot == spot10){
+            huPai = shouPai.get(3);
+        }else if(theChosenSpot == spot11){
+            huPai = shouPai.get(4);
+        }else if(theChosenSpot == spot12){
+            huPai = shouPai.get(5);
+        }else if(theChosenSpot == spot20){
+            huPai = shouPai.get(6);
+        }else if(theChosenSpot == spot21){
+            huPai = shouPai.get(7);
+        }else if(theChosenSpot == spot22){
+            huPai = shouPai.get(8);
+        }else if(theChosenSpot == spot30){
+            huPai = shouPai.get(9);
+        }else if(theChosenSpot == spot31){
+            huPai = shouPai.get(10);
+        }else if(theChosenSpot == spot32){
+            huPai = shouPai.get(11);
+        }else if(theChosenSpot == spot40){
+            huPai = shouPai.get(12);
+        }else if(theChosenSpot == spot41){
+            huPai = shouPai.get(13);
+        }
+        Log.i("hup", huPai);
+
+
         Button button = findViewById(R.id.chiBtn0);
         if (isHighlightBtn(v,button)) {
             chi.add(shouPai.get(0));
@@ -1571,6 +2018,24 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 anGang.add(shouPai.get(9));
         }
 
+        anKe.addAll(0, anGang);
+        if (!isHighlightBtn(v,findViewById(R.id.chiBtn0)) && !isHighlightBtn(v,findViewById(R.id.pengBtn0)) && !isHighlightBtn(v,findViewById(R.id.gangBtn0))){
+            if (shouPai.get(0).equals(shouPai.get(1)) && shouPai.get(1).equals(shouPai.get(2)))
+                anKe.add(shouPai.get(0));
+        }
+        if (!isHighlightBtn(v,findViewById(R.id.chiBtn1)) && !isHighlightBtn(v,findViewById(R.id.pengBtn1)) && !isHighlightBtn(v,findViewById(R.id.gangBtn1))){
+            if (shouPai.get(3).equals(shouPai.get(4)) && shouPai.get(4).equals(shouPai.get(5)))
+                anKe.add(shouPai.get(3));
+        }
+        if (!isHighlightBtn(v,findViewById(R.id.chiBtn2)) && !isHighlightBtn(v,findViewById(R.id.pengBtn2)) && !isHighlightBtn(v,findViewById(R.id.gangBtn2))){
+            if (shouPai.get(6).equals(shouPai.get(7)) && shouPai.get(7).equals(shouPai.get(8)))
+                anKe.add(shouPai.get(6));
+        }
+        if (!isHighlightBtn(v,findViewById(R.id.chiBtn3)) && !isHighlightBtn(v,findViewById(R.id.pengBtn3)) && !isHighlightBtn(v,findViewById(R.id.gangBtn3))){
+            if (shouPai.get(9).equals(shouPai.get(10)) && shouPai.get(10).equals(shouPai.get(11)))
+                anKe.add(shouPai.get(9));
+        }
+
         if (theChosenSpot == spot00 || theChosenSpot == spot01 || theChosenSpot == spot02){
             if (!isHighlightBtn(v,findViewById(R.id.chiBtn0)) && !isHighlightBtn(v,findViewById(R.id.pengBtn0)) && !isHighlightBtn(v,findViewById(R.id.gangBtn0)))
                 ziMo = true;
@@ -1642,34 +2107,118 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             else
                 menQianQing = false;
         }
-//        for (int i = 0; i<=3; i++){
-//            if (shouPai.get(i).contains("5")){
-//                if
-//            }
-//        }
+
         quanDaiWu = ((shouPai.get(0).contains("5") || shouPai.get(1).contains("5") || shouPai.get(2).contains("5")) &&
                 (shouPai.get(3).contains("5") || shouPai.get(4).contains("5") || shouPai.get(5).contains("5")) &&
                 (shouPai.get(6).contains("5") || shouPai.get(7).contains("5") || shouPai.get(8).contains("5")) &&
                 (shouPai.get(9).contains("5") || shouPai.get(10).contains("5") || shouPai.get(11).contains("5")) &&
                 (shouPai.get(12).contains("5") && shouPai.get(13).contains("5")));
 
+        quanDaiYao = isQuanDaiYao(shouPai);
 
+        String pai1 = null;
+        String pai2 = null;
+        String pai3 = null;
+        int num1 = 0;
+        int num2 = 0;
+        int num3 = 0;
+        if (theChosenSpot == spot00 || theChosenSpot == spot01 || theChosenSpot == spot02){
+            pai1 = shouPai.get(0);
+            pai2 = shouPai.get(1);
+            pai3 = shouPai.get(2);
+        }else if (theChosenSpot == spot10 || theChosenSpot == spot11 || theChosenSpot == spot12){
+            pai1 = shouPai.get(3);
+            pai2 = shouPai.get(4);
+            pai3 = shouPai.get(5);
+        } else if (theChosenSpot == spot20 || theChosenSpot == spot21 || theChosenSpot == spot22){
+            pai1 = shouPai.get(6);
+            pai2 = shouPai.get(7);
+            pai3 = shouPai.get(8);
+        }else if (theChosenSpot == spot30 || theChosenSpot == spot31 || theChosenSpot == spot32) {
+            pai1 = shouPai.get(9);
+            pai2 = shouPai.get(10);
+            pai3 = shouPai.get(11);
+        }
+        if (pai1 != null && pai2 != null && pai3 != null) {
+            if (pai1.endsWith("w") && pai2.endsWith("w") && pai3.endsWith("w")) {
+                num1 = Integer.parseInt(pai1.split("-")[0]);
+                num2 = Integer.parseInt(pai2.split("-")[0]);
+                num3 = Integer.parseInt(pai3.split("-")[0]);
+            } else if (pai1.endsWith("b") && pai2.endsWith("b") && pai3.endsWith("b")) {
+                num1 = Integer.parseInt(pai1.split("-")[0]);
+                num2 = Integer.parseInt(pai2.split("-")[0]);
+                num3 = Integer.parseInt(pai3.split("-")[0]);
+            } else if (pai1.endsWith("t") && pai2.endsWith("t") && pai3.endsWith("t")) {
+                num1 = Integer.parseInt(pai1.split("-")[0]);
+                num2 = Integer.parseInt(pai2.split("-")[0]);
+                num3 = Integer.parseInt(pai3.split("-")[0]);
+            }
+            if (num1 != 0 && num2 != 0 && num3 != 0) {
+                int sorted[] = {num1, num2, num3};
+                Arrays.sort(sorted);
+                if (sorted[0] + 1 == sorted[1] && sorted[1] + 1 == sorted[2]) {
+                    int huPaiNum = Integer.parseInt(huPai.split("-")[0]);
+                    if ((huPaiNum == sorted[0] || huPaiNum == sorted[2]) && (huPaiNum == 3 || huPaiNum == 7))
+                        bianZhang = true;
+                    if (huPaiNum == sorted[1])
+                        kanZhang = true;
+                }
+            }
+        }
 
+        menFengKe = specialFormat.contains("menFengKe");
+        quanFengKe = specialFormat.contains("quanFengKe");
+        huJueZhang = specialFormat.contains("huJueZhang");
+        qiangGangHu = specialFormat.contains("qiangGangHu");
+        GangShangKaiHua = specialFormat.contains("GangShangKaiHua");
+        haiDiLaoYue = specialFormat.contains("haiDiLaoYue");
 
         Log.e("shouPai", shouPai.toString());
         Log.e("chi", chi.toString());
         Log.e("peng", peng.toString());
         Log.e("mGang", mingGang.toString());
         Log.e("aGang", anGang.toString());
+        Log.e("anKe", anKe.toString());
         Log.e("ziMo", ziMo + "");
         Log.e("danDiaoJiang", danDiaoJiang + "");
         Log.e("menQianQing", menQianQing + "");
         Log.e("quanDaiWu", quanDaiWu + "");
+        Log.e("quanDaiYao", quanDaiYao + "");
+        Log.e("kanZhang", kanZhang + "");
+        Log.e("bianZhang", bianZhang + "");
 
-        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,new ArrayList<String>(),menQianQing,danDiaoJiang,quanDaiWu);
-        if (cp.checkHu()) {
+
+        Log.e("menFengKe", menFengKe + "");
+        Log.e("quanFengKe", quanFengKe + "");
+        Log.e("huJueZhang", huJueZhang + "");
+        Log.e("qiangGangHu", qiangGangHu + "");
+        Log.e("GangShangKaiHua", GangShangKaiHua + "");
+        Log.e("haiDiLaoYue", haiDiLaoYue + "");
+
+
+        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,anKe,menQianQing,danDiaoJiang,quanDaiWu,quanDaiYao,kanZhang,bianZhang,menFengKe,quanFengKe,huJueZhang,qiangGangHu,GangShangKaiHua,haiDiLaoYue);
+
+        //check special
+        int[] specialHand = new int[34];
+        Arrays.fill(specialHand, 0);
+        cp.listToArray(shouPai, specialHand);
+        if (cp.isQiXingBuKao(specialHand)){
+            special = true;
+            Log.i("special", "qixingbukao");
+        }else if (cp.isQuanBuKao(specialHand)){
+            special = true;
+            Log.i("special", "quanbukao");
+        }else if (cp.isQiDui(specialHand)){
+            special = true;
+            Log.i("special", "qidui");
+        }else if (cp.isShiSanYao(specialHand)){
+            special = true;
+            Log.i("special", "shisanyao");
+        }
+
+        if (cp.checkHu() || special) {
             Log.i(TAG, "Hu Le!");
-            Log.i(TAG, cp.calculate_final_point().toString());
+            //Log.i(TAG, cp.calculate_final_point().toString());
             //System.out.println(cp.calculate_final_point().toString());
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("胡！/HU!")

@@ -34,7 +34,7 @@ public class DrawImageView extends AppCompatImageView {
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
-        canvas.drawRect(new Rect(340, 500, 1910, 700), paint);//绘制矩形
+        canvas.drawRect(new Rect(340, 500, 1850, 640), paint);//绘制矩形
 
     }
 
