@@ -10,9 +10,9 @@
         android:id="@+id/homeBtn"
         android:layout_width="30dp"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginLeft="272dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/homebtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +23,9 @@
         android:layout_height="56dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="488dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/yiwan" />
+        app:srcCompat="@drawable/yiwan"
+        tools:layout_editor_absoluteY="488dp" />
 
     <ImageView
         android:id="@+id/erwan"
@@ -123,10 +122,9 @@
         android:layout_height="56dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="544dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/yibing" />
+        app:srcCompat="@drawable/yibing"
+        tools:layout_editor_absoluteY="544dp" />
 
     <ImageView
         android:id="@+id/erbing"
@@ -319,12 +317,9 @@
         android:id="@+id/dongfeng"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dongfeng" />
+        app:srcCompat="@drawable/dongfeng"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="652dp" />
 
     <ImageView
         android:id="@+id/xifeng"
@@ -552,12 +547,11 @@
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="104dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="104dp" />
 
     <Button
         android:id="@+id/chiBtn3"
@@ -565,12 +559,11 @@
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="304dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="304dp" />
 
     <Button
         android:id="@+id/chiBtn1"
@@ -578,12 +571,11 @@
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="176dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="176dp" />
 
     <Button
         android:id="@+id/chiBtn2"
@@ -591,12 +583,11 @@
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="244dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="244dp" />
 
     <Button
         android:id="@+id/pengBtn3"
@@ -847,12 +838,11 @@
         android:id="@+id/restoreBtn"
         android:layout_width="68dp"
         android:layout_height="38dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="@string/manually_restore"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="436dp" />
 
     <Button
         android:id="@+id/deleteBtn"
