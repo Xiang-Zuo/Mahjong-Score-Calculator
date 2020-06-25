@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 switch_to_gallery_activity();
             }
         });
+        
     }
 
     private boolean checkPermission(Context context, String... permissions) {

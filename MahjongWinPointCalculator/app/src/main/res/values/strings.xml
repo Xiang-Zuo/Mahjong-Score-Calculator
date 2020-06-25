@@ -7,6 +7,7 @@
     <string name="main_to_gallery_btn">模板</string>
 
     <string name="camera_take_photo">拍照</string>>
+    <string name="camera_back_to_main">返回</string>>
 
     <string name="result_title">识别结果</string>
     <string name="result_calculate_point_btn">计算得分</string>

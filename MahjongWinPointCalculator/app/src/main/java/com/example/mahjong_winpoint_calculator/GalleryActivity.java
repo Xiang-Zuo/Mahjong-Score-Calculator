@@ -3,6 +3,7 @@ package com.example.mahjong_winpoint_calculator;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,6 +28,9 @@ import androidx.core.app.ActivityCompat;
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "GalleryActivity";
+
+    Button homeBtn;
+    Button loadDefaultBtn;
 
     ImageView spot00 = null;
     ImageView spot01 = null;
@@ -154,7 +159,64 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
 
         init(this);
-        
+
+        homeBtn = findViewById(R.id.homeBtn);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch_to_main_activity();
+            }
+        });
+
+        loadDefaultBtn = findViewById(R.id.defaultTemplateButton);
+        loadDefaultBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDefaultTemplate();
+            }
+        });
+    }
+
+    private void loadDefaultTemplate() {
+        String[] templateList;
+        try {
+            templateList = getAssets().list("");
+            if (templateList.length > 0){
+                for (String fileName : templateList){
+                    Bitmap bitmap  = getBitmapFromAssets(fileName);
+                    saveImage(bitmap, -1, this, fileName);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        Bitmap bitmap3_w  = getBitmapFromAssets("3-w.jpg");
+//        saveImage(bitmap3_w, 2, this);
+//
+//        Bitmap bitmap3_t  = getBitmapFromAssets("3-t.jpg");
+//        saveImage(bitmap3_t, 42, this);
+//
+//        Bitmap bitmap3_b  = getBitmapFromAssets("3-b.jpg");
+//        saveImage(bitmap3_b, 22, this);
+
+        init(this);
+    }
+
+    public Bitmap getBitmapFromAssets(String fileName) {
+        AssetManager assetManager = getAssets();
+        InputStream istr = null;
+        Bitmap bitmap = null;
+        try {
+            istr = assetManager.open(fileName);
+            bitmap = BitmapFactory.decodeStream(istr);
+            istr.close();
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
     public void onClick(View v) {
@@ -200,6 +262,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             default:
                 break;
         }
+
     }
 
     private void init(Context context) {
@@ -292,7 +355,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 ImageView imageView = findViewById(imageViewID);
                 imageView.setImageBitmap(selectedImage);
-                saveImage(selectedImage, reqCode, this);
+                saveImage(selectedImage, reqCode, this, "null");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -303,57 +366,124 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void saveImage(Bitmap bitmap, int id, Context context) {
-        String fileName;
+    private void saveImage(Bitmap bitmap, int id, Context context, String fileName) {
         //FileOutputStream out = null;
-        switch (id){
-            case 0: fileName = "1-w.jpg"; break;
-            case 1: fileName = "2-w.jpg"; break;
-            case 2: fileName = "3-w.jpg"; break;
-            case 3: fileName = "4-w.jpg"; break;
-            case 4: fileName = "5-w.jpg"; break;
-            case 10: fileName = "6-w.jpg"; break;
-            case 11: fileName = "7-w.jpg"; break;
-            case 12: fileName = "8-w.jpg"; break;
-            case 13: fileName = "9-w.jpg"; break;
-
-            case 20: fileName = "1-b.jpg"; break;
-            case 21: fileName = "2-b.jpg"; break;
-            case 22: fileName = "3-b.jpg"; break;
-            case 23: fileName = "4-b.jpg"; break;
-            case 24: fileName = "5-b.jpg"; break;
-            case 30: fileName = "6-b.jpg"; break;
-            case 31: fileName = "7-b.jpg"; break;
-            case 32: fileName = "8-b.jpg"; break;
-            case 33: fileName = "9-b.jpg"; break;
-
-            case 40: fileName = "1-t.jpg"; break;
-            case 41: fileName = "2-t.jpg"; break;
-            case 42: fileName = "3-t.jpg"; break;
-            case 43: fileName = "4-t.jpg"; break;
-            case 44: fileName = "5-t.jpg"; break;
-            case 50: fileName = "6-t.jpg"; break;
-            case 51: fileName = "7-t.jpg"; break;
-            case 52: fileName = "8-t.jpg"; break;
-            case 53: fileName = "9-t.jpg"; break;
-
-            case 60: fileName = "d-f.jpg"; break;
-            case 61: fileName = "x-f.jpg"; break;
-            case 62: fileName = "n-f.jpg"; break;
-            case 63: fileName = "b-f.jpg"; break;
-            case 64: fileName = "h-Z.jpg"; break;
-            case 70: fileName = "b-B.jpg"; break;
-            case 71: fileName = "f-F.jpg"; break;
-
-            default:
-                fileName = "";
-                break;
+        if (!fileName.equals("") && !fileName.endsWith(".jpg"))
+            return;
+        if (fileName.equals("null")) {
+            switch (id) {
+                case 0:
+                    fileName = "1-w.jpg";
+                    break;
+                case 1:
+                    fileName = "2-w.jpg";
+                    break;
+                case 2:
+                    fileName = "3-w.jpg";
+                    break;
+                case 3:
+                    fileName = "4-w.jpg";
+                    break;
+                case 4:
+                    fileName = "5-w.jpg";
+                    break;
+                case 10:
+                    fileName = "6-w.jpg";
+                    break;
+                case 11:
+                    fileName = "7-w.jpg";
+                    break;
+                case 12:
+                    fileName = "8-w.jpg";
+                    break;
+                case 13:
+                    fileName = "9-w.jpg";
+                    break;
+                case 20:
+                    fileName = "1-b.jpg";
+                    break;
+                case 21:
+                    fileName = "2-b.jpg";
+                    break;
+                case 22:
+                    fileName = "3-b.jpg";
+                    break;
+                case 23:
+                    fileName = "4-b.jpg";
+                    break;
+                case 24:
+                    fileName = "5-b.jpg";
+                    break;
+                case 30:
+                    fileName = "6-b.jpg";
+                    break;
+                case 31:
+                    fileName = "7-b.jpg";
+                    break;
+                case 32:
+                    fileName = "8-b.jpg";
+                    break;
+                case 33:
+                    fileName = "9-b.jpg";
+                    break;
+                case 40:
+                    fileName = "1-t.jpg";
+                    break;
+                case 41:
+                    fileName = "2-t.jpg";
+                    break;
+                case 42:
+                    fileName = "3-t.jpg";
+                    break;
+                case 43:
+                    fileName = "4-t.jpg";
+                    break;
+                case 44:
+                    fileName = "5-t.jpg";
+                    break;
+                case 50:
+                    fileName = "6-t.jpg";
+                    break;
+                case 51:
+                    fileName = "7-t.jpg";
+                    break;
+                case 52:
+                    fileName = "8-t.jpg";
+                    break;
+                case 53:
+                    fileName = "9-t.jpg";
+                    break;
+                case 60:
+                    fileName = "d-f.jpg";
+                    break;
+                case 61:
+                    fileName = "x-f.jpg";
+                    break;
+                case 62:
+                    fileName = "n-f.jpg";
+                    break;
+                case 63:
+                    fileName = "b-f.jpg";
+                    break;
+                case 64:
+                    fileName = "h-Z.jpg";
+                    break;
+                case 70:
+                    fileName = "b-B.jpg";
+                    break;
+                case 71:
+                    fileName = "f-F.jpg";
+                    break;
+                default:
+                    fileName = "";
+                    break;
+            }
         }
 //        File filepath = Environment.getExternalStorageDirectory();
         File filepath = context.getExternalFilesDir(null);
         File dir = new File(filepath + File.separator + "templates");
         if (!dir.exists()) {
-            boolean success = dir.mkdirs();
+            dir.mkdirs();
         }
         File imageFile = new File(dir, fileName);
 //        if (imageFile.exists())
@@ -369,8 +499,15 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-        Toast.makeText(getApplicationContext(), "Template saved!", Toast.LENGTH_SHORT).show();
+        if (id != -1) {
+            Toast.makeText(getApplicationContext(), "Template saved!", Toast.LENGTH_SHORT).show();
+        }
         MediaScannerConnection.scanFile(this, new String[]{imageFile.toString()}, new String[]{imageFile.getName()}, null);
+    }
+
+    private void switch_to_main_activity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

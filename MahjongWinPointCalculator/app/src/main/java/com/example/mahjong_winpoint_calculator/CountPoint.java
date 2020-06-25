@@ -1,7 +1,10 @@
 package com.example.mahjong_winpoint_calculator;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 public class CountPoint {
@@ -42,6 +45,7 @@ public class CountPoint {
         Arrays.fill(this.hands, 0);
         this.basePoint = basePoint;
         listToArray(hands, this.hands);
+        Log.i(TAG,toString(this.hands));
         this.fanXings = new ArrayList<>();
         this.paiXingResult = new ArrayList<>();
         this.scoreRecorder = new ArrayList<>();
@@ -86,13 +90,13 @@ public class CountPoint {
                     if (cardNum - 1 == i)
                         array[i] = array[i] + 1;
                 }
-            }else if (card.endsWith("t")){
+            }else if (card.endsWith("b")){
                 int cardNum = Integer.parseInt(card.split("-")[0]);
                 for (int i = 0; i < 9; i++){
                     if (cardNum - 1 == i)
                         array[i + 9] = array[i + 9] + 1;
                 }
-            }else if (card.endsWith("b")){
+            }else if (card.endsWith("t")){
                 int cardNum = Integer.parseInt(card.split("-")[0]);
                 for (int i = 0; i < 9; i++){
                     if (cardNum - 1 == i)
@@ -238,11 +242,6 @@ public class CountPoint {
             paiXingResult.add("全中");
             scoreRecorder.add(24);
         }
-        if(isQingLong(hands)){
-            fanXings.add("QingLong");
-            paiXingResult.add("清龙");
-            scoreRecorder.add(16);
-        }
         if(isSanSeShuangLongHui(hands)){
             fanXings.add("SanSeShuangLongHui");
             paiXingResult.add("三色双龙会");
@@ -252,6 +251,11 @@ public class CountPoint {
         if(isYiSeSanBuGao(hands)){
             fanXings.add("YiSeSanBuGao");
             paiXingResult.add("一色三步高");
+            scoreRecorder.add(16);
+        }
+        if(isQingLong(hands)){
+            fanXings.add("QingLong");
+            paiXingResult.add("清龙");
             scoreRecorder.add(16);
         }
         if (isQuanDaiWu(hands)){
@@ -583,14 +587,14 @@ public class CountPoint {
     }
 
     private boolean isLaoShaoFu(int[] hands) {
-        if (fanXings.contains("YiSeShuangLongHui") || fanXings.contains("SanSeShuangLongHui") || fanXings.contains("QingLong"))
+        if (fanXings.contains("YiSeShuangLongHui") || fanXings.contains("SanSeShuangLongHui") || fanXings.contains("QingLong")  || fanXings.contains("YiSeSiBuGao"))
             return false;
         return (hands[0] >= 1 && hands[1] >= 1 && hands[2] >= 1 && hands[6] >= 1 && hands[7] >= 1 && hands[8] >= 1) || (hands[9] >= 1 && hands[10] >= 1 && hands[11] >= 1 && hands[15] >= 1 && hands[16] >= 1 && hands[17] >= 1) ||
                 (hands[18] >= 1 && hands[19] >= 1 && hands[20] >= 1 && hands[24] >= 1 && hands[25] >= 1 && hands[26] >= 1);
     }
 
     private boolean isLianLiu(int[] hands) {
-        if (fanXings.contains("QingLong") || fanXings.contains("LianQiDui"))
+        if (fanXings.contains("QingLong") || fanXings.contains("LianQiDui") || fanXings.contains("YiSeSiBuGao"))
             return false;
         for (int i =0; i<=3; i++){
             if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 1 && hands[i+3] >= 1 && hands[i+4] >= 1 && hands[i+5] >= 1)  //万
@@ -858,21 +862,67 @@ public class CountPoint {
     }
 
     private boolean isHuaLong(int[] hands) {
-        if (hands[0] >= 1 && hands[1] >= 1 && hands[2] >= 1){
-            if (hands[12] >= 1 && hands[13] >= 1 && hands[14] >= 1 && hands[24] >= 1 && hands[25] >= 1 && hands[26] >= 1)  //万饼条
-                return true;
-            else if(hands[21] >= 1 && hands[22] >= 1 && hands[23] >= 1 && hands[15] >= 1 && hands[16] >= 1 && hands[17] >= 1) //万条饼
-                return true;
-        }else if (hands[9] >= 1 && hands[10] >= 1 && hands[11] >= 1){
-            if (hands[3] >= 1 && hands[4] >= 1 && hands[5] >= 1 && hands[24] >= 1 && hands[25] >= 1 && hands[26] >= 1)  //饼万条
-                return true;
-            else if(hands[21] >= 1 && hands[22] >= 1 && hands[23] >= 1 && hands[6] >= 1 && hands[7] >= 1 && hands[8] >= 1) //饼条万
-                return true;
-        }else if (hands[18] >= 1 && hands[19] >= 1 && hands[20] >= 1){
-            if (hands[3] >= 1 && hands[4] >= 1 && hands[5] >= 1 && hands[15] >= 1 && hands[16] >= 1 && hands[17] >= 1)  //条万饼
-                return true;
-            else if(hands[12] >= 1 && hands[13] >= 1 && hands[14] >= 1 && hands[6] >= 1 && hands[7] >= 1 && hands[8] >= 1) //条饼万
-                return true;
+        int[] temp = hands.clone();
+        if (temp[0] >= 1 && temp[1] >= 1 && temp[2] >= 1){
+            if (temp[12] >= 1 && temp[13] >= 1 && temp[14] >= 1 && temp[24] >= 1 && temp[25] >= 1 && temp[26] >= 1)  //万饼条
+            {
+                temp[0]-=1;temp[1]-=1;temp[2]-=1;temp[12]-=1;temp[13]-=1;temp[14]-=1;temp[24]-=1;temp[25]-=1;temp[26]-=1;
+            }
+            else if(temp[21] >= 1 && temp[22] >= 1 && temp[23] >= 1 && temp[15] >= 1 && temp[16] >= 1 && temp[17] >= 1) //万条饼
+            {
+                temp[0]-=1;temp[1]-=1;temp[2]-=1;temp[21]-=1;temp[22]-=1;temp[23]-=1;temp[15]-=1;temp[16]-=1;temp[17]-=1;
+            }else
+                return false;
+        }else if (temp[9] >= 1 && temp[10] >= 1 && temp[11] >= 1){
+            if (temp[3] >= 1 && temp[4] >= 1 && temp[5] >= 1 && temp[24] >= 1 && temp[25] >= 1 && temp[26] >= 1)  //饼万条
+            {
+                temp[9]-=1;temp[10]-=1;temp[11]-=1;temp[3]-=1;temp[4]-=1;temp[5]-=1;temp[24]-=1;temp[25]-=1;temp[26]-=1;
+            }
+            else if(temp[21] >= 1 && temp[22] >= 1 && temp[23] >= 1 && temp[6] >= 1 && temp[7] >= 1 && temp[8] >= 1) //饼条万
+            {
+                temp[9]-=1;temp[10]-=1;temp[11]-=1;temp[21]-=1;temp[22]-=1;temp[23]-=1;temp[6]-=1;temp[7]-=1;temp[8]-=1;
+            }
+            else return false;
+        }else if (temp[18] >= 1 && temp[19] >= 1 && temp[20] >= 1){
+            if (temp[3] >= 1 && temp[4] >= 1 && temp[5] >= 1 && temp[15] >= 1 && temp[16] >= 1 && temp[17] >= 1)  //条万饼
+            {
+                temp[18]-=1;temp[19]-=1;temp[20]-=1;temp[3]-=1;temp[4]-=1;temp[5]-=1;temp[15]-=1;temp[16]-=1;temp[17]-=1;
+            }
+            else if(temp[12] >= 1 && temp[13] >= 1 && temp[14] >= 1 && temp[6] >= 1 && temp[7] >= 1 && temp[8] >= 1) //条饼万
+            {
+                temp[18]-=1;temp[19]-=1;temp[20]-=1;temp[12]-=1;temp[13]-=1;temp[14]-=1;temp[6]-=1;temp[7]-=1;temp[8]-=1;
+            }
+            else return false;
+        }else
+            return false;
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
+        for (int num : temp){
+            tempList.add(num);
+        }
+        // todo 检查剩下的牌是1句话加上一对将
+//        for (int i = 0; i< temp.length; i++){
+//            if (temp[i] >= 2){
+//                temp[i] -= 2;
+//            }
+//        }
+//        for (int i = 0; i<= temp.length-3; i++){
+//            if (temp[i] == 1 && temp[i+1] == 1 && temp[]){
+//            }
+//        }
+        if (tempList.contains(2) && tempList.contains(3))
+            return true;
+        else if(tempList.contains(2) && Collections.frequency(tempList, 1) == 3){
+            for (int i = 0; i< tempList.size() - 2; i++){
+                if (tempList.get(i) == 1 && tempList.get(i+1) == 1 && tempList.get(i+2) == 1)
+                    return true;
+            }
+        }else if(tempList.contains(3) && Collections.frequency(tempList, 1) == 2){
+            for (int i = 0; i< tempList.size() - 2; i++){
+                if ((tempList.get(i) == 3 && tempList.get(i+1) == 1 && tempList.get(i+2) == 1) ||
+                        (tempList.get(i) == 1 && tempList.get(i+1) == 3 && tempList.get(i+2) == 1) ||
+                        (tempList.get(i) == 1 && tempList.get(i+1) == 1 && tempList.get(i+2) == 3))
+                    return true;
+            }
         }
         return false;
     }
@@ -1066,10 +1116,10 @@ public class CountPoint {
                 end = 8;
             for (int i=1; i< 8 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
         }else if(sameTypeCards(hands, "b") >= 9){  //饼
@@ -1079,10 +1129,10 @@ public class CountPoint {
                 end = 17;
             for (int i=10; i< 17 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
         }else if(sameTypeCards(hands, "t") >= 9){  //条
@@ -1092,24 +1142,23 @@ public class CountPoint {
                 end = 26;
             for (int i=19; i< 26 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
         }else
             return false;
-        if (start <= end-6) {
-            //两张递增
-            for (int i = start; i<=end-6; i++){
-                if (hands[i] == 1 && hands[i+1] == 1 && hands[i+2] == 2 && hands[i+3] == 1 && hands[i+4] == 1 && hands[i+5] == 1 && hands[i+6] == 1)
-                    return true;
-            }
-            //一张递增
-            for (int i = start; i<=end-4; i++){
-                if (hands[i] == 1 && hands[i+1] == 2 && hands[i+2] == 3 && hands[i+4] == 2 && hands[i+4] == 1)
-                    return true;
+        //两张递增
+        for (int i = start; i<=end-6; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 1 && hands[i+2] >= 2 && hands[i+3] >= 1 && hands[i+4] >= 2 && hands[i+5] >= 1 && hands[i+6] >= 1)
+                return true;
+        }
+        //一张递增
+        for (int i = start; i<=end-4; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 2 && hands[i+2] >= 3 && hands[i+3] >= 2 && hands[i+4] >= 1) {
+                return true;
             }
         }
         return false;
@@ -1131,6 +1180,9 @@ public class CountPoint {
 
     private boolean isQingLong(int[] hands) {
         //noLianLiu, noLaoShaoFu
+        if (fanXings.contains("YiSeSiBuGao") || fanXings.contains("YiSeSanBuGao"))
+            return false;
+
         if (sameTypeCards(hands, "w") >= 9){  //万
             boolean allOne = true;
             for (int i = 0; i < 9 ; i++){
@@ -1295,64 +1347,81 @@ public class CountPoint {
         int start = -1;
         int end = -1;
         // check一种花色12张
-        if (sameTypeCards(hands, "w") == 12){  //万
+        if (sameTypeCards(hands, "w") >= 12){  //万
             if (hands[0] != 0)
                 start = 0;
             if (hands[8] != 0)
                 end = 8;
             for (int i=1; i< 8 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
-        }else if(sameTypeCards(hands, "b") == 12){  //饼
+        }else if(sameTypeCards(hands, "b") >= 12){  //饼
             if (hands[9] != 0)
                 start = 9;
             if (hands[17] != 0)
                 end = 17;
             for (int i=10; i< 17 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
-        }else if(sameTypeCards(hands, "t") == 12){  //条
-            if (hands[18] != 0)
+        }else if(sameTypeCards(hands, "t") >= 12){  //条
+            if (hands[18] == 0)
                 start = 18;
             if (hands[26] != 0)
                 end = 26;
             for (int i=19; i< 26 ; i++){
                 if (hands[i - 1] == 0 && hands[i] != 0)
-                    if (start != -1)
+                    if (start == -1)
                         start = i;
                 if (hands[i] != 0 && hands[i + 1] == 0)
-                    if (end != -1)
+                    if (end == -1)
                         end = i;
             }
         }else
             return false;
         //check中间张
-        if (start < end){
-            //两张递增
-            if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){
-                if (hands[start] == 1 && hands[start + 1] == 1 && hands[start + 2] == 2 && hands[start + 3] == 1 && hands[start + 4] == 2
-                        && hands[start + 5] == 1 && hands[start + 6] == 2 && hands[start + 7] == 1 && hands[start + 8] == 1)
-                    return true;
-            }else if (hands[start] == 1 && hands[end] == 1){    //一张递增
-                boolean allTwo = true;
-                for (int i = start + 1; i < end; i++ ){
-                    if (hands[i] != 2)
-                        allTwo = false;
-                }
-                return allTwo;
-            }else
-                return false;
+        Log.i("s-e", start + " "+ end);
+//        if (start < end){
+//            //两张递增
+//            if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){
+//                if (hands[start] == 1 && hands[start + 1] == 1 && hands[start + 2] == 2 && hands[start + 3] == 1 && hands[start + 4] == 2
+//                        && hands[start + 5] == 1 && hands[start + 6] == 2 && hands[start + 7] == 1 && hands[start + 8] == 1)
+//                    return true;
+//            }
+//            if (hands[start] == 1 && hands[end] == 1){    //一张递增
+//                boolean allTwo = true;
+//                for (int i = start + 1; i < end; i++ ){
+//                    if (hands[i] != 2)
+//                        allTwo = false;
+//                }
+//                return allTwo;
+//            }else
+//                return false;
+//        }
+
+
+        //两张递增
+        if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){
+            if (hands[start] >= 1 && hands[start + 1] >= 1 && hands[start + 2] >= 2 && hands[start + 3] >= 1 && hands[start + 4] >= 2
+                    && hands[start + 5] >= 1 && hands[start + 6] >= 2 && hands[start + 7] >= 1 && hands[start + 8] >= 1)
+                return true;
         }
+        //一张递增
+        for (int i = start; i<=end-5; i++){
+            if (hands[i] >= 1 && hands[i+1] >= 2 && hands[i+2] >= 3 && hands[i+3] >= 23 && hands[i+4] >= 2 && hands[i+5] >= 1) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -1564,11 +1633,21 @@ public class CountPoint {
         return scoreRecorder;
     }
 
-    public int getFinalPoint(){
+    public int getFinalPoint() {
         int point = 0;
-        for (Integer i:scoreRecorder){
-            point+=i;
+        for (Integer i : scoreRecorder) {
+            point += i;
         }
         return point;
+    }
+
+    public String toString(int[] array){
+        String result = "";
+        for (int i = 0; i< array.length; i++){
+            result += array[i];
+            if (i == 8 || i == 17 || i == 26)
+                result += "\n";
+        }
+        return result;
     }
 }

@@ -15,7 +15,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".GalleryActivity"></activity>
         <activity android:name=".ManuallyActivity" />
-        <activity android:name=".ResultActivity" />
         <activity android:name=".CameraActivity" />
         <activity
             android:name=".MainActivity"

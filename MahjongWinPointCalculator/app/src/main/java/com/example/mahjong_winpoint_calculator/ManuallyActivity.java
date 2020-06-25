@@ -24,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ManuallyActivity extends AppCompatActivity implements View.OnClickListener {
+    //TODO store template data, loa default template folder
     private static final String TAG = "ManuallyActivity";
     ImageView theChosenSpot = null;
     HashMap<ImageView, Integer> paiCount;
@@ -344,6 +345,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         ArrayList<String> cameraResult = getIntent().getStringArrayListExtra("EXTRA_HANDS");
         if (cameraResult != null){
             Log.e("CR", cameraResult.toString());
+            ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
+            imageViews.add(spot00);imageViews.add(spot01);imageViews.add(spot02);imageViews.add(spot10);imageViews.add(spot11);imageViews.add(spot12);imageViews.add(spot20);imageViews.add(spot21);imageViews.add(spot22);imageViews.add(spot30);imageViews.add(spot31);imageViews.add(spot32);imageViews.add(spot40);imageViews.add(spot41);
             for (String pai : cameraResult) {
                 int imgID = 0;
                 switch (pai){
@@ -386,10 +389,14 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                     case "f-F": imgID = R.id.facai; break;
                     default: break;
                 }
-//                int imageId = this.getResources().getIdentifier(pai, "id", this.getPackageName());
-//                Log.i("3-w", "" + (imageId == R.id.sanwan));
-//                Log.i("5-w", "" + (imageId == R.id.wuwan));
-//                Log.i("6-w", "" + (imageId == R.id.liuwan));
+
+                for (int i =0; i<imageViews.size(); i++){
+                    if (imageViews.get(i) != null) {
+                        theChosenSpot = imageViews.get(0);
+                        imageViews.remove(0);
+                        break;
+                    }
+                }
                 if (imgID != 0)
                     onPaiClick(imgID);
             }
