@@ -9,12 +9,15 @@
     <Button
         android:id="@+id/homeBtn"
         android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="272dp"
-        android:layout_marginLeft="272dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/homebtn"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spot02"
+        app:layout_constraintEnd_toEndOf="@+id/chiBtn0"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/chiBtn0"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -23,98 +26,95 @@
         android:layout_height="56dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/yibing"
+        app:layout_constraintEnd_toStartOf="@+id/erwan"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/yiwan"
-        tools:layout_editor_absoluteY="488dp" />
+        app:layout_constraintTop_toBottomOf="@+id/restoreBtn"
+        app:srcCompat="@drawable/yiwan" />
 
     <ImageView
         android:id="@+id/erwan"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sanwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/yiwan"
+        app:layout_constraintTop_toTopOf="@+id/yiwan"
         app:srcCompat="@drawable/erwan" />
-
-    <ImageView
-        android:id="@+id/sanwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sanwan" />
-
-    <ImageView
-        android:id="@+id/siwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/siwan" />
 
     <ImageView
         android:id="@+id/wuwan"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/liuwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/siwan"
+        app:layout_constraintTop_toTopOf="@+id/siwan"
         app:srcCompat="@drawable/wuwan" />
 
-
     <ImageView
-        android:id="@+id/liuwan"
+        android:id="@+id/siwan"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/liuwan" />
-
-    <ImageView
-        android:id="@+id/qiwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="238dp"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/qiwan" />
+        app:layout_constraintEnd_toStartOf="@+id/wuwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sanwan"
+        app:layout_constraintTop_toTopOf="@+id/sanwan"
+        app:srcCompat="@drawable/siwan" />
 
     <ImageView
         android:id="@+id/bawan"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/jiuwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/qiwan"
+        app:layout_constraintTop_toTopOf="@+id/qiwan"
         app:srcCompat="@drawable/bawan" />
 
     <ImageView
         android:id="@+id/jiuwan"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginLeft="312dp"
-        android:layout_marginTop="488dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bawan"
+        app:layout_constraintTop_toTopOf="@+id/bawan"
         app:srcCompat="@drawable/jiuwan" />
+
+    <ImageView
+        android:id="@+id/qiwan"
+        android:layout_width="38dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/bawan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/liuwan"
+        app:layout_constraintTop_toTopOf="@+id/liuwan"
+        app:srcCompat="@drawable/qiwan" />
+
+    <ImageView
+        android:id="@+id/liuwan"
+        android:layout_width="38dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/qiwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wuwan"
+        app:layout_constraintTop_toTopOf="@+id/wuwan"
+        app:srcCompat="@drawable/liuwan" />
+
+    <ImageView
+        android:id="@+id/sanwan"
+        android:layout_width="38dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/siwan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/erwan"
+        app:layout_constraintTop_toTopOf="@+id/erwan"
+        app:srcCompat="@drawable/sanwan" />
+
 
     <ImageView
         android:id="@+id/yibing"
@@ -122,96 +122,93 @@
         android:layout_height="56dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/yitiao"
+        app:layout_constraintEnd_toStartOf="@+id/erbing"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/yibing"
-        tools:layout_editor_absoluteY="544dp" />
+        app:layout_constraintTop_toBottomOf="@+id/yiwan"
+        app:srcCompat="@drawable/yibing" />
 
     <ImageView
         android:id="@+id/erbing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sanbing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/yibing"
+        app:layout_constraintTop_toTopOf="@+id/yibing"
         app:srcCompat="@drawable/erbing" />
 
     <ImageView
         android:id="@+id/sanbing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sibing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/erbing"
+        app:layout_constraintTop_toTopOf="@+id/erbing"
         app:srcCompat="@drawable/sanbing" />
 
     <ImageView
         android:id="@+id/sibing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wubing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sanbing"
+        app:layout_constraintTop_toTopOf="@+id/sanbing"
         app:srcCompat="@drawable/sibing" />
 
     <ImageView
         android:id="@+id/wubing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/liubing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sibing"
+        app:layout_constraintTop_toTopOf="@+id/sibing"
         app:srcCompat="@drawable/wubing" />
 
     <ImageView
         android:id="@+id/liubing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/qibing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wubing"
+        app:layout_constraintTop_toTopOf="@+id/wubing"
         app:srcCompat="@drawable/liubing" />
 
     <ImageView
         android:id="@+id/qibing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="238dp"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/babing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/liubing"
+        app:layout_constraintTop_toTopOf="@+id/liubing"
         app:srcCompat="@drawable/qibing" />
 
     <ImageView
         android:id="@+id/babing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/jiubing"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/qibing"
+        app:layout_constraintTop_toTopOf="@+id/qibing"
         app:srcCompat="@drawable/babing" />
 
     <ImageView
         android:id="@+id/jiubing"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginLeft="312dp"
-        android:layout_marginTop="544dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/babing"
+        app:layout_constraintTop_toTopOf="@+id/babing"
         app:srcCompat="@drawable/jiubing" />
 
     <ImageView
@@ -220,640 +217,594 @@
         android:layout_height="56dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="596dp"
+        app:layout_constraintBottom_toTopOf="@+id/dongfeng"
+        app:layout_constraintEnd_toStartOf="@+id/ertiao"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yibing"
         app:srcCompat="@drawable/yitiao" />
 
     <ImageView
         android:id="@+id/ertiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/santiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/yitiao"
+        app:layout_constraintTop_toTopOf="@+id/yitiao"
         app:srcCompat="@drawable/ertiao" />
 
     <ImageView
         android:id="@+id/santiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sitiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ertiao"
+        app:layout_constraintTop_toTopOf="@+id/ertiao"
         app:srcCompat="@drawable/santiao" />
 
     <ImageView
         android:id="@+id/sitiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wutiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/santiao"
+        app:layout_constraintTop_toTopOf="@+id/santiao"
         app:srcCompat="@drawable/sitiao" />
 
     <ImageView
         android:id="@+id/wutiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/liutiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sitiao"
+        app:layout_constraintTop_toTopOf="@+id/sitiao"
         app:srcCompat="@drawable/wutiao" />
 
     <ImageView
         android:id="@+id/liutiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/qitiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wutiao"
+        app:layout_constraintTop_toTopOf="@+id/wutiao"
         app:srcCompat="@drawable/liutiao" />
 
     <ImageView
         android:id="@+id/qitiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="238dp"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/batiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/liutiao"
+        app:layout_constraintTop_toTopOf="@+id/liutiao"
         app:srcCompat="@drawable/qitiao" />
 
     <ImageView
         android:id="@+id/batiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/jiutiao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/qitiao"
+        app:layout_constraintTop_toTopOf="@+id/qitiao"
         app:srcCompat="@drawable/batiao" />
 
     <ImageView
         android:id="@+id/jiutiao"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginLeft="312dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/batiao"
+        app:layout_constraintTop_toTopOf="@+id/batiao"
         app:srcCompat="@drawable/jiutiao" />
 
     <ImageView
         android:id="@+id/dongfeng"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        app:srcCompat="@drawable/dongfeng"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="652dp" />
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/xifeng"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yitiao"
+        app:srcCompat="@drawable/dongfeng" />
 
     <ImageView
         android:id="@+id/xifeng"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nanfeng"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dongfeng"
+        app:layout_constraintTop_toTopOf="@+id/dongfeng"
         app:srcCompat="@drawable/xifeng" />
 
     <ImageView
         android:id="@+id/nanfeng"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/beifeng"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/xifeng"
+        app:layout_constraintTop_toTopOf="@+id/xifeng"
         app:srcCompat="@drawable/nanfeng" />
 
     <ImageView
         android:id="@+id/beifeng"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/hongzhong"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nanfeng"
+        app:layout_constraintTop_toTopOf="@+id/nanfeng"
         app:srcCompat="@drawable/beifeng" />
 
     <ImageView
         android:id="@+id/hongzhong"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/facai"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/beifeng"
+        app:layout_constraintTop_toTopOf="@+id/beifeng"
         app:srcCompat="@drawable/hongzhong" />
 
     <ImageView
         android:id="@+id/facai"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="238dp"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/baiban"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/hongzhong"
+        app:layout_constraintTop_toTopOf="@+id/hongzhong"
         app:srcCompat="@drawable/facai" />
 
     <ImageView
         android:id="@+id/baiban"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="652dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/facai"
+        app:layout_constraintTop_toTopOf="@+id/facai"
         app:srcCompat="@drawable/baiban" />
 
     <ImageView
         android:id="@+id/spot00"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="86dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot01"
+        app:layout_constraintTop_toTopOf="@+id/spot01"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot20"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="216dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot21"
+        app:layout_constraintTop_toTopOf="@+id/spot21"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot10"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="152dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot11"
+        app:layout_constraintTop_toTopOf="@+id/spot11"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot11"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="152dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot12"
+        app:layout_constraintTop_toTopOf="@+id/spot12"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot02"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="180dp"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="86dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/spot12"
+        app:layout_constraintEnd_toEndOf="@+id/spot12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spot11"
+        app:layout_constraintTop_toBottomOf="@+id/homeBtn"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot30"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="284dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot31"
+        app:layout_constraintTop_toTopOf="@+id/spot31"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot12"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="180dp"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="152dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spot22"
+        app:layout_constraintEnd_toEndOf="@+id/spot22"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/spot22"
+        app:layout_constraintTop_toBottomOf="@+id/spot02"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot31"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="284dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot32"
+        app:layout_constraintTop_toTopOf="@+id/spot32"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot40"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="352dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        app:layout_constraintEnd_toEndOf="@+id/spot30"
+        app:layout_constraintStart_toStartOf="@+id/spot30"
+        app:layout_constraintTop_toTopOf="@+id/spot41"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot22"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="180dp"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="216dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spot32"
+        app:layout_constraintEnd_toEndOf="@+id/spot32"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spot31"
+        app:layout_constraintTop_toBottomOf="@+id/spot12"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot41"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginLeft="152dp"
-        android:layout_marginTop="352dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/restoreBtn"
+        app:layout_constraintStart_toEndOf="@+id/spot40"
+        app:layout_constraintTop_toBottomOf="@+id/spot32"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot21"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="216dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot22"
+        app:layout_constraintTop_toTopOf="@+id/spot22"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot32"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="180dp"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="284dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/spot41"
+        app:layout_constraintStart_toStartOf="@+id/wuwan"
+        app:layout_constraintTop_toBottomOf="@+id/spot22"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot01"
         android:layout_width="55dp"
         android:layout_height="67dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="86dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spot02"
+        app:layout_constraintTop_toTopOf="@+id/spot02"
         app:srcCompat="@drawable/background" />
 
     <Button
         android:id="@+id/chiBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintEnd_toEndOf="@+id/chiBtn1"
+        app:layout_constraintStart_toStartOf="@+id/chiBtn1"
+        app:layout_constraintTop_toTopOf="@+id/pengBtn0" />
 
     <Button
         android:id="@+id/chiBtn3"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
+        app:layout_constraintEnd_toStartOf="@+id/pengBtn3"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="304dp" />
+        app:layout_constraintTop_toTopOf="@+id/pengBtn3" />
 
     <Button
         android:id="@+id/chiBtn1"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="176dp" />
+        app:layout_constraintEnd_toEndOf="@+id/chiBtn2"
+        app:layout_constraintStart_toStartOf="@+id/chiBtn2"
+        app:layout_constraintTop_toTopOf="@+id/pengBtn1" />
 
     <Button
         android:id="@+id/chiBtn2"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/round_btn_default"
         android:text="吃"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="244dp" />
+        app:layout_constraintEnd_toEndOf="@+id/chiBtn3"
+        app:layout_constraintStart_toStartOf="@+id/chiBtn3"
+        app:layout_constraintTop_toTopOf="@+id/pengBtn2" />
 
     <Button
         android:id="@+id/pengBtn3"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
         android:text="碰"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot30"
+        app:layout_constraintEnd_toStartOf="@+id/spot30"
+        app:layout_constraintTop_toTopOf="@+id/spot30" />
 
     <Button
         android:id="@+id/pengBtn1"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="176dp"
         android:background="@drawable/round_btn_default"
         android:text="碰"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/spot20"
+        app:layout_constraintEnd_toEndOf="@+id/pengBtn2"
+        app:layout_constraintStart_toStartOf="@+id/pengBtn2"
+        app:layout_constraintTop_toTopOf="@+id/spot10" />
 
     <Button
         android:id="@+id/pengBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="104dp"
         android:background="@drawable/round_btn_default"
         android:text="碰"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot00"
+        app:layout_constraintEnd_toEndOf="@+id/pengBtn1"
+        app:layout_constraintStart_toStartOf="@+id/pengBtn1"
+        app:layout_constraintTop_toTopOf="@+id/spot00" />
 
     <Button
         android:id="@+id/pengBtn2"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="244dp"
         android:background="@drawable/round_btn_default"
         android:text="碰"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot20"
+        app:layout_constraintEnd_toEndOf="@+id/pengBtn3"
+        app:layout_constraintStart_toStartOf="@+id/pengBtn3"
+        app:layout_constraintTop_toTopOf="@+id/spot20" />
 
     <Button
         android:id="@+id/gangBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="104dp"
         android:background="@drawable/round_btn_default"
         android:text="杠"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot02"
+        app:layout_constraintEnd_toEndOf="@+id/gangBtn1"
+        app:layout_constraintStart_toStartOf="@+id/gangBtn1"
+        app:layout_constraintTop_toTopOf="@+id/spot02" />
 
     <Button
         android:id="@+id/gangBtn3"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
         android:background="@drawable/round_btn_default"
         android:text="杠"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot32"
+        app:layout_constraintStart_toEndOf="@+id/spot32"
+        app:layout_constraintTop_toTopOf="@+id/spot32" />
 
     <Button
         android:id="@+id/gangBtn2"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="244dp"
         android:background="@drawable/round_btn_default"
         android:text="杠"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot22"
+        app:layout_constraintEnd_toEndOf="@+id/gangBtn3"
+        app:layout_constraintStart_toStartOf="@+id/gangBtn3"
+        app:layout_constraintTop_toBottomOf="@+id/spot12" />
 
     <Button
         android:id="@+id/gangBtn1"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="176dp"
         android:background="@drawable/round_btn_default"
         android:text="杠"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot12"
+        app:layout_constraintEnd_toEndOf="@+id/gangBtn2"
+        app:layout_constraintStart_toStartOf="@+id/gangBtn2"
+        app:layout_constraintTop_toTopOf="@+id/spot12" />
 
     <Button
         android:id="@+id/mingBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="104dp"
         android:background="@drawable/round_btn_default"
         android:text="明"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/mingBtn1"
+        app:layout_constraintStart_toStartOf="@+id/mingBtn1"
+        app:layout_constraintTop_toTopOf="@+id/gangBtn0" />
 
     <Button
         android:id="@+id/mingBtn1"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="176dp"
         android:background="@drawable/round_btn_default"
         android:text="明"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/mingBtn2"
+        app:layout_constraintStart_toStartOf="@+id/mingBtn2"
+        app:layout_constraintTop_toTopOf="@+id/gangBtn1" />
 
     <Button
         android:id="@+id/mingBtn2"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="244dp"
         android:background="@drawable/round_btn_default"
         android:text="明"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/gangBtn2"
+        app:layout_constraintEnd_toEndOf="@+id/mingBtn3"
+        app:layout_constraintStart_toStartOf="@+id/mingBtn3"
+        app:layout_constraintTop_toTopOf="@+id/gangBtn2" />
 
     <Button
         android:id="@+id/mingBtn3"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:background="@drawable/round_btn_default"
         android:text="明"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/gangBtn3"
+        app:layout_constraintTop_toTopOf="@+id/gangBtn3" />
 
     <Button
         android:id="@+id/mingBtn4"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="380dp"
         android:background="@drawable/round_btn_default"
         android:text="明"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spot41"
+        app:layout_constraintEnd_toEndOf="@+id/mingBtn3"
+        app:layout_constraintStart_toStartOf="@+id/mingBtn3"
+        app:layout_constraintTop_toTopOf="@+id/spot41" />
 
     <Button
         android:id="@+id/anBtn0"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginLeft="328dp"
-        android:layout_marginTop="104dp"
         android:background="@drawable/round_btn_default"
         android:text="暗"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/anBtn1"
+        app:layout_constraintStart_toStartOf="@+id/anBtn1"
+        app:layout_constraintTop_toTopOf="@+id/mingBtn0" />
 
     <Button
         android:id="@+id/anBtn3"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginLeft="328dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
         android:text="暗"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mingBtn3"
+        app:layout_constraintTop_toTopOf="@+id/mingBtn3" />
 
     <Button
         android:id="@+id/anBtn4"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="380dp"
         android:background="@drawable/round_btn_highlight"
         android:text="暗"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/anBtn3"
+        app:layout_constraintStart_toStartOf="@+id/anBtn3"
+        app:layout_constraintTop_toTopOf="@+id/mingBtn4" />
 
     <Button
         android:id="@+id/anBtn2"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginLeft="328dp"
-        android:layout_marginTop="244dp"
         android:background="@drawable/round_btn_default"
         android:text="暗"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/mingBtn2"
+        app:layout_constraintEnd_toEndOf="@+id/anBtn3"
+        app:layout_constraintStart_toStartOf="@+id/anBtn3"
+        app:layout_constraintTop_toTopOf="@+id/mingBtn2" />
 
     <Button
         android:id="@+id/anBtn1"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginLeft="328dp"
-        android:layout_marginTop="176dp"
         android:background="@drawable/round_btn_default"
         android:text="暗"
         android:textColor="#ABA6A4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/anBtn2"
+        app:layout_constraintStart_toStartOf="@+id/anBtn2"
+        app:layout_constraintTop_toTopOf="@+id/mingBtn1" />
 
     <Button
         android:id="@+id/calculateBtn"
         android:layout_width="68dp"
         android:layout_height="38dp"
-        android:layout_marginStart="238dp"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="436dp"
         android:text="@string/manually_calculate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/deleteBtn"
+        app:layout_constraintTop_toTopOf="@+id/deleteBtn" />
 
     <Button
         android:id="@+id/restoreBtn"
         android:layout_width="68dp"
         android:layout_height="38dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/manually_restore"
+        app:layout_constraintBottom_toTopOf="@+id/yiwan"
+        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintTop_toBottomOf="@+id/spot41" />
 
     <Button
         android:id="@+id/deleteBtn"
         android:layout_width="68dp"
         android:layout_height="38dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="436dp"
         android:text="@string/manually_delete"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/calculateBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/restoreBtn"
+        app:layout_constraintTop_toTopOf="@+id/restoreBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
