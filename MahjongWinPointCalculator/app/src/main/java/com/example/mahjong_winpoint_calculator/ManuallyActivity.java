@@ -122,6 +122,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     Button deleteBtn = null;
     Button calculateBtn = null;
 
+    String EXTRA_LAN;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -343,6 +345,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         ArrayList<String> cameraResult = getIntent().getStringArrayListExtra("EXTRA_HANDS");
+        EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
+        setLanguage(EXTRA_LAN);
         if (cameraResult != null){
             Log.e("CR", cameraResult.toString());
             ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
@@ -400,6 +404,18 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 if (imgID != 0)
                     onPaiClick(imgID);
             }
+        }
+    }
+
+    private void setLanguage(String extra_lan) {
+        if (extra_lan.equals("EN")){
+            restoreBtn.setText(getText(R.string.manually_restore_EN));
+            deleteBtn.setText(getText(R.string.manually_delete_EN));
+            calculateBtn.setText(getText(R.string.manually_calculate_EN));
+        }else {
+            restoreBtn.setText(getText(R.string.manually_restore));
+            deleteBtn.setText(getText(R.string.manually_delete));
+            calculateBtn.setText(getText(R.string.manually_calculate));
         }
     }
 
@@ -1810,6 +1826,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
 
     private void switch_to_main_activity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 

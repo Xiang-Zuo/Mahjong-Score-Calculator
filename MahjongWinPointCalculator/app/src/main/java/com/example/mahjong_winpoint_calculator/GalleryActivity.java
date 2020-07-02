@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -31,6 +32,9 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
     Button homeBtn;
     Button loadDefaultBtn;
+
+
+    String EXTRA_LAN;
 
     ImageView spot00 = null;
     ImageView spot01 = null;
@@ -175,6 +179,20 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 loadDefaultTemplate();
             }
         });
+
+        EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
+        setLanguage(EXTRA_LAN);
+    }
+
+    private void setLanguage(String extra_lan) {
+        TextView title = findViewById(R.id.gallery_title);
+        if (extra_lan.equals("EN")){
+            title.setText(getText(R.string.gallery_title_EN));
+            loadDefaultBtn.setText(getText(R.string.gallery_default_EN));
+        }else {
+            title.setText(getText(R.string.gallery_title));
+            loadDefaultBtn.setText(getText(R.string.gallery_default));
+        }
     }
 
     private void loadDefaultTemplate() {
@@ -507,6 +525,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
     private void switch_to_main_activity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 

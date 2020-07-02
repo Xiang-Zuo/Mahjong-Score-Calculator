@@ -37,6 +37,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     private Mat mRgba;
     Button button;
     Button backToMainBtn;
+    String EXTRA_LAN;
 
     private static ArrayList<String> hands = new ArrayList<>();
 
@@ -156,6 +157,20 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                 switch_to_main_activity();
             }
         });
+        EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
+        setLanguage(EXTRA_LAN);
+    }
+
+    private void setLanguage(String extra_lan) {
+        Button dealBtn = findViewById(R.id.deal_btn);
+        Button backBtn = findViewById(R.id.back_btn);
+        if (extra_lan.equals("EN")){
+            dealBtn.setText(getText(R.string.camera_take_photo_EN));
+            backBtn.setText(getText(R.string.camera_back_to_main_EN));
+        }else {
+            dealBtn.setText(getText(R.string.camera_take_photo));
+            backBtn.setText(getText(R.string.camera_back_to_main));
+        }
     }
 
     @Override
@@ -390,11 +405,13 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         Log.e("Camera", hands.toString());
         Intent intent = new Intent(this, ManuallyActivity.class);
         intent.putExtra("EXTRA_HANDS", (ArrayList<String>) hands);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 
     private void switch_to_main_activity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 }

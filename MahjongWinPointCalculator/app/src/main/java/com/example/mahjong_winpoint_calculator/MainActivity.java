@@ -9,20 +9,28 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final int PERMISSIONS_REQUEST_CODE = 200;
     private static final String TAG = "MainActivity";
+    TextView title;
     Button main_to_camera_btn;
     Button main_to_manual_btn;
     Button main_to_gallery_btn;
+    Spinner languages;
+    String EXTRA_LAN = "CN";
     String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     ArrayList<String> UNGRANTED_PERMISSIONS = new ArrayList<String>();
 
@@ -58,7 +66,39 @@ public class MainActivity extends AppCompatActivity {
                 switch_to_gallery_activity();
             }
         });
+
+        languages = (Spinner) findViewById(R.id.languages_spinner);
+        List<String> languageList = new ArrayList<String>();
+        languageList.add("CN");
+        languageList.add("EN");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, languageList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languages.setAdapter(dataAdapter);
+        languages.setOnItemSelectedListener(this);
+
+        EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
+        setLanguage(EXTRA_LAN);
         
+    }
+/////////////////////////////
+
+    //TODO lange don't change when back to main
+    private void setLanguage(String extra_lan) {
+        if (extra_lan == null)
+            return;
+        title = (TextView) findViewById(R.id.main_title);
+        if (extra_lan.equals("EN")){
+            title.setText(getString(R.string.main_title_EN));
+            main_to_manual_btn.setText(getText(R.string.main_to_manual__btn_EN));
+            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn_EN));
+            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn_EN));
+        }else {
+            title.setText(getString(R.string.main_title));
+            main_to_manual_btn.setText(getText(R.string.main_to_manual_btn));
+            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn));
+            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn));
+        }
     }
 
     private boolean checkPermission(Context context, String... permissions) {
@@ -170,17 +210,44 @@ public class MainActivity extends AppCompatActivity {
 
     private void switch_to_camera_activity() {
         Intent intent = new Intent(this, CameraActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 
     private void switch_to_manual_activity() {
         Intent intent = new Intent(this, ManuallyActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
     }
 
     private void switch_to_gallery_activity(){
         Intent intent = new Intent(this, GalleryActivity.class);
+        intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String selectedLan = parent.getItemAtPosition(position).toString();
+        title = (TextView) findViewById(R.id.main_title);
+        if (selectedLan.equals("CN")){
+            EXTRA_LAN = "CN";
+            title.setText(getString(R.string.main_title));
+            main_to_manual_btn.setText(getText(R.string.main_to_manual_btn));
+            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn));
+            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn));
+        }else{
+            EXTRA_LAN = "EN";
+            title.setText(getString(R.string.main_title_EN));
+            main_to_manual_btn.setText(getText(R.string.main_to_manual__btn_EN));
+            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn_EN));
+            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn_EN));
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
 }

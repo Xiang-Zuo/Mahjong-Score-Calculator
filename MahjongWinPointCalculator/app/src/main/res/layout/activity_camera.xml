@@ -6,19 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-<!--    <org.opencv.android.JavaCameraView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/color_blob_detection_activity_surface_view" />-->
-
-
-
-    <!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:gravity="bottom|center_horizontal">-->
-
-
     <org.opencv.android.JavaCameraView
         android:id="@+id/show_camera_activity_java_surface_view"
         android:layout_width="match_parent"
@@ -45,7 +32,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/camera_back_to_main" />
-    <!--    </RelativeLayout>-->
-
 
 </RelativeLayout>

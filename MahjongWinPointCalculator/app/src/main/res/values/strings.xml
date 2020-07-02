@@ -2,21 +2,37 @@
     <string name="app_name">Mahjong-WinPoint-Calculator</string>
 
     <string name="main_title">麻将番数计算器</string>
-    <string name="main_to_manual">手动输入</string>
+    <string name="main_to_manual_btn">手动输入</string>
     <string name="main_to_camera_btn">拍照识别</string>
     <string name="main_to_gallery_btn">模板</string>
+
+    <string name="main_title_EN">Mahjong Score Calculator</string>
+    <string name="main_to_manual__btn_EN">Manually Enter</string>
+    <string name="main_to_camera_btn_EN">Camera Detect</string>
+    <string name="main_to_gallery_btn_EN">Camera Detect Templates</string>
+
 
     <string name="camera_take_photo">拍照</string>>
     <string name="camera_back_to_main">返回</string>>
 
-    <string name="result_title">识别结果</string>
-    <string name="result_calculate_point_btn">计算得分</string>
+    <string name="camera_take_photo_EN">Deal</string>>
+    <string name="camera_back_to_main_EN">Back</string>>
+
 
     <string name="manually_restore">初始化</string>
     <string name="manually_delete">删除</string>
     <string name="manually_calculate">计算</string>
 
+    <string name="manually_restore_EN">Restore</string>
+    <string name="manually_delete_EN">Delete</string>
+    <string name="manually_calculate_EN">Calculate</string>
+
+
     <string name="gallery_title">制作模板</string>
+    <string name="gallery_default">载入默认模板</string>
+
+    <string name="gallery_title_EN">Create Templates</string>
+    <string name="gallery_default_EN">Load Default Templates</string>
 
 
 </resources>
