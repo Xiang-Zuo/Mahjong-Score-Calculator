@@ -1388,26 +1388,6 @@ public class CountPoint {
             }
         }else
             return false;
-        //check中间张
-        Log.i("s-e", start + " "+ end);
-//        if (start < end){
-//            //两张递增
-//            if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){
-//                if (hands[start] == 1 && hands[start + 1] == 1 && hands[start + 2] == 2 && hands[start + 3] == 1 && hands[start + 4] == 2
-//                        && hands[start + 5] == 1 && hands[start + 6] == 2 && hands[start + 7] == 1 && hands[start + 8] == 1)
-//                    return true;
-//            }
-//            if (hands[start] == 1 && hands[end] == 1){    //一张递增
-//                boolean allTwo = true;
-//                for (int i = start + 1; i < end; i++ ){
-//                    if (hands[i] != 2)
-//                        allTwo = false;
-//                }
-//                return allTwo;
-//            }else
-//                return false;
-//        }
-
 
         //两张递增
         if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){

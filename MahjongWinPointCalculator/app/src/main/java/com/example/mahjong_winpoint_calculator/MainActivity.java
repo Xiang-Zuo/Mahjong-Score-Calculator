@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         languages = (Spinner) findViewById(R.id.languages_spinner);
         List<String> languageList = new ArrayList<String>();
-        languageList.add("CN");
+        languageList.add("中文");
         languageList.add("EN");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, languageList);
@@ -78,12 +78,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         languages.setOnItemSelectedListener(this);
 
         EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
-        setLanguage(EXTRA_LAN);
-        
+        if (EXTRA_LAN != null) {
+            if (EXTRA_LAN.equals("EN")) {
+                languages.setSelection(1);
+            } else {
+                languages.setSelection(0);
+            }
+        }
     }
-/////////////////////////////
 
-    //TODO lange don't change when back to main
     private void setLanguage(String extra_lan) {
         if (extra_lan == null)
             return;
@@ -102,13 +105,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private boolean checkPermission(Context context, String... permissions) {
-//        UNGRANTED_PERMISSIONS.clear();
-//        for (String permission : PERMISSIONS){
-//            if ((ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)){
-//                UNGRANTED_PERMISSIONS.add(permission);
-//            }
-//        }
-//        return UNGRANTED_PERMISSIONS.isEmpty();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context!= null && permissions != null){
             for (String permission : PERMISSIONS){
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -118,86 +114,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return true;
     }
-
-//    private void requestPermissions() {
-//        ActivityCompat.requestPermissions(this, UNGRANTED_PERMISSIONS.toArray(new String[UNGRANTED_PERMISSIONS.size()]), PERMISSIONS_REQUEST_CODE);
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode) {
-//            case PERMISSIONS_REQUEST_CODE:
-//                if ((grantResults.length > 0) && grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-//                    main_to_camera_btn = (Button) findViewById(R.id.main_to_cameraAct_button);
-//                    main_to_camera_btn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            switch_to_camera_activity();
-//                        }
-//                    });
-//                }else{
-//                    Toast.makeText(getApplicationContext(), "Some Permissions Denied", Toast.LENGTH_SHORT).show();
-//                    showMessageOKCancel("You need to allow access permissions", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    if (!checkPermission())
-//                                        requestPermissions();
-//                                }
-//                            });
-//
-//                }
-////                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-////                        UNGRANTED_PERMISSIONS.remove(Manifest.permission.CAMERA);
-////                        if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-////                            UNGRANTED_PERMISSIONS.remove(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-////                            Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-////                            main_to_camera_btn = (Button) findViewById(R.id.main_to_cameraAct_button);
-////                            main_to_camera_btn.setOnClickListener(new View.OnClickListener() {
-////                                @Override
-////                                public void onClick(View v){
-////                                    switch_to_camera_activity();
-////                                }
-////                            });
-//                break;
-//
-//        }
-//
-//    }
-
-
-//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-//
-//                    main_to_camera_btn = (Button) findViewById(R.id.main_to_cameraAct_button);
-//                    main_to_camera_btn.setOnClickListener(new View.OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(View v){
-//                            switch_to_camera_activity();
-//                        }
-//                    });
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                            showMessageOKCancel("You need to allow access permissions", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                                        requestPermissions();
-//                                    }
-//                                }
-//                            });
-//                        }
-//                    }
-//                }
-//                break;
-//            }
-//
-//            // other 'case' lines to check for other
-//            // permissions this app might request.
-//    }
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(MainActivity.this)
@@ -230,18 +146,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selectedLan = parent.getItemAtPosition(position).toString();
         title = (TextView) findViewById(R.id.main_title);
-        if (selectedLan.equals("CN")){
-            EXTRA_LAN = "CN";
-            title.setText(getString(R.string.main_title));
-            main_to_manual_btn.setText(getText(R.string.main_to_manual_btn));
-            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn));
-            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn));
-        }else{
+        if (selectedLan.equals("EN")){
             EXTRA_LAN = "EN";
             title.setText(getString(R.string.main_title_EN));
             main_to_manual_btn.setText(getText(R.string.main_to_manual__btn_EN));
             main_to_camera_btn.setText(getText(R.string.main_to_camera_btn_EN));
             main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn_EN));
+        }else{
+            EXTRA_LAN = "CN";
+            title.setText(getString(R.string.main_title));
+            main_to_manual_btn.setText(getText(R.string.main_to_manual_btn));
+            main_to_camera_btn.setText(getText(R.string.main_to_camera_btn));
+            main_to_gallery_btn.setText(getText(R.string.main_to_gallery_btn));
         }
     }
 

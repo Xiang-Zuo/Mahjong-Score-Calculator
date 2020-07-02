@@ -19,7 +19,7 @@
         android:id="@+id/gallery_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/gallery_title"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -700,7 +700,7 @@
         android:layout_marginRight="10dp"
         android:text="@string/gallery_default"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="@+id/gallery_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/gallery_title" />
 
