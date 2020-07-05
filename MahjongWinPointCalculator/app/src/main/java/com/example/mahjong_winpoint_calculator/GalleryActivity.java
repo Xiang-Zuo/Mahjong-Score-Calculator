@@ -2,6 +2,7 @@ package com.example.mahjong_winpoint_calculator;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -32,7 +34,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
     Button homeBtn;
     Button loadDefaultBtn;
-
+    Button hintBtn;
 
     String EXTRA_LAN;
 
@@ -179,9 +181,49 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 loadDefaultTemplate();
             }
         });
+        hintBtn = findViewById(R.id.button_hint);
+        hintBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHint();
+            }
+        });
+
 
         EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
         setLanguage(EXTRA_LAN);
+
+
+    }
+
+    private void showHint(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (EXTRA_LAN.equals("EN")) {
+            builder.setTitle("Hint")
+                    .setMessage("The default template may not support all type of mahjong, make your own mahjong template!\n "+"Take photos of Mahjong tiles and crop them, replace the picture in the template page.\n" +
+                        "*** Make sure to back up the template file, the template file directory is \n" +
+                        "Files->Internal Storage->Android->Data->com.example.mahjong_winpoint_calculator->files->templates\n" +
+                        "Please back up the entire templates file***")
+                    .setPositiveButton("close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        }else{
+            builder.setTitle("提示")
+                    .setMessage("默认模板不一定支持所有的麻将，制作你自己的麻将模板吧\n"+"制作方法为拍摄麻将牌并裁剪成图片，根据名称替换默认模板中的图片\n" +
+                            "***制作完成后请一定备份模板文件，更新过程很有可能造成文件丢失，模板文件目录为：\n" +
+                            "文件管理->内部储存->Android->data->com.example.mahjong_winpoint_calculator->files->templates\n" +
+                            "请保存整个templates文件***")
+                    .setPositiveButton("close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        }
+        builder.create().show();
     }
 
     private void setLanguage(String extra_lan) {
@@ -189,9 +231,11 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         if (extra_lan.equals("EN")){
             title.setText(getText(R.string.gallery_title_EN));
             loadDefaultBtn.setText(getText(R.string.gallery_default_EN));
+            hintBtn.setText(R.string.gallery_hint_EN);
         }else {
             title.setText(getText(R.string.gallery_title));
             loadDefaultBtn.setText(getText(R.string.gallery_default));
+            hintBtn.setText(R.string.gallery_hint);
         }
     }
 

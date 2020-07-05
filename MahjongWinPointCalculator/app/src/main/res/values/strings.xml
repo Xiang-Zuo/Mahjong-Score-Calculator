@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">Mahjong-WinPoint-Calculator</string>
+    <string name="app_name">Mahjong Point Calculator</string>
 
     <string name="main_title">麻将番数计算器</string>
     <string name="main_to_manual_btn">手动输入</string>
     <string name="main_to_camera_btn">拍照识别</string>
     <string name="main_to_gallery_btn">模板</string>
-
-    <string name="main_title_EN">Mahjong Score Calculator</string>
+    <string name="main_title_EN">Mahjong Points Calculator</string>
     <string name="main_to_manual__btn_EN">Manually Enter</string>
     <string name="main_to_camera_btn_EN">Camera Detect</string>
     <string name="main_to_gallery_btn_EN">Camera Detect Templates</string>
@@ -14,25 +13,35 @@
 
     <string name="camera_take_photo">拍照</string>>
     <string name="camera_back_to_main">返回</string>>
-
-    <string name="camera_take_photo_EN">Deal</string>>
+    <string name="camera_take_photo_EN">Take</string>>
     <string name="camera_back_to_main_EN">Back</string>>
-
+    <string name="camera_hint">请将麻将手牌按四排三个和一排两个摆放，缩放至校准红线 (杠排放三张)。若对识别结果不满意可以在主页面构造自己的麻将模板</string>
+    <string name="camera_hint_EN">Place the mahjong tiles in four rows of three and one row of two, zoom in to the red calibration line (Place three tiles if there is a Kong). If you are not satisfied with the recognition results, you can build your template on the homepage.</string>
 
     <string name="manually_restore">初始化</string>
     <string name="manually_delete">删除</string>
     <string name="manually_calculate">计算</string>
+    <string name="manually_chi">吃</string>
+    <string name="manually_peng">碰</string>
+    <string name="manually_gang">杠</string>
+    <string name="manually_ming">明</string>
+    <string name="manually_an">暗</string>
 
     <string name="manually_restore_EN">Restore</string>
     <string name="manually_delete_EN">Delete</string>
     <string name="manually_calculate_EN">Calculate</string>
-
+    <string name="manually_chi_EN">C</string>
+    <string name="manually_peng_EN">P</string>
+    <string name="manually_gang_EN">K</string>
+    <string name="manually_ming_EN">EK</string>
+    <string name="manually_an_EN">CK</string>
 
     <string name="gallery_title">制作模板</string>
     <string name="gallery_default">载入默认模板</string>
-
     <string name="gallery_title_EN">Create Templates</string>
-    <string name="gallery_default_EN">Load Default Templates</string>
+    <string name="gallery_default_EN">Load Default</string>
+    <string name="gallery_hint">提示</string>
+    <string name="gallery_hint_EN">Hint</string>
 
 
 </resources>

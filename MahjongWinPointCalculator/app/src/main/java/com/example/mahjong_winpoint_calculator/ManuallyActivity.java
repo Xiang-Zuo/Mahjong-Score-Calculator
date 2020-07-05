@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -123,6 +125,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     Button calculateBtn = null;
 
     String EXTRA_LAN;
+
+    Button hintBtn;
 
 
     @Override
@@ -344,6 +348,15 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 switch_to_main_activity();
             }
         });
+
+        hintBtn = findViewById(R.id.manually_hint);
+        hintBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showHint();
+            }
+        });
+
         ArrayList<String> cameraResult = getIntent().getStringArrayListExtra("EXTRA_HANDS");
         EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
         setLanguage(EXTRA_LAN);
@@ -405,6 +418,26 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                     onPaiClick(imgID);
             }
         }
+
+    }
+
+    private void showHint() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Button explanation")
+                .setMessage("C -> Chow (A chow is a set of three tiles of the same suit and consecutive numbers).\n" +
+                        "P -> Pung (A pung is a set of three identical tiles).\n" +
+                        "K -> Kong (A kong is a set of four identical tiles).\n" +
+                        "E -> Exposed tile (If a player get the tile from the other player).\n" +
+                        "C -> Concealed tile (If a player draw the tile by himself).\n" +
+                        "EK -> Exposed Kong (If a player can use a discarded tile to complete three matching tiles (concealed Pong) in their hand, he can take the piece and reveal an 'exposed kong').\n" +
+                        "CK -> Concealed Kong (If a player holds three matching tiles (concealed Pong) and upon drawing a tile completes a set of four they may declare a Kong).")
+                .setPositiveButton("close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create().show();
     }
 
     private void setLanguage(String extra_lan) {
@@ -412,10 +445,56 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             restoreBtn.setText(getText(R.string.manually_restore_EN));
             deleteBtn.setText(getText(R.string.manually_delete_EN));
             calculateBtn.setText(getText(R.string.manually_calculate_EN));
+            chiBtn0.setText(R.string.manually_chi_EN);
+            chiBtn1.setText(R.string.manually_chi_EN);
+            chiBtn2.setText(R.string.manually_chi_EN);
+            chiBtn3.setText(R.string.manually_chi_EN);
+            pengBtn0.setText(R.string.manually_peng_EN);
+            pengBtn1.setText(R.string.manually_peng_EN);
+            pengBtn2.setText(R.string.manually_peng_EN);
+            pengBtn3.setText(R.string.manually_peng_EN);
+            gangBtn0.setText(R.string.manually_gang_EN);
+            gangBtn1.setText(R.string.manually_gang_EN);
+            gangBtn2.setText(R.string.manually_gang_EN);
+            gangBtn3.setText(R.string.manually_gang_EN);
+            mingBtn0.setText(R.string.manually_ming_EN);
+            mingBtn1.setText(R.string.manually_ming_EN);
+            mingBtn2.setText(R.string.manually_ming_EN);
+            mingBtn3.setText(R.string.manually_ming_EN);
+            mingBtn4.setText("E");
+            anBtn0.setText(R.string.manually_an_EN);
+            anBtn1.setText(R.string.manually_an_EN);
+            anBtn2.setText(R.string.manually_an_EN);
+            anBtn3.setText(R.string.manually_an_EN);
+            anBtn4.setText("C");
+            hintBtn.setVisibility(View.VISIBLE);
         }else {
             restoreBtn.setText(getText(R.string.manually_restore));
             deleteBtn.setText(getText(R.string.manually_delete));
             calculateBtn.setText(getText(R.string.manually_calculate));
+            chiBtn0.setText(R.string.manually_chi);
+            chiBtn1.setText(R.string.manually_chi);
+            chiBtn2.setText(R.string.manually_chi);
+            chiBtn3.setText(R.string.manually_chi);
+            pengBtn0.setText(R.string.manually_peng);
+            pengBtn1.setText(R.string.manually_peng);
+            pengBtn2.setText(R.string.manually_peng);
+            pengBtn3.setText(R.string.manually_peng);
+            gangBtn0.setText(R.string.manually_gang);
+            gangBtn1.setText(R.string.manually_gang);
+            gangBtn2.setText(R.string.manually_gang);
+            gangBtn3.setText(R.string.manually_gang);
+            mingBtn0.setText(R.string.manually_ming);
+            mingBtn1.setText(R.string.manually_ming);
+            mingBtn2.setText(R.string.manually_ming);
+            mingBtn3.setText(R.string.manually_ming);
+            mingBtn4.setText(R.string.manually_ming);
+            anBtn0.setText(R.string.manually_an);
+            anBtn1.setText(R.string.manually_an);
+            anBtn2.setText(R.string.manually_an);
+            anBtn3.setText(R.string.manually_an);
+            anBtn4.setText(R.string.manually_an);
+            hintBtn.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -1386,7 +1465,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             if (theChosenSpot == null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle("提示/Information")
-                        .setMessage("请选择胡的牌/Please choose the final tile")
+                        .setMessage("请选择胡的牌/Please choose the winning tile")
                         .setPositiveButton("关闭/close", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -1402,9 +1481,9 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             builder.setTitle("进阶选项/Advanced Choice");
 
             // Add a checkbox list
-            String[] special = {"门风刻", "圈风刻", "胡绝张", "抢杠胡", "杠上开花","海底捞月"};
+            String[] special = {"门风刻", "圈风刻", "胡绝张", "抢杠胡", "杠上开花","海底捞月","花牌(请在下方输入花牌的数量 0~8)"};
             specialFormat.clear();
-            boolean[] checkedItems = {false, false, false, false, false, false};
+            boolean[] checkedItems = {false, false, false, false, false, false, true};
             builder.setMultiChoiceItems(special, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -1437,14 +1516,32 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
             });
-
+            EditText flowerText = new EditText(this);
+            builder.setView(flowerText);
 
             // Add OK and Cancel buttons
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // The user clicked OK
-                    countPointCreater(v, activity, specialFormat);
+                    String flowerTileString = flowerText.getText().toString();
+                    int numOfFlower = 0;
+                    if (!flowerTileString.equals("")) {
+                        try {
+                            numOfFlower = Integer.parseInt(flowerTileString);
+                            if (numOfFlower < 0 || numOfFlower > 8) {
+                                Toast.makeText(getApplicationContext(),
+                                        "请输入0到8之间的整数", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(getApplicationContext(),
+                                        "花牌数量为：" + numOfFlower, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(getApplicationContext(),
+                                    "请输入0到8之间的整数", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    countPointCreater(v, activity, specialFormat, numOfFlower);
                 }
             });
             builder.setNegativeButton("Cancel", null);
@@ -1745,7 +1842,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         return valid;
     }
 
-    private void countPointCreater(View v, Activity activity, ArrayList<String> specialFormat) {
+    private void countPointCreater(View v, Activity activity, ArrayList<String> specialFormat, int numOfFlower) {
         String huPai = null;
         ArrayList<String> chi = new ArrayList<>();
         ArrayList<String> peng = new ArrayList<>();
@@ -2072,7 +2169,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         Log.e("haiDiLaoYue", haiDiLaoYue + "");
 
 
-        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,anKe,menQianQing,danDiaoJiang,quanDaiWu,quanDaiYao,kanZhang,bianZhang,menFengKe,quanFengKe,huJueZhang,qiangGangHu,GangShangKaiHua,haiDiLaoYue);
+        CountPoint cp = new CountPoint(10,shouPai,huPai,ziMo,chi,peng,mingGang,anGang,anKe,menQianQing,danDiaoJiang,quanDaiWu,quanDaiYao,kanZhang,bianZhang,menFengKe,quanFengKe,huJueZhang,qiangGangHu,GangShangKaiHua,haiDiLaoYue,numOfFlower);
 
         //check special
         int[] specialHand = new int[34];
@@ -2096,9 +2193,10 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             Log.i(TAG, "Hu Le!");
             //Log.i(TAG, cp.calculate_final_point().toString());
             //System.out.println(cp.calculate_final_point().toString());
+            String fanXing = cp.calculate_final_point().toString();
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("胡！/HU!")
-                    .setMessage("番型: " + cp.calculate_final_point().toString() + "\n番数: " + cp.getScoreRecorder().toString() + "\n总共 " + cp.getFinalPoint() + " 番")
+            builder.setTitle("胡!/WIN!")
+                    .setMessage("番型: " + fanXing + "\nCombos: " + "" + "\n番数/Points: " + cp.getScoreRecorder().toString() + "\n总共/Total: " + cp.getFinalPoint() + " 番")
                     .setPositiveButton("恭喜！/Congratulation!", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -2121,9 +2219,9 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         }
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("诈胡！/No HU!")
-                    .setMessage("-")
-                    .setPositiveButton("gg", new DialogInterface.OnClickListener() {
+            builder.setTitle("诈胡！/False Mahjong!")
+                    .setMessage("The tiles are not valid to win")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 

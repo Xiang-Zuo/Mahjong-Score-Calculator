@@ -30,6 +30,7 @@ public class CountPoint {
     private boolean qiangGangHu;
     private boolean gangShangKaiHua;
     private boolean haiDiLaoYue;
+    private int numOfFlower;
 
     private static final String TAG = "CountPointClass";
     private ArrayList<String> fanXings;
@@ -40,7 +41,7 @@ public class CountPoint {
                       ArrayList<String> peng, ArrayList<String> mingGang, ArrayList<String> anGang, ArrayList<String> anKe,
                       boolean menQianQing, boolean danDiaoJiang, boolean quanDaiWu, boolean quanDaiYao, boolean kanZhang,
                       boolean bianZhang, boolean menFengKe, boolean quanFengKe, boolean huJueZhang, boolean qiangGangHu,
-                      boolean gangShangKaiHua, boolean haiDiLaoYue){
+                      boolean gangShangKaiHua, boolean haiDiLaoYue, int numOfFlower){
         this.hands = new int[34];
         Arrays.fill(this.hands, 0);
         this.basePoint = basePoint;
@@ -68,6 +69,7 @@ public class CountPoint {
         this.qiangGangHu = qiangGangHu;
         this.gangShangKaiHua = gangShangKaiHua;
         this.haiDiLaoYue = haiDiLaoYue;
+        this.numOfFlower = numOfFlower;
     }
 
     public boolean checkHu(){
@@ -131,7 +133,7 @@ public class CountPoint {
         }
         if(isDaSanYuan(hands)){
             fanXings.add("DaSanYuan");
-            paiXingResult.add("大三元");
+            paiXingResult.add("大三元/Big three dragons");
             scoreRecorder.add(88);
         }
         if(isLvYiSe(hands)){
@@ -515,10 +517,10 @@ public class CountPoint {
                 scoreRecorder.add(4);
             }
         }
-        if (isHuaPai(hands)){
+        if (isHuaPai(hands) > 0){
             fanXings.add("HuaPai");
-            paiXingResult.add("花牌");
-            scoreRecorder.add(1);
+            paiXingResult.add("花牌*" + numOfFlower);
+            scoreRecorder.add(numOfFlower);
         }
         if (isWuFanHu(hands)){
             fanXings.add("WuFanHu");
@@ -528,9 +530,8 @@ public class CountPoint {
         return paiXingResult;
     }
 
-    private boolean isHuaPai(int[] hands) {
-        // TODO ask user for input
-        return false;
+    private int isHuaPai(int[] hands) {
+        return numOfFlower;
     }
 
     private int isZiMo(int[] hands) {
@@ -899,16 +900,6 @@ public class CountPoint {
         for (int num : temp){
             tempList.add(num);
         }
-        // todo 检查剩下的牌是1句话加上一对将
-//        for (int i = 0; i< temp.length; i++){
-//            if (temp[i] >= 2){
-//                temp[i] -= 2;
-//            }
-//        }
-//        for (int i = 0; i<= temp.length-3; i++){
-//            if (temp[i] == 1 && temp[i+1] == 1 && temp[]){
-//            }
-//        }
         if (tempList.contains(2) && tempList.contains(3))
             return true;
         else if(tempList.contains(2) && Collections.frequency(tempList, 1) == 3){
@@ -1342,6 +1333,7 @@ public class CountPoint {
         return count == 3;
     }
 
+    //todo
     private boolean isYiSeSiBuGao(int[] hands) {
         // noYiSeSanBuGao, noQueYiMen
         int start = -1;
@@ -1374,7 +1366,7 @@ public class CountPoint {
                         end = i;
             }
         }else if(sameTypeCards(hands, "t") >= 12){  //条
-            if (hands[18] == 0)
+            if (hands[18] != 0)
                 start = 18;
             if (hands[26] != 0)
                 end = 26;
@@ -1389,6 +1381,7 @@ public class CountPoint {
         }else
             return false;
 
+        Log.e("---", start + "." + end);
         //两张递增
         if ((start == 0 && end == 8) || (start == 9 && end == 17) || (start == 18 && end == 26)){
             if (hands[start] >= 1 && hands[start + 1] >= 1 && hands[start + 2] >= 2 && hands[start + 3] >= 1 && hands[start + 4] >= 2
