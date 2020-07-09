@@ -403,12 +403,14 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         intent.putExtra("EXTRA_HANDS", (ArrayList<String>) hands);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 
     private void switch_to_main_activity() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 }
 

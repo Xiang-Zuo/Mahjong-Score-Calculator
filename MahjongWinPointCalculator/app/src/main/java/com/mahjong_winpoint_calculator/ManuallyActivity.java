@@ -1774,6 +1774,14 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.gc();
+        finish();
     }
 
     private boolean isHighlightBtn(View v, Button button){

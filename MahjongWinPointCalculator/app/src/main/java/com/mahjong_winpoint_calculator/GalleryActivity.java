@@ -20,8 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,7 +33,7 @@ import androidx.core.content.ContextCompat;
 
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "GalleryActivity";
+    //private static final String TAG = "GalleryActivity";
 
     Button homeBtn;
     Button loadDefaultBtn;
@@ -98,6 +96,8 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         setContentView(R.layout.activity_gallery);
+
+        System.gc();
 
         spot00 = (ImageView) findViewById(R.id.spot00);
         spot01 = (ImageView) findViewById(R.id.spot01);
@@ -176,7 +176,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         spot71.setOnClickListener(this);
 
 
-        init(this);
+        init();
 
         homeBtn = findViewById(R.id.homeBtn);
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -256,24 +256,13 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             if (templateList.length > 0){
                 for (String fileName : templateList){
                     Bitmap bitmap  = getBitmapFromAssets(fileName);
-                    saveImage(bitmap, -1, this, fileName);
+                    saveImage(bitmap, -1, fileName);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        Bitmap bitmap3_w  = getBitmapFromAssets("3-w.jpg");
-//        saveImage(bitmap3_w, 2, this);
-//
-//        Bitmap bitmap3_t  = getBitmapFromAssets("3-t.jpg");
-//        saveImage(bitmap3_t, 42, this);
-//
-//        Bitmap bitmap3_b  = getBitmapFromAssets("3-b.jpg");
-//        saveImage(bitmap3_b, 22, this);
-
-        init(this);
+        init();
     }
 
     public Bitmap getBitmapFromAssets(String fileName) {
@@ -285,7 +274,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             bitmap = BitmapFactory.decodeStream(istr);
             istr.close();
         } catch (IOException e) {
-            Log.e(TAG, e.toString());
+            Log.e("getBitmapFromAssets", e.toString());
             e.printStackTrace();
         }
         return bitmap;
@@ -337,7 +326,8 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void init(Context context) {
+    private void init() {
+        Context context = getApplicationContext();
         File filepath = context.getExternalFilesDir(null);
         File dir = new File(filepath + File.separator + "templates");
         Log.e("dir-----",dir.toString());
@@ -347,13 +337,12 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             for (File file : files){
                 spot = getSpot(file.getName());
                 if (spot != null){
-//                    Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                    spot.setImageBitmap(myBitmap);
-                    Picasso.with(context).load(file).into(spot);
+                    Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    spot.setImageBitmap(myBitmap);
                 }
             }
         }else {
-            Log.i(TAG, "template dir not exist");
+            Log.i("gallery", "template dir not exist");
         }
     }
 
@@ -429,7 +418,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 ImageView imageView = findViewById(imageViewID);
                 imageView.setImageBitmap(selectedImage);
-                saveImage(selectedImage, reqCode, this, "null");
+                saveImage(selectedImage, reqCode, "null");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -440,7 +429,8 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void saveImage(Bitmap bitmap, int id, Context context, String fileName) {
+    private void saveImage(Bitmap bitmap, int id, String fileName) {
+        Context context = getApplicationContext();
         //FileOutputStream out = null;
         if (!fileName.equals("") && !fileName.endsWith(".jpg"))
             return;
@@ -553,15 +543,12 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
         }
-//        File filepath = Environment.getExternalStorageDirectory();
         File filepath = context.getExternalFilesDir(null);
         File dir = new File(filepath + File.separator + "templates");
         if (!dir.exists()) {
             dir.mkdirs();
         }
         File imageFile = new File(dir, fileName);
-//        if (imageFile.exists())
-//            imageFile.delete();
         try {
             FileOutputStream out = new FileOutputStream(imageFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , out);
@@ -583,6 +570,13 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.gc();
+        finish();
+    }
 }

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.gc();
 
         if (!checkPermission(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSIONS_REQUEST_CODE);
@@ -129,18 +130,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 
     private void switch_to_manual_activity() {
         Intent intent = new Intent(this, ManuallyActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 
     private void switch_to_gallery_activity(){
         Intent intent = new Intent(this, GalleryActivity.class);
         intent.putExtra("EXTRA_LAN", EXTRA_LAN);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -167,5 +171,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.gc();
+        finish();
+    }
 }
 
