@@ -14,7 +14,7 @@
         opencv:camera_id="any"
         opencv:show_fps="true" />
 
-    <com.example.mahjong_winpoint_calculator.DrawImageView
+    <com.mahjong_winpoint_calculator.DrawImageView
         android:id="@+id/drawIV"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

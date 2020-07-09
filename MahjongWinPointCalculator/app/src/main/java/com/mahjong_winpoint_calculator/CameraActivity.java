@@ -1,4 +1,4 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.content.Context;
 import android.content.Intent;
@@ -41,7 +41,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 
     private static ArrayList<String> hands = new ArrayList<>();
 
-    public static final String EXTRA_HANDS = "com.example.mahjong_winpoint_calculator.EXTRA_HANDS";
+    public static final String EXTRA_HANDS = "com.mahjong_winpoint_calculator.EXTRA_HANDS";
 
     private String[] TEMPLATEID_WAN  = new String[]{"1-w.jpg","2-w.jpg", "3-w.jpg", "4-w.jpg", "5-w.jpg", "6-w.jpg", "7-w.jpg", "8-w.jpg", "9-w.jpg"};
     private String[] TEMPLATEID_TIAO = new String[]{"1-t.jpg","2-t.jpg", "3-t.jpg", "4-t.jpg", "5-t.jpg", "6-t.jpg", "7-t.jpg", "8-t.jpg", "9-t.jpg"};
@@ -219,7 +219,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
     //结束时释放
     @Override
     public void onCameraViewStopped() {
-        //Log.e("Mat","...............6...............");
         mRgba.release();
     }
 
@@ -239,7 +238,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             Point matchLoc = mmr.maxLoc;
             if(mmr.maxVal >=0.8)
             {
-                //Log.i("x-y", matchLoc.x +"-"+matchLoc.y);
                 uniqueObjXYCoor(matchLoc.x, matchLoc.y,uniqueObjPositions,card_Name);
                 Imgproc.rectangle(img, matchLoc,
                         new Point(matchLoc.x + temp.cols(),matchLoc.y + temp.rows()),
@@ -255,8 +253,6 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         }
 
         for (String xy : uniqueObjPositions){
-            Log.i("x-y-coor", xy);
-            //hands.add(xy.split("-")[2] + "-" + xy.split("-")[3]);
             hands.add(xy);
 
         }

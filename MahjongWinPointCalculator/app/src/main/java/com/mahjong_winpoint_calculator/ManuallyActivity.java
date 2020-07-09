@@ -1,4 +1,4 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -125,9 +124,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     Button calculateBtn = null;
 
     String EXTRA_LAN;
-
     Button hintBtn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

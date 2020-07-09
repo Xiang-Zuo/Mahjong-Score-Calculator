@@ -1,4 +1,4 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languages.setAdapter(dataAdapter);
         languages.setOnItemSelectedListener(this);
+        languages.setSelection(1);
 
         EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
         if (EXTRA_LAN != null) {

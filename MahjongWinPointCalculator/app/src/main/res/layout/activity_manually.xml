@@ -22,23 +22,25 @@
 
     <Button
         android:id="@+id/manually_hint"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.06"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
-        android:text=" ？"
+        android:text="@string/manually_hint_EN"
         android:textColor="#ABA6A4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/yiwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toTopOf="@+id/yibing"
         app:layout_constraintEnd_toStartOf="@+id/erwan"
         app:layout_constraintHorizontal_bias="0.5"
@@ -48,8 +50,10 @@
 
     <ImageView
         android:id="@+id/erwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+          android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/sanwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/yiwan"
@@ -58,8 +62,10 @@
 
     <ImageView
         android:id="@+id/wuwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+          android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/liuwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/siwan"
@@ -68,8 +74,10 @@
 
     <ImageView
         android:id="@+id/siwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/wuwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sanwan"
@@ -78,8 +86,10 @@
 
     <ImageView
         android:id="@+id/bawan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/jiuwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/qiwan"
@@ -88,20 +98,22 @@
 
     <ImageView
         android:id="@+id/jiuwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/bawan"
         app:layout_constraintTop_toTopOf="@+id/bawan"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/jiuwan" />
 
     <ImageView
         android:id="@+id/qiwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/bawan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/liuwan"
@@ -110,8 +122,10 @@
 
     <ImageView
         android:id="@+id/liuwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/qiwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/wuwan"
@@ -120,8 +134,10 @@
 
     <ImageView
         android:id="@+id/sanwan"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/siwan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/erwan"
@@ -131,21 +147,23 @@
 
     <ImageView
         android:id="@+id/yibing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/yitiao"
         app:layout_constraintEnd_toStartOf="@+id/erbing"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yiwan"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/yibing" />
 
     <ImageView
         android:id="@+id/erbing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/sanbing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/yibing"
@@ -154,8 +172,10 @@
 
     <ImageView
         android:id="@+id/sanbing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/sibing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/erbing"
@@ -164,8 +184,10 @@
 
     <ImageView
         android:id="@+id/sibing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/wubing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sanbing"
@@ -174,8 +196,10 @@
 
     <ImageView
         android:id="@+id/wubing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/liubing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sibing"
@@ -184,8 +208,10 @@
 
     <ImageView
         android:id="@+id/liubing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/qibing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/wubing"
@@ -194,8 +220,10 @@
 
     <ImageView
         android:id="@+id/qibing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/babing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/liubing"
@@ -204,8 +232,10 @@
 
     <ImageView
         android:id="@+id/babing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/jiubing"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/qibing"
@@ -214,33 +244,35 @@
 
     <ImageView
         android:id="@+id/jiubing"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/babing"
         app:layout_constraintTop_toTopOf="@+id/babing"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/jiubing" />
 
     <ImageView
         android:id="@+id/yitiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/dongfeng"
         app:layout_constraintEnd_toStartOf="@+id/ertiao"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yibing"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/yitiao" />
 
     <ImageView
         android:id="@+id/ertiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/santiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/yitiao"
@@ -249,8 +281,10 @@
 
     <ImageView
         android:id="@+id/santiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/sitiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ertiao"
@@ -259,8 +293,10 @@
 
     <ImageView
         android:id="@+id/sitiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/wutiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/santiao"
@@ -269,8 +305,10 @@
 
     <ImageView
         android:id="@+id/wutiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/liutiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sitiao"
@@ -279,8 +317,10 @@
 
     <ImageView
         android:id="@+id/liutiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/qitiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/wutiao"
@@ -289,8 +329,10 @@
 
     <ImageView
         android:id="@+id/qitiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/batiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/liutiao"
@@ -299,8 +341,10 @@
 
     <ImageView
         android:id="@+id/batiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/jiutiao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/qitiao"
@@ -309,34 +353,36 @@
 
     <ImageView
         android:id="@+id/jiutiao"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/batiao"
         app:layout_constraintTop_toTopOf="@+id/batiao"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/jiutiao" />
 
     <ImageView
         android:id="@+id/dongfeng"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/xifeng"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yitiao"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/dongfeng" />
 
     <ImageView
         android:id="@+id/xifeng"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/nanfeng"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dongfeng"
@@ -345,8 +391,10 @@
 
     <ImageView
         android:id="@+id/nanfeng"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+          android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/beifeng"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/xifeng"
@@ -355,8 +403,10 @@
 
     <ImageView
         android:id="@+id/beifeng"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/hongzhong"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/nanfeng"
@@ -365,8 +415,10 @@
 
     <ImageView
         android:id="@+id/hongzhong"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+          android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/facai"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/beifeng"
@@ -375,8 +427,10 @@
 
     <ImageView
         android:id="@+id/facai"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.11"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintEnd_toStartOf="@+id/baiban"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/hongzhong"
@@ -385,52 +439,62 @@
 
     <ImageView
         android:id="@+id/baiban"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/facai"
         app:layout_constraintTop_toTopOf="@+id/facai"
+        app:layout_constraintWidth_percent="0.11"
         app:srcCompat="@drawable/baiban" />
 
     <ImageView
         android:id="@+id/spot00"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot01"
         app:layout_constraintTop_toTopOf="@+id/spot01"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot20"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot21"
         app:layout_constraintTop_toTopOf="@+id/spot21"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot10"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot11"
         app:layout_constraintTop_toTopOf="@+id/spot11"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot11"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot12"
         app:layout_constraintTop_toTopOf="@+id/spot12"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot02"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/spot12"
         app:layout_constraintEnd_toEndOf="@+id/spot12"
@@ -441,16 +505,20 @@
 
     <ImageView
         android:id="@+id/spot30"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot31"
         app:layout_constraintTop_toTopOf="@+id/spot31"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot12"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintBottom_toTopOf="@+id/spot22"
         app:layout_constraintEnd_toEndOf="@+id/spot22"
         app:layout_constraintHorizontal_bias="0.5"
@@ -460,16 +528,20 @@
 
     <ImageView
         android:id="@+id/spot31"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot32"
         app:layout_constraintTop_toTopOf="@+id/spot32"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot40"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+         android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
         app:layout_constraintEnd_toEndOf="@+id/spot30"
@@ -479,8 +551,10 @@
 
     <ImageView
         android:id="@+id/spot22"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+         android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintBottom_toTopOf="@+id/spot32"
         app:layout_constraintEnd_toEndOf="@+id/spot32"
         app:layout_constraintHorizontal_bias="0.5"
@@ -490,8 +564,10 @@
 
     <ImageView
         android:id="@+id/spot41"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+         android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/restoreBtn"
         app:layout_constraintStart_toEndOf="@+id/spot40"
@@ -500,16 +576,20 @@
 
     <ImageView
         android:id="@+id/spot21"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+         android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot22"
         app:layout_constraintTop_toTopOf="@+id/spot22"
         app:srcCompat="@drawable/background" />
 
     <ImageView
         android:id="@+id/spot32"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+         android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
         app:layout_constraintBottom_toTopOf="@+id/spot41"
@@ -519,16 +599,20 @@
 
     <ImageView
         android:id="@+id/spot01"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.13"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintEnd_toStartOf="@+id/spot02"
         app:layout_constraintTop_toTopOf="@+id/spot02"
         app:srcCompat="@drawable/background" />
 
     <Button
         android:id="@+id/chiBtn0"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_chi"
         android:textColor="#ABA6A4"
@@ -538,8 +622,10 @@
 
     <Button
         android:id="@+id/chiBtn3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
@@ -553,8 +639,10 @@
 
     <Button
         android:id="@+id/chiBtn1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_chi"
         android:textColor="#ABA6A4"
@@ -564,8 +652,10 @@
 
     <Button
         android:id="@+id/chiBtn2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_chi"
         android:textColor="#ABA6A4"
@@ -575,8 +665,10 @@
 
     <Button
         android:id="@+id/pengBtn3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
@@ -588,8 +680,10 @@
 
     <Button
         android:id="@+id/pengBtn1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_peng"
         android:textColor="#ABA6A4"
@@ -600,8 +694,10 @@
 
     <Button
         android:id="@+id/pengBtn0"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_peng"
         android:textColor="#ABA6A4"
@@ -612,8 +708,10 @@
 
     <Button
         android:id="@+id/pengBtn2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_peng"
         android:textColor="#ABA6A4"
@@ -624,8 +722,10 @@
 
     <Button
         android:id="@+id/gangBtn0"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_gang"
         android:textColor="#ABA6A4"
@@ -636,8 +736,10 @@
 
     <Button
         android:id="@+id/gangBtn3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:background="@drawable/round_btn_default"
@@ -649,8 +751,10 @@
 
     <Button
         android:id="@+id/gangBtn2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_gang"
         android:textColor="#ABA6A4"
@@ -661,8 +765,10 @@
 
     <Button
         android:id="@+id/gangBtn1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_gang"
         android:textColor="#ABA6A4"
@@ -673,8 +779,10 @@
 
     <Button
         android:id="@+id/mingBtn0"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_ming"
         android:textColor="#ABA6A4"
@@ -684,8 +792,10 @@
 
     <Button
         android:id="@+id/mingBtn1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_ming"
         android:textColor="#ABA6A4"
@@ -695,8 +805,10 @@
 
     <Button
         android:id="@+id/mingBtn2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_ming"
         android:textColor="#ABA6A4"
@@ -707,8 +819,10 @@
 
     <Button
         android:id="@+id/mingBtn3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:background="@drawable/round_btn_default"
@@ -719,8 +833,10 @@
 
     <Button
         android:id="@+id/mingBtn4"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_ming"
         android:textColor="#ABA6A4"
@@ -731,8 +847,10 @@
 
     <Button
         android:id="@+id/anBtn0"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_an"
         android:textColor="#ABA6A4"
@@ -742,8 +860,10 @@
 
     <Button
         android:id="@+id/anBtn3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+                android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/round_btn_default"
@@ -755,8 +875,10 @@
 
     <Button
         android:id="@+id/anBtn4"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_highlight"
         android:text="@string/manually_an"
         android:textColor="#000000"
@@ -766,8 +888,10 @@
 
     <Button
         android:id="@+id/anBtn2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_an"
         android:textColor="#ABA6A4"
@@ -778,8 +902,10 @@
 
     <Button
         android:id="@+id/anBtn1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintDimensionRatio="1:1"
         android:background="@drawable/round_btn_default"
         android:text="@string/manually_an"
         android:textColor="#ABA6A4"
@@ -789,8 +915,10 @@
 
     <Button
         android:id="@+id/calculateBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.065"
         android:text="@string/manually_calculate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -799,8 +927,10 @@
 
     <Button
         android:id="@+id/restoreBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.065"
         android:layout_marginBottom="20dp"
         android:text="@string/manually_restore"
         app:layout_constraintBottom_toTopOf="@+id/yiwan"
@@ -811,8 +941,10 @@
 
     <Button
         android:id="@+id/deleteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.25"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.065"
         android:text="@string/manually_delete"
         app:layout_constraintEnd_toStartOf="@+id/calculateBtn"
         app:layout_constraintHorizontal_bias="0.5"

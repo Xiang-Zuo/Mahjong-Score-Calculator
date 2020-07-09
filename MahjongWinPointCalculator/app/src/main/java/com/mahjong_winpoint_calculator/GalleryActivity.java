@@ -1,15 +1,17 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +31,7 @@ import java.io.InputStream;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -82,8 +87,15 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
         getSupportActionBar().hide(); //隐藏标题
 
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
 
         setContentView(R.layout.activity_gallery);
 
@@ -192,8 +204,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
         EXTRA_LAN = getIntent().getStringExtra("EXTRA_LAN");
         setLanguage(EXTRA_LAN);
-
-
     }
 
     private void showHint(){
@@ -202,7 +212,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             builder.setTitle("Hint")
                     .setMessage("The default template may not support all type of mahjong, make your own mahjong template!\n "+"Take photos of Mahjong tiles and crop them, replace the picture in the template page.\n" +
                         "*** Make sure to back up the template file, the template file directory is \n" +
-                        "Files->Internal Storage->Android->Data->com.example.mahjong_winpoint_calculator->files->templates\n" +
+                        "Files->Internal Storage->Android->Data->com.mahjong_winpoint_calculator->files->templates\n" +
                         "Please back up the entire templates file***")
                     .setPositiveButton("close", new DialogInterface.OnClickListener() {
                         @Override
@@ -214,7 +224,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             builder.setTitle("提示")
                     .setMessage("默认模板不一定支持所有的麻将，制作你自己的麻将模板吧\n"+"制作方法为拍摄麻将牌并裁剪成图片，根据名称替换默认模板中的图片\n" +
                             "***制作完成后请一定备份模板文件，更新过程很有可能造成文件丢失，模板文件目录为：\n" +
-                            "文件管理->内部储存->Android->data->com.example.mahjong_winpoint_calculator->files->templates\n" +
+                            "文件管理->内部储存->Android->data->com.mahjong_winpoint_calculator->files->templates\n" +
                             "请保存整个templates文件***")
                     .setPositiveButton("close", new DialogInterface.OnClickListener() {
                         @Override
@@ -330,14 +340,16 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
     private void init(Context context) {
         File filepath = context.getExternalFilesDir(null);
         File dir = new File(filepath + File.separator + "templates");
+        Log.e("dir-----",dir.toString());
         if (dir.exists()){
             ImageView spot;
             File[] files = dir.listFiles();
             for (File file : files){
                 spot = getSpot(file.getName());
                 if (spot != null){
-                    Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    spot.setImageBitmap(myBitmap);
+//                    Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                    spot.setImageBitmap(myBitmap);
+                    Picasso.with(context).load(file).into(spot);
                 }
             }
         }else {

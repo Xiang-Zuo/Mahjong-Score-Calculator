@@ -19,8 +19,10 @@
 
     <ImageView
         android:id="@+id/spot00"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/spot10"
         app:layout_constraintEnd_toStartOf="@+id/spot01"
@@ -32,8 +34,10 @@
 
     <ImageView
         android:id="@+id/spot01"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot02"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot00"
@@ -42,8 +46,10 @@
 
     <ImageView
         android:id="@+id/spot02"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot03"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot01"
@@ -52,8 +58,10 @@
 
     <ImageView
         android:id="@+id/spot03"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot04"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot02"
@@ -62,8 +70,10 @@
 
     <ImageView
         android:id="@+id/spot04"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot03"
@@ -72,8 +82,10 @@
 
     <ImageView
         android:id="@+id/spot10"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot20"
         app:layout_constraintEnd_toStartOf="@+id/spot11"
         app:layout_constraintHorizontal_bias="0.5"
@@ -83,8 +95,10 @@
 
     <ImageView
         android:id="@+id/spot11"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot10"
@@ -93,8 +107,10 @@
 
     <ImageView
         android:id="@+id/spot12"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot13"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot11"
@@ -103,8 +119,10 @@
 
     <ImageView
         android:id="@+id/spot13"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot12"
@@ -113,8 +131,10 @@
 
     <ImageView
         android:id="@+id/spot20"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot30"
         app:layout_constraintEnd_toStartOf="@+id/spot21"
         app:layout_constraintHorizontal_bias="0.5"
@@ -124,8 +144,10 @@
 
     <ImageView
         android:id="@+id/spot21"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot22"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot20"
@@ -134,8 +156,10 @@
 
     <ImageView
         android:id="@+id/spot22"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot23"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot21"
@@ -144,8 +168,10 @@
 
     <ImageView
         android:id="@+id/spot23"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot24"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot22"
@@ -154,8 +180,10 @@
 
     <ImageView
         android:id="@+id/spot24"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot23"
@@ -164,8 +192,10 @@
 
     <ImageView
         android:id="@+id/spot30"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot40"
         app:layout_constraintEnd_toStartOf="@+id/spot31"
         app:layout_constraintHorizontal_bias="0.5"
@@ -175,8 +205,10 @@
 
     <ImageView
         android:id="@+id/spot31"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot32"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot30"
@@ -185,8 +217,10 @@
 
     <ImageView
         android:id="@+id/spot32"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot33"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot31"
@@ -195,8 +229,10 @@
 
     <ImageView
         android:id="@+id/spot33"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot32"
@@ -205,8 +241,10 @@
 
     <ImageView
         android:id="@+id/spot40"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot50"
         app:layout_constraintEnd_toStartOf="@+id/spot41"
         app:layout_constraintHorizontal_bias="0.5"
@@ -216,8 +254,10 @@
 
     <ImageView
         android:id="@+id/spot41"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot42"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot40"
@@ -226,8 +266,10 @@
 
     <ImageView
         android:id="@+id/spot42"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot43"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot41"
@@ -236,8 +278,10 @@
 
     <ImageView
         android:id="@+id/spot43"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot44"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot42"
@@ -246,8 +290,10 @@
 
     <ImageView
         android:id="@+id/spot44"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot43"
@@ -256,8 +302,10 @@
 
     <ImageView
         android:id="@+id/spot50"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot60"
         app:layout_constraintEnd_toStartOf="@+id/spot51"
         app:layout_constraintHorizontal_bias="0.5"
@@ -267,8 +315,10 @@
 
     <ImageView
         android:id="@+id/spot51"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot52"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot50"
@@ -277,8 +327,10 @@
 
     <ImageView
         android:id="@+id/spot52"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot53"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot51"
@@ -287,8 +339,10 @@
 
     <ImageView
         android:id="@+id/spot53"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot52"
@@ -297,8 +351,10 @@
 
     <ImageView
         android:id="@+id/spot60"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintBottom_toTopOf="@+id/spot70"
         app:layout_constraintEnd_toStartOf="@+id/spot61"
         app:layout_constraintHorizontal_bias="0.5"
@@ -308,8 +364,10 @@
 
     <ImageView
         android:id="@+id/spot61"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot62"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot60"
@@ -318,8 +376,10 @@
 
     <ImageView
         android:id="@+id/spot62"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot63"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot61"
@@ -328,8 +388,10 @@
 
     <ImageView
         android:id="@+id/spot63"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toStartOf="@+id/spot64"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot62"
@@ -338,8 +400,10 @@
 
     <ImageView
         android:id="@+id/spot64"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot63"
@@ -348,8 +412,10 @@
 
     <ImageView
         android:id="@+id/spot71"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/spot70"
@@ -358,13 +424,14 @@
 
     <ImageView
         android:id="@+id/spot70"
-        android:layout_width="55dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spot71"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spot60"
+        app:layout_constraintWidth_percent="0.2"
         app:srcCompat="@drawable/background" />
 
     <TextView

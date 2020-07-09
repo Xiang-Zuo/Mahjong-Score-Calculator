@@ -1,4 +1,4 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.content.Context;
 import android.graphics.Canvas;

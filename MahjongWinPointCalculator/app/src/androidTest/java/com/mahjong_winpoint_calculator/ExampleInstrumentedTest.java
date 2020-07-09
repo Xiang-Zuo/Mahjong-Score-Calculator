@@ -1,4 +1,4 @@
-package com.example.mahjong_winpoint_calculator;
+package com.mahjong_winpoint_calculator;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.mahjong_winpoint_calculator", appContext.getPackageName());
+        assertEquals("com.mahjong_winpoint_calculator", appContext.getPackageName());
     }
 }
