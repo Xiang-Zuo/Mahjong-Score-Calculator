@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         System.gc();
 
         if (!checkPermission(this, PERMISSIONS)) {
@@ -148,9 +149,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.gc();
+        finish();
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selectedLan = parent.getItemAtPosition(position).toString();
         title = (TextView) findViewById(R.id.main_title);
+        ((TextView) parent.getChildAt(0)).setTextSize(20);
         if (selectedLan.equals("EN")){
             EXTRA_LAN = "EN";
             title.setText(getString(R.string.main_title_EN));
@@ -171,11 +180,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        System.gc();
-        finish();
-    }
 }
 

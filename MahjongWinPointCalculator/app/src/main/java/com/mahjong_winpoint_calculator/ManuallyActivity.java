@@ -36,12 +36,6 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             null, null};
 
     ArrayList<String> hands;
-    ArrayList<String> chi;
-    ArrayList<String> peng;
-    ArrayList<String> mingGang;
-    ArrayList<String> anGang;
-    ArrayList<String> specialFormat;
-
     ImageView spot00 = null;
     ImageView spot01 = null;
     ImageView spot02 = null;
@@ -130,16 +124,11 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
-        getSupportActionBar().hide(); //隐藏标题
         setContentView(R.layout.activity_manually);
 
+        System.gc();
         paiCount = new HashMap<ImageView, Integer>();
         hands = new ArrayList<>();
-        chi = new ArrayList<>();
-        peng = new ArrayList<>();
-        mingGang = new ArrayList<>();
-        anGang = new ArrayList<>();
-        specialFormat = new ArrayList<>();
 
         spot00 = (ImageView) findViewById(R.id.spot00);
         spot01 = (ImageView) findViewById(R.id.spot01);
@@ -582,7 +571,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             case R.id.restoreBtn:
             case R.id.deleteBtn:
             case R.id.calculateBtn:
-                onActionBtnClick(v.getId(), v, this);
+                onActionBtnClick(v.getId(), v);
 
             default:
                 break;
@@ -1273,7 +1262,8 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void onActionBtnClick(int id, View v, Activity activity) {
+    private void onActionBtnClick(int id, View v) {
+        Activity activity = this;
         if (id == R.id.restoreBtn) {
             spots = new ImageView[]{null, null, null,
                     null, null, null,
@@ -1428,7 +1418,6 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
                 }
                 fillHandArray();
             }
-            //Todo delete last pai when no spot been chosen
         } else {
             if (hands.isEmpty()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -1477,9 +1466,9 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("进阶选项/Advanced Choice");
 
+            ArrayList<String> specialFormat = new ArrayList<>();
             // Add a checkbox list
-            String[] special = {"门风刻", "圈风刻", "胡绝张", "抢杠胡", "杠上开花","海底捞月","花牌(请在下方输入花牌的数量 0~8)"};
-            specialFormat.clear();
+            String[] special = {"门风刻/Seat Wind", "圈风刻/Prevalent Wind", "胡绝张/Last Tile", "抢杠胡/Rob Kong", "杠上开花/Out with Replacement Tile","海底捞月/Last Tile Claim","花牌(请在下方输入花牌的数量 0~8)/Flowers Tiles"};
             boolean[] checkedItems = {false, false, false, false, false, false, true};
             builder.setMultiChoiceItems(special, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
@@ -1781,6 +1770,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
     public void onDestroy() {
         super.onDestroy();
         System.gc();
+        Runtime.getRuntime().gc();
         finish();
     }
 
@@ -2201,7 +2191,7 @@ public class ManuallyActivity extends AppCompatActivity implements View.OnClickL
             String fanXing = cp.calculate_final_point().toString();
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("胡!/WIN!")
-                    .setMessage("番型: " + fanXing + "\nCombos: " + "" + "\n番数/Points: " + cp.getScoreRecorder().toString() + "\n总共/Total: " + cp.getFinalPoint() + " 番")
+                    .setMessage("番型: " + fanXing + "" + "\n番数/Points: " + cp.getScoreRecorder().toString() + "\n总共/Total: " + cp.getFinalPoint() + " 番")
                     .setPositiveButton("恭喜！/Congratulation!", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

@@ -32,13 +32,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
-
-    //private static final String TAG = "GalleryActivity";
-
     Button homeBtn;
     Button loadDefaultBtn;
     Button hintBtn;
-
     String EXTRA_LAN;
 
     ImageView spot00 = null;
@@ -83,20 +79,13 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
-        getSupportActionBar().hide(); //隐藏标题
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
-
         setContentView(R.layout.activity_gallery);
-
         System.gc();
 
         spot00 = (ImageView) findViewById(R.id.spot00);
@@ -174,7 +163,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         spot64.setOnClickListener(this);
         spot70.setOnClickListener(this);
         spot71.setOnClickListener(this);
-
 
         init();
 
@@ -262,6 +250,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         init();
     }
 
@@ -274,7 +263,7 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             bitmap = BitmapFactory.decodeStream(istr);
             istr.close();
         } catch (IOException e) {
-            Log.e("getBitmapFromAssets", e.toString());
+            Log.e("gallery", e.toString());
             e.printStackTrace();
         }
         return bitmap;
@@ -577,6 +566,8 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
     public void onDestroy() {
         super.onDestroy();
         System.gc();
+        Runtime.getRuntime().gc();
         finish();
     }
+
 }

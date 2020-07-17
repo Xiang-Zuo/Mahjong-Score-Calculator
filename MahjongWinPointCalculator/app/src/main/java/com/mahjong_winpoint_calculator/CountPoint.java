@@ -123,385 +123,386 @@ public class CountPoint {
     }
 
     public ArrayList<String> calculate_final_point(){
+        //todo no miaoshouhuichun
         fanXings.clear();
         paiXingResult.clear();
         scoreRecorder.clear();
         if (isDaSiXi(hands)){
             fanXings.add("DaSiXi");
-            paiXingResult.add("大四喜");
+            paiXingResult.add("大四喜/Big Four Winds");
             scoreRecorder.add(88);
         }
         if(isDaSanYuan(hands)){
             fanXings.add("DaSanYuan");
-            paiXingResult.add("大三元/Big three dragons");
+            paiXingResult.add("大三元/Big Three Dragons");
             scoreRecorder.add(88);
         }
         if(isLvYiSe(hands)){
             fanXings.add("LvYiSe");
-            paiXingResult.add("绿一色");
+            paiXingResult.add("绿一色/All Green");
             scoreRecorder.add(88);
         }
         if(isJiuLianBaoDeng(hands)){
             fanXings.add("JiuLianBaoDeng");
-            paiXingResult.add("九莲宝灯");
+            paiXingResult.add("九莲宝灯/Nine Gates");
             scoreRecorder.add(88);
         }
         if(isSiGang(hands)){
             fanXings.add("SiGang");
-            paiXingResult.add("四杠");
+            paiXingResult.add("四杠/Four Kongs");
             scoreRecorder.add(88);
         }if(isLianQiDui(hands)){
             fanXings.add("LianQiDui");
-            paiXingResult.add("连七对");
+            paiXingResult.add("连七对/Seven Shifted Pairs");
             scoreRecorder.add(88);
         }if(isShiSanYao(hands)){
             fanXings.add("ShiSanYao");
-            paiXingResult.add("十三幺");
+            paiXingResult.add("十三幺/Thirteen Orphans");
             scoreRecorder.add(88);
         }if(isQingYaoJiu(hands)){
             fanXings.add("QingYaoJiu");
-            paiXingResult.add("清幺九");
+            paiXingResult.add("清幺九/All Terminals");
             scoreRecorder.add(64);
         }if(isXiaoSiXi(hands)){
             fanXings.add("XiaoSiXi");
-            paiXingResult.add("小四喜");
+            paiXingResult.add("小四喜/Little Four Winds");
             scoreRecorder.add(64);
 
         }if(isXiaoSanYuan(hands)){
             fanXings.add("XiaoSanYuan");
-            paiXingResult.add("小三元");
+            paiXingResult.add("小三元/Little Three Dragons");
             scoreRecorder.add(64);
         }if(isZiYiSe(hands)){
             fanXings.add("ZiYiSe");
-            paiXingResult.add("字一色");
+            paiXingResult.add("字一色/All Honours");
             scoreRecorder.add(64);
         }if(isSiAnKe(hands)){
             fanXings.add("SiAnKe");
-            paiXingResult.add("四暗刻");
+            paiXingResult.add("四暗刻/Four Concealed Pungs");
             scoreRecorder.add(64);
         }
         if(isYiSeShuangLongHui(hands)){
             fanXings.add("YiSeShuangLongHui");
-            paiXingResult.add("一色双龙会");
+            paiXingResult.add("一色双龙会/Pure Terminal Chows");
             scoreRecorder.add(64);
         }
         if(isYiSeSiTongShun(hands)){
             fanXings.add("YiSeSiTongShun");
-            paiXingResult.add("一色四同顺");
+            paiXingResult.add("一色四同顺/Quadruple Chow");
             scoreRecorder.add(48);
         }
         if(isYiSeSiJieGao(hands)){
             fanXings.add("YiSeSiJieGao");
-            paiXingResult.add("一色四节高");
+            paiXingResult.add("一色四节高/Four Pure Shifted Pungs");
             scoreRecorder.add(48);
         }
         if(isYiSeSiBuGao(hands)){
             fanXings.add("YiSeSiBuGao");
-            paiXingResult.add("一色四步高");
+            paiXingResult.add("一色四步高/Four Pure Shifted Chows");
             scoreRecorder.add(32);
         }
         if(isSanGang(hands)){
             fanXings.add("SanGang");
-            paiXingResult.add("三杠");
+            paiXingResult.add("三杠/Three Kongs");
             scoreRecorder.add(32);
         }
         if(isHunYaoJiu(hands)){
             fanXings.add("HunYaoJiu");
-            paiXingResult.add("混幺九");
+            paiXingResult.add("混幺九/All Terminals and Honours");
             scoreRecorder.add(32);
         }if(isQiDui(hands)){
             fanXings.add("QiDui");
-            paiXingResult.add("七对");
+            paiXingResult.add("七对/Seven Pairs");
             scoreRecorder.add(24);
         }
         if(isQiXingBuKao(hands)){
             fanXings.add("QiXingBuKao");
-            paiXingResult.add("七星不靠");
+            paiXingResult.add("七星不靠/Greater Honours and Knitted Tiles");
             scoreRecorder.add(24);
         }
         if(isQuanShuangKe(hands)){
             fanXings.add("QuanShuangKe");
-            paiXingResult.add("全双刻");
+            paiXingResult.add("全双刻/All Even Pungs");
             scoreRecorder.add(24);
         }
         if(isYiSeSanTongShun(hands)){
             fanXings.add("YiSeSanTongShun");
-            paiXingResult.add("一色三同顺");
+            paiXingResult.add("一色三同顺/Pure Triple Chow");
             scoreRecorder.add(24);
         }
         if(isYiSeSanJieGao(hands)){
             fanXings.add("YiSeSanJieGao");
-            paiXingResult.add("一色三节高");
+            paiXingResult.add("一色三节高/Pure Shifted Pungs");
             scoreRecorder.add(24);
         }
         if(isQuanDa(hands)){
             fanXings.add("QuanDa");
-            paiXingResult.add("全大");
+            paiXingResult.add("全大/Upper Tiles");
             scoreRecorder.add(24);
         }
         if(isQuanZhong(hands)){
             fanXings.add("QuanZhong");
-            paiXingResult.add("全中");
+            paiXingResult.add("全中/Middle Tiles");
             scoreRecorder.add(24);
         }
         if(isSanSeShuangLongHui(hands)){
             fanXings.add("SanSeShuangLongHui");
-            paiXingResult.add("三色双龙会");
+            paiXingResult.add("三色双龙会/Three-Suited Terminal Chow");
             scoreRecorder.add(16);
 
         }
         if(isYiSeSanBuGao(hands)){
             fanXings.add("YiSeSanBuGao");
-            paiXingResult.add("一色三步高");
+            paiXingResult.add("一色三步高/Pure Shifted Chows");
             scoreRecorder.add(16);
         }
         if(isQingLong(hands)){
             fanXings.add("QingLong");
-            paiXingResult.add("清龙");
+            paiXingResult.add("清龙/Pure Straight");
             scoreRecorder.add(16);
         }
         if (isQuanDaiWu(hands)){
             fanXings.add("QuanDaiWu");
-            paiXingResult.add("全带五");
+            paiXingResult.add("全带五/All Five");
             scoreRecorder.add(16);
         }
         if(isQuanBuKao(hands)){
             fanXings.add("QuanBuKao");
-            paiXingResult.add("全不靠");
+            paiXingResult.add("全不靠/Lesser Honours and Knitted Tiles");
             scoreRecorder.add(12);
         }
         if(isZuHeLong(hands)){
-            fanXings.add("ZuHeLong");
+            fanXings.add("ZuHeLong/Knitted Straight");
             paiXingResult.add("组合龙");
             scoreRecorder.add(12);
         }if(isSanFengKe(hands)){
             fanXings.add("SanFengKe");
-            paiXingResult.add("三风刻");
+            paiXingResult.add("三风刻/Three Winds");
             scoreRecorder.add(12);
         }
         if(isSanSeSanTongShun(hands)){
             fanXings.add("SanSeSanTongShun");
-            paiXingResult.add("三色三同顺");
+            paiXingResult.add("三色三同顺/Mixed Triple Chow");
             scoreRecorder.add(8);
         }
         if(isSanSeSanJieGao(hands)){
             fanXings.add("SanSeSanJieGao");
-            paiXingResult.add("三色三节高");
+            paiXingResult.add("三色三节高/Mixed Shifted Pungs");
             scoreRecorder.add(8);
         }
         if(isSanSeSanBuGao(hands)){
             fanXings.add("SanSeSanBuGao");
-            paiXingResult.add("三色三步高");
+            paiXingResult.add("三色三步高/Mixed Shifted Chows");
             scoreRecorder.add(8);
         }
 
         if (isQuanXiao(hands)){
             fanXings.add("QuanXiao");
-            paiXingResult.add("全小");
+            paiXingResult.add("全小/Lower Tiles");
             scoreRecorder.add(24);
         }
         if (isQingYiSe(hands)){
             fanXings.add("QingYiSe");
-            paiXingResult.add("清一色");
+            paiXingResult.add("清一色/Full Flush");
             scoreRecorder.add(24);
         }
         if (isSanTongKe(hands)){
             fanXings.add("SanTongKe");
-            paiXingResult.add("三同刻");
+            paiXingResult.add("三同刻/Triple Pung");
             scoreRecorder.add(16);
         }
         if (isSanAnKe(hands)){
             fanXings.add("SanAnKe");
-            paiXingResult.add("三暗刻");
+            paiXingResult.add("三暗刻/Three Concealed Pungs");
             scoreRecorder.add(16);
         }
         if (isDaYuWu(hands)){
             fanXings.add("DaYuWu");
-            paiXingResult.add("大于五");
+            paiXingResult.add("大于五/Upper Four");
             scoreRecorder.add(12);
         }
         if (isXiaoYuWu(hands)){
             fanXings.add("XiaoYuWu");
-            paiXingResult.add("小于五");
+            paiXingResult.add("小于五/Lower Four");
             scoreRecorder.add(12);
         }
         if (isHuaLong(hands)){
             fanXings.add("HuaLong");
-            paiXingResult.add("花龙");
+            paiXingResult.add("花龙/Mixed Straight");
             scoreRecorder.add(8);
         }
         if (isTuiBuDao(hands)){
             fanXings.add("TuiBuDao");
-            paiXingResult.add("推不倒");
+            paiXingResult.add("推不倒/Reversible Tiles");
             scoreRecorder.add(8);
         }
         if (isHaiDiLaoYue(hands)){
             fanXings.add("HaiDiLaoYue");
-            paiXingResult.add("海底捞月");
+            paiXingResult.add("海底捞月/Last Tile Claim");
             scoreRecorder.add(8);
         }
         if (isGangShangKaiHua(hands)){
             fanXings.add("GangShangKaiHua");
-            paiXingResult.add("杠上开花");
+            paiXingResult.add("杠上开花/Out with Replacement Tile");
             scoreRecorder.add(8);
         }
         if (isQiangGangHu(hands)){
             fanXings.add("QiangGangHu");
-            paiXingResult.add("抢杠胡");
+            paiXingResult.add("抢杠胡/Rob Kong");
             scoreRecorder.add(8);
         }
         if (isPengPengHu(hands)){
             fanXings.add("PengPengHu");
-            paiXingResult.add("碰碰胡");
+            paiXingResult.add("碰碰胡/All Pungs");
             scoreRecorder.add(6);
         }
         if (isHunYiSe(hands)){
             fanXings.add("HunYiSe");
-            paiXingResult.add("混一色");
+            paiXingResult.add("混一色/Half Flush");
             scoreRecorder.add(6);
         }
         if (isWuMenQi(hands)){
             fanXings.add("WuMenQi");
-            paiXingResult.add("五门齐");
+            paiXingResult.add("五门齐/All Types");
             scoreRecorder.add(6);
         }
         if (isQuanQiuRen(hands)){
             fanXings.add("QuanQiuRen");
-            paiXingResult.add("全求人");
+            paiXingResult.add("全求人/Melded Hand");
             scoreRecorder.add(6);
         }
         if (isShuangAnGang(hands)){
             fanXings.add("ShuangAnGang");
-            paiXingResult.add("双暗杠");
+            paiXingResult.add("双暗杠/Two Concealed Kongs");
             scoreRecorder.add(6);
         }
         if (isShuangJianKe(hands)){
             fanXings.add("ShuangJianKe");
-            paiXingResult.add("双箭刻");
+            paiXingResult.add("双箭刻/Two Dragon Pungs");
             scoreRecorder.add(6);
         }
         if (isQuanDaiYao(hands)){
             fanXings.add("QuanDaiYao");
-            paiXingResult.add("全带幺");
+            paiXingResult.add("全带幺/Outside Hand");
             scoreRecorder.add(4);
         }
         if (isBuQiuRen(hands)){
             fanXings.add("BuQiuRen");
-            paiXingResult.add("不求人");
+            paiXingResult.add("不求人//Fully Concealed Hand");
             scoreRecorder.add(4);
         }
         if (isShuangMingGang(hands)){
             fanXings.add("ShuangMingGang");
-            paiXingResult.add("双明杠");
+            paiXingResult.add("双明杠/Two Melded Kongs");
             scoreRecorder.add(4);
         }
         if (isHuJueZhang(hands)){
             fanXings.add("HuJueZhang");
-            paiXingResult.add("胡绝张");
+            paiXingResult.add("胡绝张/Last Tile");
             scoreRecorder.add(4);
         }
         if (isJianKe(hands)){
             fanXings.add("JianKe");
-            paiXingResult.add("箭刻");
+            paiXingResult.add("箭刻/Dragon Pung");
             scoreRecorder.add(2);
         }
         if (isQuanFengKe(hands)){
             fanXings.add("QuanFengKe");
-            paiXingResult.add("圈风刻");
+            paiXingResult.add("圈风刻/Prevalent Wind");
             scoreRecorder.add(2);
         }
         if (isMenFengKe(hands)){
             fanXings.add("MenFengKe");
-            paiXingResult.add("门风刻");
+            paiXingResult.add("门风刻/Seat Wind");
             scoreRecorder.add(2);
         }
         if (isMenQianQing(hands)){
             fanXings.add("MenQianQing");
-            paiXingResult.add("门前清");
+            paiXingResult.add("门前清/Concealed Hand");
             scoreRecorder.add(2);
         }
         if (isPingHu(hands)){
             fanXings.add("PingHu");
-            paiXingResult.add("平胡");
+            paiXingResult.add("平胡/All Chows");
             scoreRecorder.add(2);
         }
         if (isSiGuiYi(hands)){
             fanXings.add("SiGuiYi");
-            paiXingResult.add("四归一");
+            paiXingResult.add("四归一/Tile Hog");
             scoreRecorder.add(2);
         }
         if (isShuangTongKe(hands)){
             fanXings.add("ShuangTongKe");
-            paiXingResult.add("双同刻");
+            paiXingResult.add("双同刻/Mixed Double Pung");
             scoreRecorder.add(2);
         }
         if (isShuangAnKe(hands)){
             fanXings.add("ShuangAnKe");
-            paiXingResult.add("双暗刻");
+            paiXingResult.add("双暗刻/Two Concealed Pungs");
             scoreRecorder.add(2);
         }
         if (isAnGang(hands)){
             fanXings.add("AnGang");
-            paiXingResult.add("暗杠");
+            paiXingResult.add("暗杠/Concealed Kong");
             scoreRecorder.add(2);
         }
         if (isDuanYao(hands)){
             fanXings.add("DuanYao");
-            paiXingResult.add("断幺");
+            paiXingResult.add("断幺/All Simples");
             scoreRecorder.add(2);
         }
         if (isYiBanGao(hands)){
             fanXings.add("YiBanGao");
-            paiXingResult.add("一般高");
+            paiXingResult.add("一般高/Pure Double Chow");
             scoreRecorder.add(1);
         }
         if (isXiXiangFeng(hands)){
             fanXings.add("XiXiangFeng");
-            paiXingResult.add("喜相逢");
+            paiXingResult.add("喜相逢/Mixed Double Chow");
             scoreRecorder.add(1);
         }
         if (isLianLiu(hands)){
             fanXings.add("LianLiu");
-            paiXingResult.add("连六");
+            paiXingResult.add("连六/Short Straight");
             scoreRecorder.add(1);
         }
         if (isLaoShaoFu(hands)){
             fanXings.add("LaoShaoFu");
-            paiXingResult.add("老少副");
+            paiXingResult.add("老少副/Two Terminal Chows");
             scoreRecorder.add(1);
         }
         if (isYaoJiuKe(hands)){
             fanXings.add("YaoJiuKe");
-            paiXingResult.add("幺九刻");
+            paiXingResult.add("幺九刻/Pung of Terminals or Honours");
             scoreRecorder.add(1);
         }
         if (isMingGang(hands)){
             fanXings.add("MingGang");
-            paiXingResult.add("明杠");
+            paiXingResult.add("明杠/Melded Kong");
             scoreRecorder.add(1);
         }
         if (isQueYiMen(hands)){
             fanXings.add("QueYiMen");
-            paiXingResult.add("缺一门");
+            paiXingResult.add("缺一门/One Voided Suit");
             scoreRecorder.add(1);
         }
         if (isWuZi(hands)){
             fanXings.add("WuZi");
-            paiXingResult.add("无字");
+            paiXingResult.add("无字/No Honours");
             scoreRecorder.add(1);
         }
         if (isBianZhang(hands)){
             fanXings.add("BianZhang");
-            paiXingResult.add("边张");
+            paiXingResult.add("边张/Edge Wait");
             scoreRecorder.add(1);
         }
         if (isKanZhang(hands)){
             fanXings.add("KanZhang");
-            paiXingResult.add("坎张");
+            paiXingResult.add("坎张/Closed Wait");
             scoreRecorder.add(1);
         }
         if (isDanDiaoJiang(hands)){
-            fanXings.add("DanDiaoJiang");
+            fanXings.add("DanDiaoJiang/Single Wait");
             paiXingResult.add("单钓将");
             scoreRecorder.add(1);
         }
@@ -509,22 +510,22 @@ public class CountPoint {
         if (result != -1){
             if (result == 0) {
                 fanXings.add("ZiMo");
-                paiXingResult.add("自摸");
+                paiXingResult.add("自摸/Self Draw");
                 scoreRecorder.add(1);
             }else{
                 fanXings.add("BuQiuRen");
-                paiXingResult.add("不求人");
+                paiXingResult.add("不求人/Fully Concealed Hand");
                 scoreRecorder.add(4);
             }
         }
         if (isHuaPai(hands) > 0){
             fanXings.add("HuaPai");
-            paiXingResult.add("花牌*" + numOfFlower);
+            paiXingResult.add("花牌/Flowers*" + numOfFlower);
             scoreRecorder.add(numOfFlower);
         }
         if (isWuFanHu(hands)){
             fanXings.add("WuFanHu");
-            paiXingResult.add("无番胡");
+            paiXingResult.add("无番胡/Chicken Hand");
             scoreRecorder.add(8);
         }
         return paiXingResult;

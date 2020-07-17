@@ -31,7 +31,7 @@ import java.util.Collections;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CameraActivity extends AppCompatActivity implements CvCameraViewListener2{
-    private static final String TAG = "CameraActivity";
+//    private static final String TAG = "CameraActivity";
 
     private CameraBridgeViewBase mCVCamera;
     private Mat mRgba;
@@ -53,7 +53,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
-                    Log.i(TAG, "OpenCV loaded successfully");
+                    Log.i("CameraActivity", "OpenCV loaded successfully");
                     mCVCamera.enableView();
                     break;
                 default:{
@@ -65,11 +65,11 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "called onCreate");
+        Log.i("CameraActivity", "called onCreate");
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //横屏
-        getSupportActionBar().hide(); //隐藏标题
+        //getSupportActionBar().hide(); //隐藏标题
         setContentView(R.layout.activity_camera);
 
         //初始化并设置预览部件
@@ -94,7 +94,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         for (String paiName : TEMPLATEID_WAN){
                             Mat template = readImageFromFile(paiName,CameraActivity.this);
                             if (template == null){
-                                Log.i(TAG, paiName + " file not exist");
+                                Log.i("CameraActivity", paiName + " file not exist");
                                 continue;
                             }
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
@@ -108,7 +108,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         for (String paiName : TEMPLATEID_TIAO){
                             Mat template = readImageFromFile(paiName,CameraActivity.this);
                             if (template == null){
-                                Log.i(TAG, paiName + " file not exist");
+                                Log.i("CameraActivity", paiName + " file not exist");
                                 continue;
                             }
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
@@ -122,7 +122,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         for (String paiName : TEMPLATEID_BING){
                             Mat template = readImageFromFile(paiName,CameraActivity.this);
                             if (template == null){
-                                Log.i(TAG, paiName + " file not exist");
+                                Log.i("CameraActivity", paiName + " file not exist");
                                 continue;
                             }
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
@@ -134,7 +134,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                         for (String paiName : TEMPLATEID_ZI){
                             Mat template = readImageFromFile(paiName,CameraActivity.this);
                             if (template == null){
-                                Log.i(TAG, paiName + " file not exist");
+                                Log.i("CameraActivity", paiName + " file not exist");
                                 continue;
                             }
                             Imgproc.resize(template,template,new Size(resizedCol, resizedRow ), 0, 0, Imgproc.INTER_AREA);
@@ -188,9 +188,9 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
             if(!OpenCVLoader.initDebug()) {
-                Log.d(TAG, "OpenCV library not found!");
+                Log.d("CameraActivity", "OpenCV library not found!");
             } else {
-                Log.d(TAG, "OpenCV library found inside package. Using it!");
+                Log.d("CameraActivity", "OpenCV library found inside package. Using it!");
                 mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
             }
         }
@@ -375,7 +375,7 @@ public class CameraActivity extends AppCompatActivity implements CvCameraViewLis
                     img = Imgcodecs.imread(file.getAbsolutePath(), Imgcodecs.IMREAD_GRAYSCALE);
             }
         }else {
-            Log.e(TAG, "template dir not exist");
+            Log.e("CameraActivity", "template dir not exist");
         }
         return img;
     }

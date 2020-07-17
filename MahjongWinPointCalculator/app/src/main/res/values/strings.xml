@@ -35,7 +35,7 @@
     <string name="manually_gang_EN">K</string>
     <string name="manually_ming_EN">EK</string>
     <string name="manually_an_EN">CK</string>
-    <string name="manually_hint_EN">"?"</string>
+    <string name="manually_hint_EN">\?</string>
 
     <string name="gallery_title">制作模板</string>
     <string name="gallery_default">载入默认模板</string>
